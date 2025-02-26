@@ -29,7 +29,8 @@
 }
 
 .product-container:hover .jaceen-logo img {
-  rotate: 360deg;
+  rotate: 380deg;
+  transform: scale(1.2);
 }
 
 .product-container .image-container {
