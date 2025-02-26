@@ -79,6 +79,7 @@ export default function Category() {
                 title={product.title}
                 price={product.price}
                 img={product.img}
+                category={product.category}
               />
             );
           })

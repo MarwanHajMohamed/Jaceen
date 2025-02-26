@@ -14,7 +14,7 @@ export default function Product(props: Props) {
         <img src={logo} alt="" />
       </div>
       <div className="image-container">
-        <img src={props.img} alt="" />
+        <img src={props.img} alt={props.title} loading="lazy" />
       </div>
       <div className="product-title">{props.title}</div>
       <div className="price">£{props.price}</div>

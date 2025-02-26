@@ -4,6 +4,7 @@ interface Props {
   img: string;
   title: string;
   price: number;
+  category: string;
 }
 
 export default function Product(props: Props) {
@@ -20,6 +21,7 @@ export default function Product(props: Props) {
         <i className="fa-solid fa-star"></i>
       </div>
       <div className="product-title">{props.title}</div>
+      <div className="product-category">{props.category}</div>
       <div className="price">£{props.price}</div>
     </div>
   );

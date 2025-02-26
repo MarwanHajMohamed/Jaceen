@@ -32,6 +32,13 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-weight: 700;
+}
+
+.shop-product-container .product-category {
+  color: var(--hover);
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .shop-product-container button {
