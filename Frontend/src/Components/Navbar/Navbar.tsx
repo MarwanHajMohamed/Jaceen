@@ -17,11 +17,24 @@ export default function Navbar() {
         <div className="middle-side">
           <ul className="items">
             <li onClick={() => route("/")}>Home</li>
-            <li onClick={() => route("/shop/All")}>
-              Shop{" "}
-              <span>
-                <i className="fa-solid fa-caret-down"></i>
-              </span>
+            <li className="shop-link">
+              <div onClick={() => route("/shop/All")}>
+                Shop{" "}
+                <span>
+                  <i className="fa-solid fa-caret-down"></i>
+                </span>
+              </div>
+
+              <ul className="shop-categories">
+                <li onClick={() => route("/shop/Hair Care")}>Hair Care</li>
+                <li onClick={() => route("/shop/Skin Care")}>Skin Care</li>
+                <li onClick={() => route("/shop/Sports Nutrition")}>
+                  Sports Nutrition
+                </li>
+                <li onClick={() => route("/shop/Training Programmes")}>
+                  Training Programmes
+                </li>
+              </ul>
             </li>
             <li>Contact</li>
           </ul>

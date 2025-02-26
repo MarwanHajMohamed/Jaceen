@@ -51,3 +51,32 @@
   cursor: pointer;
   transition: 100ms ease-in-out;
 }
+
+.shop-link {
+  position: relative;
+}
+
+.shop-categories {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 150px;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.shop-link:hover .shop-categories {
+  display: block;
+}
+
+.shop-categories li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.shop-categories li:hover {
+  background-color: #f0f0f0;
+}
