@@ -2,7 +2,7 @@ import "./category.css";
 
 import { Navigate, useParams } from "react-router-dom";
 
-import productsJson from "../../data/products.json";
+import { products as productsJson } from "../../data/products.js";
 import Product from "../Common Components/Shop Product/Product";
 import { useEffect, useState } from "react";
 
@@ -19,12 +19,13 @@ interface Product {
   title: string;
   price: number;
   category: string;
+  img: string;
 }
 
 export default function Category() {
   const { category } = useParams();
 
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string | number>("");
 
   if (typeof category !== "string" || !validCategories.includes(category)) {
@@ -71,9 +72,23 @@ export default function Category() {
         />
       </div>
       <div className="products">
-        {products?.map((product) => {
-          return <Product title={product.title} price={product.price} img="" />;
-        })}
+        {products.length > 0 ? (
+          products.map((product) => {
+            return (
+              <Product
+                title={product.title}
+                price={product.price}
+                img={product.img}
+              />
+            );
+          })
+        ) : (
+          <div className="search-error">
+            <i className="fa-solid fa-magnifying-glass"></i>
+            It seems like what you are looking for does not exist. Try another
+            search term.
+          </div>
+        )}
       </div>
     </div>
   );
