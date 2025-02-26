@@ -1,0 +1,20 @@
+.benefit-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.benefit-container .image-container {
+  display: flex;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0, 0.7);
+  width: 50px;
+  height: 50px;
+  padding: 20px;
+}
+
+.benefit-container .benefit-title {
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--hover);
+}

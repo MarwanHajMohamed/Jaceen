@@ -1,0 +1,29 @@
+.benefits-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+}
+
+.benefits-container .title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.benefits-container .title {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.benefits-container .description {
+  letter-spacing: 1px;
+}
+
+.benefits-container .benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

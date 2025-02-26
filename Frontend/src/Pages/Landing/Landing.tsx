@@ -3,6 +3,7 @@ import "./landing.css";
 import BestSellers from "../../Components/Best Sellers/BestSellers";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
+import Benefits from "../../Components/Benefits/Benefits";
 
 export default function Landing() {
   return (
@@ -29,6 +30,7 @@ export default function Landing() {
         </div>
       </div>
       <BestSellers />
+      <Benefits />
     </>
   );
 }
