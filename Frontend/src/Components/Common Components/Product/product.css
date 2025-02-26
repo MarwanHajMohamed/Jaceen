@@ -1,0 +1,43 @@
+.product-container {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 30px 0 30px;
+  background: rgb(0, 0, 0);
+  color: white;
+  width: 230px;
+  height: 270px;
+  border-radius: 40px;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.product-container .jaceen-logo {
+  position: absolute;
+}
+
+.product-container .jaceen-logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.product-container:hover .product-title {
+  color: var(--hover);
+}
+
+.product-container .image-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-container img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+
+.product-container .product-title {
+  transition: 200ms ease-in-out;
+  letter-spacing: 1px;
+}

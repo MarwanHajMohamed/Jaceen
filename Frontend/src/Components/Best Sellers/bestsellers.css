@@ -1,0 +1,34 @@
+.bestsellers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 50px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.bestsellers-container .title-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.bestsellers-container .title {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.bestsellers-container .description {
+  letter-spacing: 1px;
+}
+
+.bestsellers-container .products-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
