@@ -7,7 +7,6 @@
   width: 230px;
   height: 270px;
   border-radius: 40px;
-  transition: 200ms ease-in-out;
   cursor: pointer;
 }
 
@@ -18,10 +17,19 @@
 .product-container .jaceen-logo img {
   width: 40px;
   height: 40px;
+  transition: 300ms ease-in-out;
+}
+
+.product-container .product-title {
+  font-weight: 700;
 }
 
 .product-container:hover .product-title {
   color: var(--hover);
+}
+
+.product-container:hover .jaceen-logo img {
+  rotate: 360deg;
 }
 
 .product-container .image-container {
@@ -38,6 +46,6 @@
 }
 
 .product-container .product-title {
-  transition: 200ms ease-in-out;
+  transition: 100ms ease-in-out;
   letter-spacing: 1px;
 }
