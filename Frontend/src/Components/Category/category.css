@@ -1,0 +1,39 @@
+.category-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 50px;
+  align-items: center;
+}
+
+.category-page-container .category-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.category-page-container .title-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.category-page-container .title-container input {
+  border: 1px solid;
+  height: 30px;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.category-page-container .products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 30px;
+  max-width: 1500px;
+  width: 100%;
+  border: 1px solid red;
+}
