@@ -5,6 +5,7 @@ import Benefits from "../../Components/Benefits/Benefits";
 import Shop from "../../Components/Landing Shop/Shop";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
+import Testimonials from "../../Components/Testimonials/Testimonials";
 
 export default function Landing() {
   return (
@@ -33,6 +34,7 @@ export default function Landing() {
       <BestSellers />
       <Benefits />
       <Shop />
+      <Testimonials />
     </>
   );
 }
