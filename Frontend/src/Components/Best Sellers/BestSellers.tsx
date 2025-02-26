@@ -1,5 +1,5 @@
 import "./bestsellers.css";
-import Product from "../Common Components/Product/Product";
+import Product from "../Common Components/Landing Product/Product";
 
 import Alpha from "../../assets/alpha.png";
 import CBD from "../../assets/cbd.jpg";

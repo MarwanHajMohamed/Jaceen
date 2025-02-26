@@ -3,7 +3,7 @@ import "./category.css";
 import { Navigate, useParams } from "react-router-dom";
 
 import { products as productsJson } from "../../data/products.js";
-import Product from "../Common Components/Shop Product/Product";
+import Product from "../../Components/Common Components/Shop Product/Product.js";
 import { useEffect, useState } from "react";
 
 const validCategories: string[] = [
@@ -23,7 +23,7 @@ interface Product {
 }
 
 export default function Category() {
-  const { category } = useParams();
+  const { category } = useParams<string>();
 
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState<string | number>("");
@@ -73,22 +73,32 @@ export default function Category() {
       </div>
       <div className="products">
         {products.length > 0 ? (
-          products.map((product) => {
-            return (
-              <Product
-                title={product.title}
-                price={product.price}
-                img={product.img}
-                category={product.category}
-              />
-            );
-          })
+          products.length <= 0 && searchTerm !== "" ? (
+            <div className="search-error">
+              <i className="fa-solid fa-magnifying-glass"></i>
+              It seems like what you are looking for does not exist. Try another
+              search term.
+            </div>
+          ) : (
+            products.map((product) => {
+              return (
+                <Product
+                  id={product.id}
+                  title={product.title}
+                  price={product.price}
+                  img={product.img}
+                  category={product.category}
+                />
+              );
+            })
+          )
         ) : (
-          <div className="search-error">
-            <i className="fa-solid fa-magnifying-glass"></i>
-            It seems like what you are looking for does not exist. Try another
-            search term.
-          </div>
+          Array.from({ length: 15 }).map((_, index) => (
+            <div key={index} className="loading-products">
+              <div className="img"></div>
+              <div className="title"></div>
+            </div>
+          ))
         )}
       </div>
     </div>

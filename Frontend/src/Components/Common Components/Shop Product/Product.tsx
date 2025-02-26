@@ -1,6 +1,8 @@
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import "./product.css";
 
 interface Props {
+  id: number;
   img: string;
   title: string;
   price: number;
@@ -8,10 +10,15 @@ interface Props {
 }
 
 export default function Product(props: Props) {
+  const route: NavigateFunction = useNavigate();
   return (
     <div className="shop-product-container" id={props.title}>
       <div className="image-container">
-        <img src={props.img} alt="" />
+        <img
+          src={props.img}
+          alt=""
+          onClick={() => route(`/product/${props.id}`)}
+        />
       </div>
       <div className="stars">
         <i className="fa-solid fa-star"></i>
