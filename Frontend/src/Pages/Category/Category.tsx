@@ -72,8 +72,8 @@ export default function Category() {
         />
       </div>
       <div className="products">
-        {products.length > 0 ? (
-          products.length <= 0 && searchTerm !== "" ? (
+        {products.length > 0 || searchTerm !== "" ? (
+          products.length <= 0 ? (
             <div className="search-error">
               <i className="fa-solid fa-magnifying-glass"></i>
               It seems like what you are looking for does not exist. Try another
@@ -96,6 +96,7 @@ export default function Category() {
           Array.from({ length: 15 }).map((_, index) => (
             <div key={index} className="loading-products">
               <div className="img"></div>
+              <div className="title"></div>
               <div className="title"></div>
             </div>
           ))

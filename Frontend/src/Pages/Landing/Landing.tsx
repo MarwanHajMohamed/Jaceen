@@ -6,8 +6,10 @@ import Shop from "../../Components/Landing Shop/Shop";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 import Testimonials from "../../Components/Testimonials/Testimonials";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function Landing() {
+  const route: NavigateFunction = useNavigate();
   return (
     <>
       <div className="landing-container">
@@ -28,7 +30,7 @@ export default function Landing() {
         <div className="title-container">
           <div className="title">Jaceen</div>
           <div className="description">Excellence in health</div>
-          <button>Shop all</button>
+          <button onClick={() => route("/shop/All")}>Shop all</button>
         </div>
       </div>
       <BestSellers />
