@@ -1,9 +1,10 @@
 import "./landing.css";
 
 import BestSellers from "../../Components/Best Sellers/BestSellers";
+import Benefits from "../../Components/Benefits/Benefits";
+import Shop from "../../Components/Landing Shop/Shop";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import Benefits from "../../Components/Benefits/Benefits";
 
 export default function Landing() {
   return (
@@ -31,6 +32,7 @@ export default function Landing() {
       </div>
       <BestSellers />
       <Benefits />
+      <Shop />
     </>
   );
 }
