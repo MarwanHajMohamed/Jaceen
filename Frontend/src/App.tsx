@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/shop/:category" element={<Category />} />
-          <Route path="/product/:product" element={<Product />} />
+          <Route path="/product/:productID" element={<Product />} />
         </Routes>
         <Footer />
       </Router>

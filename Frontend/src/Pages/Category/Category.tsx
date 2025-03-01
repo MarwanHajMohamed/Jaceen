@@ -2,9 +2,11 @@ import "./category.css";
 
 import { Navigate, useParams } from "react-router-dom";
 
-import { products as productsJson } from "../../data/products.js";
-import Product from "../../Components/Common Components/Shop Product/Product.js";
+import { products as productsJson } from "../../data/products";
+import Product from "../../Components/Common Components/Shop Product/Product";
 import { useEffect, useState } from "react";
+
+import { ProductContext } from "../../Context/Product";
 
 const validCategories: string[] = [
   "Hair Care",
@@ -14,25 +16,17 @@ const validCategories: string[] = [
   "All",
 ];
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  img: string;
-}
-
 export default function Category() {
   const { category } = useParams<string>();
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductContext[]>([]);
   const [searchTerm, setSearchTerm] = useState<string | number>("");
 
   if (typeof category !== "string" || !validCategories.includes(category)) {
     return <Navigate to="/404" replace />;
   }
 
-  let getProducts: Product[] = [];
+  let getProducts: ProductContext[] = [];
 
   if (category === "All") {
     getProducts = productsJson;
@@ -86,8 +80,9 @@ export default function Category() {
                   id={product.id}
                   title={product.title}
                   price={product.price}
-                  img={product.img}
                   category={product.category}
+                  imgs={product.imgs}
+                  description={product.description}
                 />
               );
             })

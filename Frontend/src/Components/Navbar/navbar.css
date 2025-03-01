@@ -20,6 +20,10 @@
   box-shadow: 0 5px 20px rgb(0, 0, 0, 0.4);
 }
 
+.navbar-container li {
+  list-style: none;
+}
+
 .navbar-container .left-side .logo {
   display: flex;
   cursor: pointer;

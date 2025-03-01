@@ -1,33 +1,50 @@
 import { useParams } from "react-router-dom";
+import "./product.css";
 import { products } from "../../data/products";
+import { useState } from "react";
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  img: string;
-}
+import { ProductContext } from "../../Context/Product";
 
 export default function Product() {
   const { productID } = useParams();
 
-  console.log("Params Product ID:", productID);
-  console.log("Available Products:", products);
+  const product: ProductContext = products.find(
+    (p) => p.id === Number(productID)
+  );
 
-  // Convert productID to a number for accurate comparison
-  const product = products.find((p) => p.id === Number(productID));
+  const [currImg, setCurrImg] = useState<string>(product.imgs[0]);
 
-  console.log("Matched Product:", product);
-
-  if (!product) return <div>Product not found</div>;
+  if (!product)
+    return <div className="product-not-found">Product not found</div>;
 
   return (
     <div className="product-page-container">
-      <h1>{product.title}</h1>
-      <img src={product.img} alt={product.title} />
-      <p>Price: ${product.price}</p>
-      <p>Category: {product.category}</p>
+      <div className="wrapper">
+        <div className="left-side">
+          <div className="product-images">
+            {product.imgs.map((img) => {
+              return (
+                <img
+                  className={`${currImg === img ? "active" : ""}`}
+                  src={img}
+                  alt=""
+                  onClick={() => setCurrImg(img)}
+                />
+              );
+            })}
+          </div>
+          <div className="display-product">
+            <img src={currImg} alt={product.title} />
+          </div>
+        </div>
+        <div className="right-side">
+          <div className="product-title">{product.title}</div>
+          <div className="product-price">£{product.price.toFixed(2)}</div>
+          <div className="product-category">{product.category}</div>
+          <h4>Description</h4>
+          <div className="description">{product.description}</div>
+        </div>
+      </div>
     </div>
   );
 }

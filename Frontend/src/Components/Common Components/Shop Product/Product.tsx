@@ -1,21 +1,15 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import "./product.css";
 
-interface Props {
-  id: number;
-  img: string;
-  title: string;
-  price: number;
-  category: string;
-}
+import { ProductContext } from "../../../Context/Product";
 
-export default function Product(props: Props) {
+export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();
   return (
     <div className="shop-product-container" id={props.title}>
       <div className="image-container">
         <img
-          src={props.img}
+          src={props.imgs[0]}
           alt=""
           onClick={() => route(`/product/${props.id}`)}
         />
