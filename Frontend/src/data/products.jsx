@@ -48,9 +48,60 @@ export const products = [
             conversion of testosterone to DHT by blockage of the alpha reductase
             enzyme
           </li>
+          <li>
+            Rich in research proven natural compounds which increase muscular
+            mass, muscular strength and bone density
+          </li>
+          <li>Helps to promote a decrease in body fat levels</li>
+          <li>
+            Rich in over 90 essential micronutrients which aid towards healthy
+            sperm production, a healthy libido and male reproductive health
+          </li>
+          <li>
+            Inhibits excessive production of cortisol from the adrenal glands.
+            Cortisol reduces blood testosterone levels, ALPHA combats increased
+            levels of cortisol therefore preventing the reduction of blood
+            testosterone levels
+          </li>
+          <li>Promotes vasodilation to combat erectile dysfunction</li>
         </ul>
       </div>
     ),
+    why_jaceen: (
+      <div>
+        <p>Organic Ingredients</p>
+        <li>
+          We have only used the highest quality of organic herbs to ensure our
+          immune support tincture is of the highest quality.
+        </li>
+        <p>Strength Guarantee</p>
+        <li>
+          At Jaceen, we use a unique exotic blend of various research proven
+          herbs that all combine in synergy to implement a powerful immune
+          boosting benefits. All the ingredients we use come in high
+          concentrations to ensure maximal strength and potency.
+        </li>
+      </div>
+    ),
+    product_highlights: (
+      <div>
+        <h4>Forskolin</h4>
+        <li>
+          Research based studies have exemplified the potential of forskolin to
+          promote healthy testosterone levels whilst also improving body
+          composition by reducing body fat.
+        </li>
+        <h4>Ashwagandha</h4>
+        <li>
+          Elevated cortisol levels may reduce testosterone levels. Studies have
+          shown that ashwagandha has the ability to reduce cortisol levels which
+          can further promote healthier testosterone levels.
+        </li>
+      </div>
+    ),
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 2,
@@ -59,6 +110,11 @@ export const products = [
     category: "Sports Nutrition",
     imgs: [Energise],
     description: undefined,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 3,
@@ -66,7 +122,12 @@ export const products = [
     price: 30,
     category: "Sports Nutrition",
     imgs: [Shilajit],
-    description: <div></div>,
+    description: undefined,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 4,
@@ -75,6 +136,11 @@ export const products = [
     category: "Sports Nutrition",
     imgs: [Growth, Growth2],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 5,
@@ -83,6 +149,11 @@ export const products = [
     category: "Sports Nutrition",
     imgs: [CBD],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 6,
@@ -91,6 +162,11 @@ export const products = [
     category: "Sports Nutrition",
     imgs: [Immune],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 7,
@@ -99,6 +175,11 @@ export const products = [
     category: "Sports Nutrition",
     imgs: [ImmuneAF],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 8,
@@ -107,6 +188,11 @@ export const products = [
     category: "Sports Nutrition",
     imgs: [CBDOil],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 9,
@@ -115,6 +201,11 @@ export const products = [
     category: "Skin Care",
     imgs: [Patchouli],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 10,
@@ -123,6 +214,11 @@ export const products = [
     category: "Skin Care",
     imgs: [Jasmine],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 11,
@@ -131,6 +227,11 @@ export const products = [
     category: "Skin Care",
     imgs: [PatchJasmine],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 12,
@@ -139,6 +240,11 @@ export const products = [
     category: "Skin Care",
     imgs: [SkinSerum],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 13,
@@ -147,6 +253,11 @@ export const products = [
     category: "Skin Care",
     imgs: [Toning],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 14,
@@ -155,6 +266,11 @@ export const products = [
     category: "Hair Care",
     imgs: [HairSerum],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 15,
@@ -163,6 +279,11 @@ export const products = [
     category: "Hair Care",
     imgs: [HairSkinToning],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 16,
@@ -171,6 +292,11 @@ export const products = [
     category: "Training Programmes",
     imgs: [Beginner],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
   {
     id: 17,
@@ -179,5 +305,10 @@ export const products = [
     category: "Training Programmes",
     imgs: [Advanced],
     description: <div></div>,
+    why_jaceen: undefined,
+    product_highlights: undefined,
+    how_to_use: undefined,
+    ingredients: undefined,
+    reviews: [],
   },
 ];

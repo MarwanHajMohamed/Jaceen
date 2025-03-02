@@ -83,6 +83,11 @@ export default function Category() {
                   category={product.category}
                   imgs={product.imgs}
                   description={product.description}
+                  why_jaceen={product.why_jaceen}
+                  product_highlights={product.product_highlights}
+                  how_to_use={product.how_to_use}
+                  ingredients={product.ingredients}
+                  reviews={product.reviews}
                 />
               );
             })
