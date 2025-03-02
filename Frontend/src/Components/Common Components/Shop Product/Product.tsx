@@ -2,6 +2,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import "./product.css";
 
 import { ProductContext } from "../../../Context/Product";
+import { renderStars } from "../../../Context/RenderStars";
 
 export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();
@@ -18,11 +19,10 @@ export default function Product(props: ProductContext) {
         />
       </div>
       <div className="stars">
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
-        <i className="fa-solid fa-star"></i>
+        {renderStars(
+          props.reviews.reduce((sum, review) => sum + review.rating, 0) /
+            props.reviews.length
+        )}
       </div>
       <div className="product-title">{props.title}</div>
       <div className="product-category">{props.category}</div>

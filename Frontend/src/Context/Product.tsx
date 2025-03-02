@@ -1,5 +1,12 @@
 import { JSX } from "react";
 
+interface reviews {
+  name: string;
+  review: string;
+  date: string;
+  rating: number;
+}
+
 export interface ProductContext {
   id: number;
   title: string;
@@ -11,5 +18,5 @@ export interface ProductContext {
   how_to_use: JSX.Element | undefined;
   product_highlights: JSX.Element | undefined;
   ingredients: JSX.Element | undefined;
-  reviews: string[] | undefined;
+  reviews: reviews[];
 }

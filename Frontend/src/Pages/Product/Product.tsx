@@ -4,6 +4,7 @@ import { products } from "../../data/products";
 import { useState } from "react";
 
 import { ProductContext } from "../../Context/Product";
+import { renderStars } from "../../Context/RenderStars";
 
 export default function Product() {
   const { productTitle } = useParams();
@@ -176,6 +177,22 @@ export default function Product() {
               </div>
             </div>
           )}
+        </div>
+        <div className="bottom">
+          <h3>Reviews ({product.reviews.length})</h3>
+          <div className="review-container">
+            {product.reviews.map((review) => {
+              return (
+                <div className="review">
+                  <div className="top">
+                    <div>{review.name}</div>
+                    <div>{renderStars(review.rating)}</div>
+                  </div>
+                  <div>{review.review}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

@@ -119,7 +119,29 @@ export const products = [
         </p>
       </div>
     ),
-    reviews: [],
+    reviews: [
+      {
+        name: "Alfie",
+        review:
+          "6 days in and I already feel very energetic during my workouts. I have it twice daily, once with my morning smoothie and once with my post workout shake",
+        date: "08/06/2021",
+        rating: 5,
+      },
+      {
+        name: "Jack",
+        review:
+          "2 weeks of use and I feel more energetic, recovery from training has also improved.",
+        date: "17/08/2021",
+        rating: 5,
+      },
+      {
+        name: "Brian",
+        review:
+          "Helped a lot with my stress and general lack of energy. I feel a lot more energetic since I’ve started using alpha. I haven’t noticed a difference in my strength that’s why it’s a 4 star from me but I’ll definitely still be ordering again!",
+        date: "08/09/2021",
+        rating: 4,
+      },
+    ],
   },
   {
     id: 2,
