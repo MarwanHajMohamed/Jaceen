@@ -5,13 +5,16 @@ import { ProductContext } from "../../../Context/Product";
 
 export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();
+
   return (
     <div className="shop-product-container" id={props.title}>
       <div className="image-container">
         <img
           src={props.imgs[0]}
           alt=""
-          onClick={() => route(`/product/${props.id}`)}
+          onClick={() =>
+            route(`/product/${props.title.replace(/ /g, "-").toLowerCase()}`)
+          }
         />
       </div>
       <div className="stars">

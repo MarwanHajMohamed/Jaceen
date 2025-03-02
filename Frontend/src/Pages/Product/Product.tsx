@@ -6,10 +6,10 @@ import { useState } from "react";
 import { ProductContext } from "../../Context/Product";
 
 export default function Product() {
-  const { productID } = useParams();
+  const { productTitle } = useParams();
 
   const product: ProductContext | undefined = products.find(
-    (p) => p.id === Number(productID)
+    (p) => p.title.replace(/ /g, "-").toLowerCase() === productTitle
   );
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
@@ -72,7 +72,6 @@ export default function Product() {
               </div>
             </div>
           )}
-
           {product.why_jaceen && (
             <div>
               <h4
@@ -99,7 +98,6 @@ export default function Product() {
               </div>
             </div>
           )}
-
           {product.product_highlights && (
             <div>
               <h4
@@ -123,6 +121,58 @@ export default function Product() {
                 }`}
               >
                 {product.product_highlights}
+              </div>
+            </div>
+          )}
+          {product.how_to_use && (
+            <div>
+              <h4
+                onClick={() => {
+                  toggleExpand("how_to_use");
+                }}
+              >
+                How to Use
+                <span
+                  className={`arrow ${
+                    expandedSection === "how_to_use" ? "rotate" : ""
+                  }`}
+                >
+                  ▼
+                </span>
+              </h4>
+              <hr />
+              <div
+                className={`section ${
+                  expandedSection === "how_to_use" ? "expand" : "hide"
+                }`}
+              >
+                {product.how_to_use}
+              </div>
+            </div>
+          )}
+          {product.ingredients && (
+            <div>
+              <h4
+                onClick={() => {
+                  toggleExpand("ingredients");
+                }}
+              >
+                Ingredients
+                <span
+                  className={`arrow ${
+                    expandedSection === "ingredients" ? "rotate" : ""
+                  }`}
+                >
+                  ▼
+                </span>
+              </h4>
+              <hr />
+              <div
+                className={`section ${
+                  expandedSection === "ingredients" ? "expand" : "hide"
+                }`}
+              >
+                {product.ingredients}
               </div>
             </div>
           )}

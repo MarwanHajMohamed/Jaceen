@@ -52,6 +52,7 @@
 .product-page-container .left-side .display-product img {
   width: 100%;
   object-fit: contain;
+  height: 500px;
 }
 
 .product-page-container .right-side {

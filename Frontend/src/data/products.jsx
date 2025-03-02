@@ -1,4 +1,5 @@
 import Alpha from "../assets/alpha.png";
+import Alpha2 from "../assets/alpha_2.png";
 import Energise from "../assets/energise.png";
 import Shilajit from "../assets/shilajit.jpg";
 import Growth from "../assets/growth.jpg";
@@ -23,7 +24,7 @@ export const products = [
     title: "Alpha",
     price: 35,
     category: "Sports Nutrition",
-    imgs: [Alpha, Shilajit],
+    imgs: [Alpha, Alpha2],
     description: (
       <div>
         <p>
@@ -99,8 +100,25 @@ export const products = [
         </li>
       </div>
     ),
-    how_to_use: undefined,
-    ingredients: undefined,
+    how_to_use: (
+      <div>
+        <p>
+          Shake well before use. Use approximately 5-10 drops (1 teaspoon) twice
+          daily, once in the morning and once post exercise.
+        </p>
+      </div>
+    ),
+    ingredients: (
+      <div>
+        <p>
+          Ethanol, purified water, ashwagandha extract, Korean ginseng extract,
+          yohimbine extract, tongkat ali extract, shilajit extract, clove
+          extract, saw palmetto extract, nutmeg extract, fenugreek extract,
+          forskolin extract, L-Arginine, Pycnogenol, Vitamin D3, withanolides,
+          sitoindosides, diterpenes.
+        </p>
+      </div>
+    ),
     reviews: [],
   },
   {
@@ -109,8 +127,46 @@ export const products = [
     price: 45,
     category: "Sports Nutrition",
     imgs: [Energise],
-    description: undefined,
-    why_jaceen: undefined,
+    description: (
+      <div>
+        <p>
+          ENERGISE is a highly advanced natural metabolism boosting supplement
+          which promotes an increase in energy production, thermogenesis and
+          lipolysis. We have intricately utilised the most potent research
+          proven extracts which combine synergistically to increase the basal
+          metabolic rate (BMR) which will consequently contribute to an increase
+          in fat loss when combined with an effective exercise routine and a
+          caloric deficit. ENERGISE will also provide you with a boost in energy
+          by stimulating the mitochondria of your cells and is therefore a
+          healthier, nutritious and more effective alternative to the coffee
+          many of us have in the morning.
+        </p>
+      </div>
+    ),
+    why_jaceen: (
+      <div>
+        <p>Organic Ingredients</p>
+        <li>
+          We have only used the highest quality of organic ingredients to ensure
+          ENERGISE is highly effective.
+        </li>
+        <p>Strength Guarantee</p>
+        <li>
+          ENERGISE utilises a unique exotic blend of various research proven
+          ingredients that all combine in synergy to implement a powerful
+          metabolism boosting effect which can consequently contribute towards
+          greater fat loss. All the ingredients we use come in high
+          concentrations to ensure maximal strength and potency.
+        </li>
+        <p>Capsaicin</p>
+        <li>
+          Several research based studied have exemplified the potential
+          metabolism boosting effects of capsaicin. Controlled experimental
+          studies have also suggested that the use of capsaicin can contribute
+          to further fat loss via thermogenesis.
+        </li>
+      </div>
+    ),
     product_highlights: undefined,
     how_to_use: undefined,
     ingredients: undefined,
