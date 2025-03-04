@@ -2,9 +2,12 @@ import "./navbar.css";
 
 import logo from "../../assets/logo.jpg";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Navbar() {
   const route: NavigateFunction = useNavigate();
+
+  const [showInput, setShowInput] = useState<boolean>(false);
 
   return (
     <div className="navbar-container">
@@ -40,7 +43,23 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="right-side">
-          <i className="fa-solid fa-magnifying-glass"></i>
+          <div className="search-container">
+            {showInput ? (
+              <input
+                type="text"
+                placeholder="Search..."
+                autoFocus
+                onBlur={() => setShowInput(false)}
+                className="search-input"
+              />
+            ) : (
+              <i
+                className="fa-solid fa-magnifying-glass"
+                style={{ cursor: "pointer", fontSize: "20px" }}
+                onClick={() => setShowInput(true)}
+              ></i>
+            )}
+          </div>
           <i className="fa-solid fa-cart-shopping"></i>
         </div>
       </div>

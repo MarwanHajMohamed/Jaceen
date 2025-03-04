@@ -1,15 +1,16 @@
 import "./landing.css";
 
+import Logo from "../../assets/logo.jpg";
+
 import BestSellers from "../../Components/Best Sellers/BestSellers";
 import Benefits from "../../Components/Benefits/Benefits";
 import Shop from "../../Components/Landing Shop/Shop";
+import Testimonials from "../../Components/Testimonials/Testimonials";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import Testimonials from "../../Components/Testimonials/Testimonials";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function Landing() {
-  const route: NavigateFunction = useNavigate();
   return (
     <>
       <div className="landing-container">
@@ -28,9 +29,11 @@ export default function Landing() {
           </ParallaxProvider>
         </div>
         <div className="title-container">
-          <div className="title">Jaceen</div>
+          <div className="title-logo">
+            <img src={Logo} alt="" />
+            {/* <div className="title">Jaceen</div> */}
+          </div>
           <div className="description">Excellence in health</div>
-          <button onClick={() => route("/shop/All")}>Shop all</button>
         </div>
       </div>
       <BestSellers />

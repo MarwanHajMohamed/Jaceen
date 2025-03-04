@@ -48,6 +48,9 @@
 .navbar-container .right-side {
   display: flex;
   gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 60px;
 }
 
 .navbar-container .right-side i:hover {
@@ -83,4 +86,21 @@
 
 .shop-categories li:hover {
   background-color: #f0f0f0;
+}
+
+.navbar-container .right-side .search-container {
+  position: relative;
+}
+
+.navbar-container .right-side .search-container input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 0;
+  border-radius: 5px;
+  height: 20px;
+  background-color: rgb(21, 21, 21);
+  color: white;
+  position: absolute;
+  left: -150px;
+  top: -15px;
 }
