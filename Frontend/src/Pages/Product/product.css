@@ -177,3 +177,18 @@
   padding: 10px;
   font-size: 1rem;
 }
+
+.add-review-container form button {
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+
+.add-review-container form button:hover {
+  background-color: var(--hover);
+}

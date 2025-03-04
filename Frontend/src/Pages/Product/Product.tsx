@@ -200,6 +200,7 @@ export default function Product() {
             })
           )}
         </div>
+        <hr />
         <div className="add-review-container">
           <div className="subtitle">Add a review</div>
           <form action="">
@@ -211,6 +212,7 @@ export default function Product() {
             <input name="name" type="text" />
             <label htmlFor="name">Email *</label>
             <input name="email" type="email" />
+            <button>Submit</button>
           </form>
         </div>
       </div>
