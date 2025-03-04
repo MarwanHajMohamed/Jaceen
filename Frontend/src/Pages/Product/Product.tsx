@@ -4,7 +4,8 @@ import { products } from "../../data/products";
 import { useState } from "react";
 
 import { ProductContext } from "../../Context/Product";
-import { StarRating, renderStars } from "../../Context/Stars";
+import { renderStars } from "../../Context/Stars";
+import { AddReview } from "../../Context/Review";
 
 export default function Product() {
   const { productTitle } = useParams();
@@ -15,7 +16,6 @@ export default function Product() {
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
   const [expandedSection, setExpandedSection] = useState<string>("description");
-  const [stars, setStars] = useState<number>(0);
 
   const toggleExpand = (section: string) => {
     setExpandedSection((prev) => (prev === section ? "" : section));
@@ -203,17 +203,7 @@ export default function Product() {
         <hr />
         <div className="add-review-container">
           <div className="subtitle">Add a review</div>
-          <form action="">
-            <label htmlFor="">Your rating *</label>
-            <StarRating rating={stars} setRating={setStars} />
-            <label htmlFor="review">Your review *</label>
-            <textarea name="review" rows={10}></textarea>
-            <label htmlFor="name">Name *</label>
-            <input name="name" type="text" />
-            <label htmlFor="name">Email *</label>
-            <input name="email" type="email" />
-            <button>Submit</button>
-          </form>
+          <AddReview />
         </div>
       </div>
     </div>
