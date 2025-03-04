@@ -3,9 +3,8 @@ import "./product.css";
 import { products } from "../../data/products";
 import { useState } from "react";
 
-import { ProductContext } from "../../Context/Product";
-import { renderStars } from "../../Context/Stars";
-import { AddReview } from "../../Context/Review";
+import { ProductContext, reviews } from "../../Context/Product";
+import { AddReview, GetReviews } from "../../Context/Review";
 
 export default function Product() {
   const { productTitle } = useParams();
@@ -186,15 +185,10 @@ export default function Product() {
           {product.reviews.length === 0 ? (
             <div>Be the first to leave a review on this product!</div>
           ) : (
-            product.reviews.map((review) => {
+            product.reviews.map((review: reviews) => {
               return (
-                <div className="review">
-                  <div className="author-rating">
-                    <div className="author">{review.name}</div>
-                    <div>{renderStars(review.rating)}</div>
-                  </div>
-                  <div>{review.review}</div>
-                  <div className="date">{review.date}</div>
+                <div>
+                  <GetReviews {...review} />
                 </div>
               );
             })

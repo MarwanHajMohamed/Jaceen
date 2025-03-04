@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-interface reviews {
+export interface reviews {
   name: string;
   review: string;
   date: string;

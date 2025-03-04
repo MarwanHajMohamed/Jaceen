@@ -1,5 +1,19 @@
 import { useState } from "react";
-import { StarRating } from "./Stars";
+import { StarRating, renderStars } from "./Stars";
+import { reviews } from "./Product";
+
+export const GetReviews = ({ name, review, rating, date }: reviews) => {
+  return (
+    <div className="review">
+      <div className="author-rating">
+        <div className="author">{name}</div>
+        <div>{renderStars(rating)}</div>
+      </div>
+      <div>{review}</div>
+      <div className="date">{date}</div>
+    </div>
+  );
+};
 
 export const AddReview = () => {
   const [stars, setStars] = useState<number>(0);
