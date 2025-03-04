@@ -8,7 +8,6 @@ import Shop from "../../Components/Landing Shop/Shop";
 import Testimonials from "../../Components/Testimonials/Testimonials";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function Landing() {
   return (

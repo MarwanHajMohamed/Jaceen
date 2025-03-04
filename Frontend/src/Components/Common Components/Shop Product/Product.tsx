@@ -2,7 +2,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import "./product.css";
 
 import { ProductContext } from "../../../Context/Product";
-import { renderStars } from "../../../Context/RenderStars";
+import { renderStars } from "../../../Context/Stars";
 
 export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();

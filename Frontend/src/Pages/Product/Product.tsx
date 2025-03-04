@@ -4,7 +4,7 @@ import { products } from "../../data/products";
 import { useState } from "react";
 
 import { ProductContext } from "../../Context/Product";
-import { renderStars } from "../../Context/RenderStars";
+import { StarRating, renderStars } from "../../Context/Stars";
 
 export default function Product() {
   const { productTitle } = useParams();
@@ -15,6 +15,7 @@ export default function Product() {
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
   const [expandedSection, setExpandedSection] = useState<string>("description");
+  const [stars, setStars] = useState<number>(0);
 
   const toggleExpand = (section: string) => {
     setExpandedSection((prev) => (prev === section ? "" : section));
@@ -25,7 +26,7 @@ export default function Product() {
 
   return (
     <div className="product-page-container">
-      <div className="wrapper">
+      <div className="top">
         <div className="left-side">
           <div className="product-images">
             {product.imgs.map((img) => {
@@ -178,21 +179,39 @@ export default function Product() {
             </div>
           )}
         </div>
-        <div className="bottom">
-          <h3>Reviews ({product.reviews.length})</h3>
-          <div className="review-container">
-            {product.reviews.map((review) => {
+      </div>
+      <div className="bottom">
+        <h3>Reviews ({product.reviews.length})</h3>
+        <div className="review-container">
+          {product.reviews.length === 0 ? (
+            <div>Be the first to leave a review on this product!</div>
+          ) : (
+            product.reviews.map((review) => {
               return (
                 <div className="review">
-                  <div className="top">
-                    <div>{review.name}</div>
+                  <div className="author-rating">
+                    <div className="author">{review.name}</div>
                     <div>{renderStars(review.rating)}</div>
                   </div>
                   <div>{review.review}</div>
+                  <div className="date">{review.date}</div>
                 </div>
               );
-            })}
-          </div>
+            })
+          )}
+        </div>
+        <div className="add-review-container">
+          <div className="subtitle">Add a review</div>
+          <form action="">
+            <label htmlFor="">Your rating *</label>
+            <StarRating rating={stars} setRating={setStars} />
+            <label htmlFor="review">Your review *</label>
+            <textarea name="review" rows={10}></textarea>
+            <label htmlFor="name">Name *</label>
+            <input name="name" type="text" />
+            <label htmlFor="name">Email *</label>
+            <input name="email" type="email" />
+          </form>
         </div>
       </div>
     </div>
