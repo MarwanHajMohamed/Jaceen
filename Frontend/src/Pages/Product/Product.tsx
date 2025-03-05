@@ -4,7 +4,7 @@ import { products } from "../../data/products";
 import { useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
-import { AddReview, GetReviews } from "../../Context/Review";
+import { AddReview, GetReviews } from "../../Context/Review/Review";
 
 export default function Product() {
   const { productTitle } = useParams();
@@ -195,7 +195,7 @@ export default function Product() {
           )}
         </div>
         <hr />
-        <div className="add-review-container">
+        <div>
           <div className="subtitle">Add a review</div>
           <AddReview />
         </div>

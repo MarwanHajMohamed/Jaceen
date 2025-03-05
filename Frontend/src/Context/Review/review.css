@@ -1,0 +1,82 @@
+.bottom .review-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 1000px;
+  max-width: 80vw;
+}
+
+.bottom .review {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 1000px; */
+}
+
+.bottom .review .author-rating {
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom .review .author-rating .author {
+  font-weight: 700;
+}
+
+.bottom .review .author-rating i,
+.add-review-container form i {
+  color: rgb(230, 209, 55);
+}
+
+.bottom .review .date {
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.product-page-container .add-review-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.product-page-container .add-review-container .subtitle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-page-container .add-review-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-review-container form label {
+  font-weight: 600;
+}
+
+.add-review-container form textarea {
+  margin-bottom: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.add-review-container form input {
+  margin-bottom: 10px;
+  border: 1px solid;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.add-review-container form button {
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+
+.add-review-container form button:hover {
+  background-color: var(--hover);
+}
