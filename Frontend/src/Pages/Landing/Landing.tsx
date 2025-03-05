@@ -28,11 +28,11 @@ export default function Landing() {
           </ParallaxProvider>
         </div>
         <div className="title-container">
-          <div className="title-logo">
-            <img src={Logo} alt="" />
-            {/* <div className="title">Jaceen</div> */}
-          </div>
-          <div className="description">Excellence in health</div>
+          {/* <div className="title-logo"> */}
+          {/* <img src={Logo} alt="" /> */}
+          {/* <div className="title">Jaceen</div> */}
+          {/* </div> */}
+          {/* <div className="description">Excellence in health</div> */}
         </div>
       </div>
       <BestSellers />

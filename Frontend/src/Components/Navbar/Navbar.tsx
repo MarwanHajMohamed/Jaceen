@@ -13,11 +13,6 @@ export default function Navbar() {
     <div className="navbar-container">
       <div className="wrapper">
         <div className="left-side">
-          <div className="logo" onClick={() => route("/")}>
-            <img src={logo} alt="" />
-          </div>
-        </div>
-        <div className="middle-side">
           <ul className="items">
             <li onClick={() => route("/")}>Home</li>
             <li className="shop-link">
@@ -27,7 +22,6 @@ export default function Navbar() {
                   <i className="fa-solid fa-caret-down"></i>
                 </span>
               </div>
-
               <ul className="shop-categories">
                 <li onClick={() => route("/shop/Hair Care")}>Hair Care</li>
                 <li onClick={() => route("/shop/Skin Care")}>Skin Care</li>
@@ -41,6 +35,12 @@ export default function Navbar() {
             </li>
             <li>Contact</li>
           </ul>
+        </div>
+        <div className="middle-side">
+          <div className="logo" onClick={() => route("/")}>
+            <img src={logo} alt="" />
+            <div>JACEEN</div>
+          </div>
         </div>
         <div className="right-side">
           <div className="search-container">

@@ -24,16 +24,24 @@
   list-style: none;
 }
 
-.navbar-container .left-side .logo {
-  display: flex;
-  cursor: pointer;
+.navbar-container ul {
+  padding: 0;
 }
 
-.navbar-container .left-side .logo img {
+.navbar-container .middle-side .logo {
+  display: flex;
+  cursor: pointer;
+  margin-right: 130px;
+  align-items: center;
+  font-size: 1.7rem;
+  font-weight: 300;
+}
+
+.navbar-container .middle-side .logo img {
   width: 50px;
 }
 
-.navbar-container .middle-side .items {
+.navbar-container .left-side .items {
   display: flex;
   gap: 20px;
   font-weight: 700;
