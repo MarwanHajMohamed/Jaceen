@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "./animatedbutton.css";
 
-export default function AnimatedButton({ text }: { text: string }) {
+export default function AnimatedButton({
+  text,
+}: {
+  text: string | React.ReactNode;
+}) {
   const [rippleStyle, setRippleStyle] = useState<{
     top: number;
     left: number;

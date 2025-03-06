@@ -65,3 +65,20 @@
 .stars i {
   color: rgb(230, 209, 55);
 }
+
+.shop-product-container .add-to-basket {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop-product-container .add-to-basket button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  position: relative;
+  transition: 100ms ease-in-out;
+  border: 1px solid;
+  font-size: 1rem;
+}

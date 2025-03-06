@@ -3,6 +3,7 @@ import "./product.css";
 
 import { ProductContext } from "../../../Context/Product";
 import { renderStars } from "../../../Context/Stars";
+import AnimatedButton from "../Button/AnimatedButton";
 
 export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();
@@ -25,8 +26,13 @@ export default function Product(props: ProductContext) {
         )}
       </div>
       <div className="product-title">{props.title}</div>
-      <div className="product-category">{props.category}</div>
-      <div className="price">£{props.price}</div>
+      <div className="add-to-basket">
+        <div>
+          <div className="product-category">{props.category}</div>
+          <div className="price">£{props.price}</div>
+        </div>
+        <AnimatedButton text={<i className="fa-solid fa-cart-shopping"></i>} />
+      </div>
     </div>
   );
 }
