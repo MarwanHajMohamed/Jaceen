@@ -9,7 +9,6 @@
 .bottom .review {
   display: flex;
   flex-direction: column;
-  /* max-width: 1000px; */
 }
 
 .bottom .review .author-rating {

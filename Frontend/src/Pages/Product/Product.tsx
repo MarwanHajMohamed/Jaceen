@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
+import AnimatedButton from "../../Components/Common Components/Button/AnimatedButton";
 
 export default function Product() {
   const { productTitle } = useParams();
@@ -14,10 +15,15 @@ export default function Product() {
   );
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
+  const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
 
   const toggleExpand = (section: string) => {
     setExpandedSection((prev) => (prev === section ? "" : section));
+  };
+
+  const addSubtractItems = (event: string) => {
+    event === "add" ? setQuantity(quantity + 1) : setQuantity(quantity - 1);
   };
 
   if (!product)
@@ -47,6 +53,23 @@ export default function Product() {
           <div className="product-title">{product.title}</div>
           <div className="product-price">£{product.price.toFixed(2)}</div>
           <div className="product-category">{product.category}</div>
+          <div className="quantity-container">
+            <button
+              className={`
+                  ${quantity === 0 ? "disabled" : ""}
+            `}
+              onClick={() => addSubtractItems("minus")}
+            >
+              <i className="fa-solid fa-minus"></i>
+            </button>
+            <div className="counter">{quantity}</div>
+            <button onClick={() => addSubtractItems("add")}>
+              <i className="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <div className="add-to-basket">
+            <AnimatedButton text={"Add to Basket"} />
+          </div>
           {product.description && (
             <div>
               <h4

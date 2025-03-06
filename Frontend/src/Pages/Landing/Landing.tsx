@@ -1,7 +1,5 @@
 import "./landing.css";
 
-import Logo from "../../assets/logo.jpg";
-
 import BestSellers from "../../Components/Best Sellers/BestSellers";
 import Benefits from "../../Components/Benefits/Benefits";
 import Shop from "../../Components/Landing Shop/Shop";
@@ -26,13 +24,6 @@ export default function Landing() {
               />
             </Parallax>
           </ParallaxProvider>
-        </div>
-        <div className="title-container">
-          {/* <div className="title-logo"> */}
-          {/* <img src={Logo} alt="" /> */}
-          {/* <div className="title">Jaceen</div> */}
-          {/* </div> */}
-          {/* <div className="description">Excellence in health</div> */}
         </div>
       </div>
       <BestSellers />
