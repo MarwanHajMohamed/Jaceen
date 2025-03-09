@@ -62,11 +62,8 @@ export default function Navbar() {
               ></i>
             )}
           </div>
-          <div className="cart">
-            <i
-              className="fa-solid fa-cart-shopping"
-              onClick={() => route("/cart")}
-            ></i>
+          <div className="cart" onClick={() => route("/cart")}>
+            <i className="fa-solid fa-cart-shopping"></i>
             <div className="cart-total">{cartItems.length}</div>
           </div>
         </div>

@@ -63,8 +63,8 @@
 
 .navbar-container .right-side i:hover {
   color: var(--hover);
-  cursor: pointer;
   transition: 100ms ease-in-out;
+  cursor: pointer;
 }
 
 .shop-link {
@@ -130,4 +130,6 @@
   top: -5px;
   right: -7px;
   border: 0.5px solid black;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
 }

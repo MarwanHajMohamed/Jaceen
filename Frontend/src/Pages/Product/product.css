@@ -110,14 +110,20 @@
   border: 1px solid;
   padding: 5px;
   font-size: 10px;
-  background-color: white;
+  border: 1px solid rgba(160, 160, 160, 0.1);
+  background-color: rgb(244, 244, 244);
   cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+
+.product-page-container .right-side .quantity-container button:hover {
+  color: var(--hover);
 }
 
 .product-page-container .right-side .quantity-container .disabled {
   cursor: not-allowed;
   pointer-events: none;
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(250, 250, 250);
   border: 1px solid rgb(228, 228, 228);
   color: rgb(0, 0, 0, 0.3);
   -webkit-touch-callout: none;

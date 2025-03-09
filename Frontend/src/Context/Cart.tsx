@@ -35,7 +35,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
             : cartItem
         );
       } else {
-        return [...prevCartItems, { ...item, quantity: 1 }];
+        return [...prevCartItems, { ...item, quantity: item.quantity }];
       }
     });
   };

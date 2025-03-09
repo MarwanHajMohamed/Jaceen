@@ -31,8 +31,10 @@ export default function Product() {
     setExpandedSection((prev) => (prev === section ? "" : section));
   };
 
-  const addSubtractItems = (event: string) => {
-    event === "add" ? setQuantity(quantity + 1) : setQuantity(quantity - 1);
+  const addSubtractItems = (action: string) => {
+    setQuantity((prevQuantity) =>
+      action === "add" ? prevQuantity + 1 : Math.max(prevQuantity - 1, 1)
+    );
   };
 
   if (!product)
