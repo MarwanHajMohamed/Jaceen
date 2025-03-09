@@ -64,7 +64,11 @@ export default function Navbar() {
           </div>
           <div className="cart" onClick={() => route("/cart")}>
             <i className="fa-solid fa-cart-shopping"></i>
-            <div className="cart-total">{cartItems.length}</div>
+            <div className="cart-total">
+              {cartItems.length !== 0
+                ? cartItems.reduce((total, item) => total + item.quantity, 0)
+                : 0}
+            </div>
           </div>
         </div>
       </div>

@@ -73,6 +73,7 @@
 .cart-page-container .cart-table .cart-item .cart-title {
   color: var(--hover);
   font-weight: 800;
+  cursor: pointer;
 }
 
 .cart-page-container .cart-table .cart-item .cart-quantity {

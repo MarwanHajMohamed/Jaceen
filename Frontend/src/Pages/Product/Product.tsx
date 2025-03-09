@@ -33,7 +33,7 @@ export default function Product() {
 
   const addSubtractItems = (action: string) => {
     setQuantity((prevQuantity) =>
-      action === "add" ? prevQuantity + 1 : Math.max(prevQuantity - 1, 1)
+      action === "add" ? prevQuantity + 1 : Math.max(prevQuantity - 1, 0)
     );
   };
 

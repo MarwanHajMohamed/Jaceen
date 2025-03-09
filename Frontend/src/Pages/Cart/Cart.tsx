@@ -36,7 +36,18 @@ export default function Cart() {
                   <div className="cart-image">
                     <img src={item.img} alt="" />
                   </div>
-                  <div className="cart-title">{item.title}</div>
+                  <div
+                    className="cart-title"
+                    onClick={() =>
+                      route(
+                        `/product/${item.title
+                          .replace(/ /g, "-")
+                          .toLowerCase()}`
+                      )
+                    }
+                  >
+                    {item.title}
+                  </div>
                   <div className="cart-quantity">
                     <button
                       className="delete"
