@@ -2,10 +2,12 @@ import "./navbar.css";
 
 import logo from "../../assets/logo.jpg";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../Context/Cart";
 
 export default function Navbar() {
   const route: NavigateFunction = useNavigate();
+  const { cartItems } = useContext(CartContext);
 
   const [showInput, setShowInput] = useState<boolean>(false);
 
@@ -60,7 +62,13 @@ export default function Navbar() {
               ></i>
             )}
           </div>
-          <i className="fa-solid fa-cart-shopping"></i>
+          <div className="cart">
+            <i
+              className="fa-solid fa-cart-shopping"
+              onClick={() => route("/cart")}
+            ></i>
+            <div className="cart-total">{cartItems.length}</div>
+          </div>
         </div>
       </div>
     </div>

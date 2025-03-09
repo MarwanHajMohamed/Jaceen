@@ -1,12 +1,22 @@
+import { useContext } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import "./product.css";
 
 import { ProductContext } from "../../../Context/Product";
 import { renderStars } from "../../../Context/Stars";
-import AnimatedButton from "../Button/AnimatedButton";
+import { CartContext } from "../../../Context/Cart";
 
 export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();
+  const { addToCart } = useContext(CartContext) || {};
+
+  const cartItem = {
+    id: props.id,
+    img: props.imgs[0],
+    title: props.title,
+    price: props.price,
+    quantity: 1,
+  };
 
   return (
     <div className="shop-product-container" id={props.title}>
@@ -31,7 +41,13 @@ export default function Product(props: ProductContext) {
           <div className="product-category">{props.category}</div>
           <div className="price">£{props.price}</div>
         </div>
-        <AnimatedButton text={<i className="fa-solid fa-cart-shopping"></i>} />
+        <button
+          onClick={() => {
+            addToCart(cartItem);
+          }}
+        >
+          <i className="fa-solid fa-cart-shopping"></i>
+        </button>
       </div>
     </div>
   );

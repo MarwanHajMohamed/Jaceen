@@ -82,3 +82,8 @@
   border: 1px solid;
   font-size: 1rem;
 }
+
+.shop-product-container .add-to-basket button:hover {
+  background-color: white;
+  color: var(--hover);
+}

@@ -1,22 +1,31 @@
 import { useParams } from "react-router-dom";
 import "./product.css";
 import { products } from "../../data/products";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
-import AnimatedButton from "../../Components/Common Components/Button/AnimatedButton";
+import { CartContext } from "../../Context/Cart";
 
 export default function Product() {
   const { productTitle } = useParams();
+  const { addToCart } = useContext(CartContext)!;
 
   const product: ProductContext | undefined = products.find(
     (p) => p.title.replace(/ /g, "-").toLowerCase() === productTitle
-  );
+  )!;
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
+
+  const cartItem = {
+    id: product.id,
+    img: product.imgs[0],
+    title: product.title,
+    price: product.price,
+    quantity: quantity,
+  };
 
   const toggleExpand = (section: string) => {
     setExpandedSection((prev) => (prev === section ? "" : section));
@@ -68,7 +77,7 @@ export default function Product() {
             </button>
           </div>
           <div className="add-to-basket">
-            <AnimatedButton text={"Add to Basket"} />
+            <button onClick={() => addToCart(cartItem)}>Add to basket</button>
           </div>
           {product.description && (
             <div>

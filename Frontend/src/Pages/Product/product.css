@@ -132,6 +132,22 @@
   margin-top: 20px;
 }
 
+.product-page-container .right-side .add-to-basket button {
+  background-color: black;
+  color: white;
+  height: 50px;
+  padding: 0 30px;
+  border-radius: 5px;
+  font-weight: 700;
+  transition: 100ms ease-in-out;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.product-page-container .right-side .add-to-basket button:hover {
+  background-color: var(--hover);
+}
+
 .section {
   max-height: 0;
   overflow: hidden;
