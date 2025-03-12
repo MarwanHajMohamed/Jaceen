@@ -31,7 +31,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       if (isItemInCart) {
         return prevCartItems.map((cartItem) =>
           cartItem._id === item._id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
       } else {
