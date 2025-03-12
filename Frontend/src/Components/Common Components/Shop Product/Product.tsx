@@ -11,12 +11,14 @@ export default function Product(props: ProductContext) {
   const { addToCart } = useContext(CartContext) || {};
 
   const cartItem = {
-    id: props.id,
+    _id: props._id,
     img: props.imgs[0],
     name: props.name,
     price: props.price,
     quantity: 1,
   };
+
+  const routeTitle = props.name.toLowerCase().replace(/\s+/g, "-")!!;
 
   return (
     <div className="shop-product-container" id={props.name}>
@@ -24,9 +26,7 @@ export default function Product(props: ProductContext) {
         <img
           src={props.imgs[0]}
           alt=""
-          onClick={() =>
-            route(`/product/${props.name.replace(/ /g, "-").toLowerCase()}`)
-          }
+          onClick={() => route(`/product/${routeTitle}`)}
         />
       </div>
       <div className="stars">

@@ -15,14 +15,17 @@ export default function Product() {
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
 
   useEffect(() => {
-    getProductByName(
-      productTitle?.charAt(0).toUpperCase() +
-        productTitle?.slice(1).toLowerCase()!
-    ).then((res) => {
-      setProduct(res);
-      console.log(res);
-      setCurrImg(res.imgs[0]);
-    });
+    if (productTitle) {
+      const formattedTitle = productTitle
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+
+      getProductByName(formattedTitle).then((res) => {
+        setProduct(res);
+        setCurrImg(res.imgs[0]);
+      });
+    }
   }, [productTitle]);
 
   const [quantity, setQuantity] = useState<number>(1);
