@@ -1,31 +1,48 @@
 import { useParams } from "react-router-dom";
 import "./product.css";
-import { products } from "../../data/products";
-import { useContext, useState } from "react";
+// import { products } from "../../data/products";
+import { useContext, useEffect, useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
+import { getProductByName } from "../../api/productsAPI";
+import ReactMarkdown from "react-markdown";
 
 export default function Product() {
-  const { productTitle } = useParams();
+  const { productTitle } = useParams<{ productTitle: string }>();
   const { addToCart } = useContext(CartContext)!;
+  const [product, setProduct] = useState<ProductContext | undefined>();
 
-  const product: ProductContext | undefined = products.find(
-    (p) => p.name.replace(/ /g, "-").toLowerCase() === productTitle
-  )!;
+  useEffect(() => {
+    getProductByName(
+      productTitle?.charAt(0).toUpperCase() +
+        productTitle?.slice(1).toLowerCase()!
+    ).then((res) => {
+      setProduct(res);
+      console.log(res);
+    });
+  }, [productTitle]);
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
 
-  const cartItem = {
-    id: product.id,
-    img: product.imgs[0],
-    name: product.name,
-    price: product.price,
-    quantity: quantity,
-  };
+  const cartItem = product
+    ? {
+        id: product.id,
+        img: product.imgs[0],
+        name: product.name,
+        price: product.price,
+        quantity: quantity,
+      }
+    : {
+        id: 0,
+        img: "",
+        name: "",
+        price: 0,
+        quantity: quantity,
+      };
 
   const toggleExpand = (section: string) => {
     setExpandedSection((prev) => (prev === section ? "" : section));
@@ -98,13 +115,13 @@ export default function Product() {
                 </span>
               </h4>
               <hr />
-              <div
+              <ReactMarkdown
                 className={`section ${
                   expandedSection === "description" ? "expand" : "hide"
                 }`}
               >
                 {product.description}
-              </div>
+              </ReactMarkdown>
             </div>
           )}
           {product.why_jaceen && (
@@ -124,13 +141,13 @@ export default function Product() {
                 </span>
               </h4>
               <hr />
-              <div
+              <ReactMarkdown
                 className={`section ${
                   expandedSection === "why_jaceen" ? "expand" : "hide"
                 }`}
               >
                 {product.why_jaceen}
-              </div>
+              </ReactMarkdown>
             </div>
           )}
           {product.product_highlights && (
@@ -150,13 +167,13 @@ export default function Product() {
                 </span>
               </h4>
               <hr />
-              <div
+              <ReactMarkdown
                 className={`section ${
                   expandedSection === "product_highlights" ? "expand" : "hide"
                 }`}
               >
                 {product.product_highlights}
-              </div>
+              </ReactMarkdown>
             </div>
           )}
           {product.how_to_use && (
@@ -176,13 +193,13 @@ export default function Product() {
                 </span>
               </h4>
               <hr />
-              <div
+              <ReactMarkdown
                 className={`section ${
                   expandedSection === "how_to_use" ? "expand" : "hide"
                 }`}
               >
                 {product.how_to_use}
-              </div>
+              </ReactMarkdown>
             </div>
           )}
           {product.ingredients && (
@@ -202,13 +219,13 @@ export default function Product() {
                 </span>
               </h4>
               <hr />
-              <div
+              <ReactMarkdown
                 className={`section ${
                   expandedSection === "ingredients" ? "expand" : "hide"
                 }`}
               >
                 {product.ingredients}
-              </div>
+              </ReactMarkdown>
             </div>
           )}
         </div>

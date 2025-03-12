@@ -28,6 +28,22 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
     res.json({ products, page, pages: Math.ceil(count / pageSize) });
   });
 
+  // productController.js
+const getProductByName = async (req, res) => {
+    const { name } = req.params; // Extract 'name' from the URL parameter
+    try {
+      const product = await Product.findOne({ name }); // Query the database for the product by name
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      res.status(200).json(product); // Return the product details
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching product", error });
+    }
+  };
+  
+
   export {
     getProducts,
+    getProductByName
   };

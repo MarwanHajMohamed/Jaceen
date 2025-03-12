@@ -1,5 +1,3 @@
-import { JSX } from "react";
-
 export interface reviews {
   name: string;
   review: string;
@@ -13,10 +11,10 @@ export interface ProductContext {
   price: number;
   category: string;
   imgs: string[];
-  description: JSX.Element | undefined;
-  why_jaceen: JSX.Element | undefined;
-  how_to_use: JSX.Element | undefined;
-  product_highlights: JSX.Element | undefined;
-  ingredients: JSX.Element | undefined;
+  description: string | undefined;
+  why_jaceen: string | undefined;
+  how_to_use: string | undefined;
+  product_highlights: string | undefined;
+  ingredients: string | undefined;
   reviews: reviews[];
 }
