@@ -13,6 +13,7 @@ export default function Product() {
   const { productTitle } = useParams<{ productTitle: string }>();
   const { addToCart } = useContext(CartContext)!;
   const [product, setProduct] = useState<ProductContext | undefined>();
+  const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
 
   useEffect(() => {
     getProductByName(
@@ -21,10 +22,10 @@ export default function Product() {
     ).then((res) => {
       setProduct(res);
       console.log(res);
+      setCurrImg(res.imgs[0]);
     });
   }, [productTitle]);
 
-  const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
 
