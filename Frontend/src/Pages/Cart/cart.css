@@ -26,15 +26,19 @@
 .cart-page-container .shopping-cart-title {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 30px;
-  padding: 130px 50px 0;
+  margin-bottom: 40px;
+  padding: 116px 50px 10px;
+  background-color: var(--hover);
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.2);
 }
 
 .cart-page-container .cart-table {
   display: flex;
   flex-direction: column;
   width: 1000px;
-  max-width: 100%;
+  max-width: 90vw;
 }
 
 .cart-page-container .cart-table .headers {

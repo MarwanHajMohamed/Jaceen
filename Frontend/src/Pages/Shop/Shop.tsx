@@ -1,4 +1,4 @@
-import "./category.css";
+import "./shop.css";
 
 import { Navigate, useParams } from "react-router-dom";
 
@@ -55,15 +55,17 @@ export default function Category() {
   };
 
   return (
-    <div className="category-page-container">
+    <div className="shop-page-container">
       <div className="title-container">
-        <div className="category-title">{category}</div>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+        <div className="search-container">
+          <div className="category-title">{category}</div>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
       </div>
       <div className="products">
         {products.length > 0 || searchTerm !== "" ? (

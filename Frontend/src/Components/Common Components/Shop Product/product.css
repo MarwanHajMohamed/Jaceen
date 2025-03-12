@@ -81,6 +81,7 @@
   transition: 100ms ease-in-out;
   border: 1px solid;
   font-size: 1rem;
+  z-index: 0;
 }
 
 .shop-product-container .add-to-basket button:hover {

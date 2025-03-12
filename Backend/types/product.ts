@@ -13,6 +13,7 @@ export interface Product {
     how_to_use: Element | undefined;
     product_highlights: Element | undefined;
     ingredients: Element | undefined;
+    countInStock: number;
 }
 
 /**

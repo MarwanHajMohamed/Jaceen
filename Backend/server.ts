@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db";
 
 // Routes
+import productRoutes from "./routes/productRoutes";
 import userRoutes from "./routes/userRoutes";
 
 const PORT = process.env.PORT || 4000;
@@ -24,6 +25,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("API IS RUNNING...");
 });
 
+// Use routes
+app.use("/api/products/", productRoutes);
 app.use("/api/users/", userRoutes);
 
 app.listen(PORT, () => {
