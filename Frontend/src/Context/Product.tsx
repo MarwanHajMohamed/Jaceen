@@ -1,3 +1,5 @@
+import { ObjectId } from "bson";
+
 export interface reviews {
   name: string;
   review: string;
@@ -6,7 +8,7 @@ export interface reviews {
 }
 
 export interface ProductContext {
-  id: number;
+  _id: ObjectId;
   name: string;
   price: number;
   category: string;

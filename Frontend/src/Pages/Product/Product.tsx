@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import "./product.css";
-// import { products } from "../../data/products";
 import { useContext, useEffect, useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
@@ -29,21 +28,16 @@ export default function Product() {
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
 
-  const cartItem = product
-    ? {
-        id: product.id,
-        img: product.imgs[0],
-        name: product.name,
-        price: product.price,
-        quantity: quantity,
-      }
-    : {
-        id: 0,
-        img: "",
-        name: "",
-        price: 0,
-        quantity: quantity,
-      };
+  if (!product)
+    return <div className="product-not-found">Product not found</div>;
+
+  const cartItem = {
+    _id: product._id,
+    img: product.imgs[0],
+    name: product.name,
+    price: product.price,
+    quantity: quantity,
+  };
 
   const toggleExpand = (section: string) => {
     setExpandedSection((prev) => (prev === section ? "" : section));
@@ -54,9 +48,6 @@ export default function Product() {
       action === "add" ? prevQuantity + 1 : Math.max(prevQuantity - 1, 0)
     );
   };
-
-  if (!product)
-    return <div className="product-not-found">Product not found</div>;
 
   return (
     <div className="product-page-container">

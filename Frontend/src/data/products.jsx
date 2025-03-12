@@ -20,7 +20,7 @@ import Advanced from "../assets/training_programmes_advanced.jpeg";
 
 export const products = [
   {
-    id: 1,
+    _id: 1,
     name: "Alpha",
     price: 35,
     category: "Sports Nutrition",
@@ -144,7 +144,7 @@ export const products = [
     ],
   },
   {
-    id: 2,
+    _id: 2,
     name: "ENERGISE",
     price: 45,
     category: "Sports Nutrition",
@@ -235,7 +235,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 3,
+    _id: 3,
     name: "Pure Himalayan Shilajit",
     price: 30,
     category: "Sports Nutrition",
@@ -310,7 +310,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 4,
+    _id: 4,
     name: "Growth",
     price: 50,
     category: "Sports Nutrition",
@@ -405,7 +405,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 5,
+    _id: 5,
     name: "Organic CBD Balm",
     price: 80,
     category: "Sports Nutrition",
@@ -479,7 +479,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 6,
+    _id: 6,
     name: "Immune",
     price: 35,
     category: "Sports Nutrition",
@@ -518,7 +518,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 7,
+    _id: 7,
     name: "Immune Alcohol Free",
     price: 30,
     category: "Sports Nutrition",
@@ -620,7 +620,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 8,
+    _id: 8,
     name: "Organic CBD Oil",
     price: 60,
     category: "Sports Nutrition",
@@ -736,7 +736,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 9,
+    _id: 9,
     name: "Patchouli Wood Natural Body Roll-on",
     price: 15,
     category: "Skin Care",
@@ -839,7 +839,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 10,
+    _id: 10,
     name: "Royal Jasmine Natural Body Roll-on",
     price: 15,
     category: "Skin Care",
@@ -939,7 +939,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 11,
+    _id: 11,
     name: "Royal Jasmine & Patchouli Wood Body Roll-on Twin Pack",
     price: 25,
     category: "Skin Care",
@@ -952,7 +952,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 12,
+    _id: 12,
     name: "Skin Repair Serum",
     price: 55,
     category: "Skin Care",
@@ -984,7 +984,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 13,
+    _id: 13,
     name: "Toning Solution",
     price: 25,
     category: "Skin Care",
@@ -1070,7 +1070,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 14,
+    _id: 14,
     name: "Hair Growth Serum",
     price: 55,
     category: "Hair Care",
@@ -1165,7 +1165,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 15,
+    _id: 15,
     name: "Hair Growth Serum, Toning Solution and Skin Repair Serum Trio",
     price: 110,
     category: "Hair Care",
@@ -1178,7 +1178,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 16,
+    _id: 16,
     name: "8 Week Beginner Strength and Hypertrophy Programme",
     price: 30,
     category: "Training Programmes",
@@ -1191,7 +1191,7 @@ export const products = [
     reviews: [],
   },
   {
-    id: 17,
+    _id: 17,
     name: "8 Week Advanced Strength and Hypertrophy Programme",
     price: 40,
     category: "Training Programmes",

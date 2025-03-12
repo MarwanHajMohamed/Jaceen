@@ -1,6 +1,8 @@
+import { ObjectId } from "bson";
+
 // Define the types for the cart item
 export interface CartItem {
-  id: number;
+  _id: ObjectId;
   img: string;
   name: string;
   price: number;
