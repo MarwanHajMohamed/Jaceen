@@ -18,12 +18,12 @@ export default function BestSellers() {
         </div>
       </div>
       <div className="products-container">
-        <Product img={Alpha} title="Alpha" price={35} />
-        <Product img={Growth} title="Growth" price={50} />
-        <Product img={CBD} title="Organic CBD Oil" price={80} />
-        <Product img={Shilajit} title="Pure Himalayan Shilajit" price={30} />
-        <Product img={Energise} title="Energise" price={45} />
-        <Product img={Immune} title="Immune" price={30} />
+        <Product img={Alpha} name="Alpha" price={35} />
+        <Product img={Growth} name="Growth" price={50} />
+        <Product img={CBD} name="Organic CBD Oil" price={80} />
+        <Product img={Shilajit} name="Pure Himalayan Shilajit" price={30} />
+        <Product img={Energise} name="Energise" price={45} />
+        <Product img={Immune} name="Immune" price={30} />
       </div>
     </div>
   );

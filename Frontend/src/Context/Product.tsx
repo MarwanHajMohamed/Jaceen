@@ -9,7 +9,7 @@ export interface reviews {
 
 export interface ProductContext {
   id: number;
-  title: string;
+  name: string;
   price: number;
   category: string;
   imgs: string[];

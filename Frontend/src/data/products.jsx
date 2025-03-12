@@ -21,7 +21,7 @@ import Advanced from "../assets/training_programmes_advanced.jpeg";
 export const products = [
   {
     id: 1,
-    title: "Alpha",
+    name: "Alpha",
     price: 35,
     category: "Sports Nutrition",
     imgs: [Alpha, Alpha2],
@@ -145,7 +145,7 @@ export const products = [
   },
   {
     id: 2,
-    title: "ENERGISE",
+    name: "ENERGISE",
     price: 45,
     category: "Sports Nutrition",
     imgs: [Energise],
@@ -236,7 +236,7 @@ export const products = [
   },
   {
     id: 3,
-    title: "Pure Himalayan Shilajit",
+    name: "Pure Himalayan Shilajit",
     price: 30,
     category: "Sports Nutrition",
     imgs: [Shilajit],
@@ -311,7 +311,7 @@ export const products = [
   },
   {
     id: 4,
-    title: "Growth",
+    name: "Growth",
     price: 50,
     category: "Sports Nutrition",
     imgs: [Growth, Growth2],
@@ -406,7 +406,7 @@ export const products = [
   },
   {
     id: 5,
-    title: "Organic CBD Balm",
+    name: "Organic CBD Balm",
     price: 80,
     category: "Sports Nutrition",
     imgs: [CBD],
@@ -480,7 +480,7 @@ export const products = [
   },
   {
     id: 6,
-    title: "Immune",
+    name: "Immune",
     price: 35,
     category: "Sports Nutrition",
     imgs: [Immune],
@@ -519,7 +519,7 @@ export const products = [
   },
   {
     id: 7,
-    title: "Immune Alcohol Free",
+    name: "Immune Alcohol Free",
     price: 30,
     category: "Sports Nutrition",
     imgs: [ImmuneAF],
@@ -621,7 +621,7 @@ export const products = [
   },
   {
     id: 8,
-    title: "Organic CBD Oil",
+    name: "Organic CBD Oil",
     price: 60,
     category: "Sports Nutrition",
     imgs: [CBDOil],
@@ -737,7 +737,7 @@ export const products = [
   },
   {
     id: 9,
-    title: "Patchouli Wood Natural Body Roll-on",
+    name: "Patchouli Wood Natural Body Roll-on",
     price: 15,
     category: "Skin Care",
     imgs: [Patchouli],
@@ -840,7 +840,7 @@ export const products = [
   },
   {
     id: 10,
-    title: "Royal Jasmine Natural Body Roll-on",
+    name: "Royal Jasmine Natural Body Roll-on",
     price: 15,
     category: "Skin Care",
     imgs: [Jasmine],
@@ -940,7 +940,7 @@ export const products = [
   },
   {
     id: 11,
-    title: "Royal Jasmine & Patchouli Wood Body Roll-on Twin Pack",
+    name: "Royal Jasmine & Patchouli Wood Body Roll-on Twin Pack",
     price: 25,
     category: "Skin Care",
     imgs: [PatchJasmine],
@@ -953,7 +953,7 @@ export const products = [
   },
   {
     id: 12,
-    title: "Skin Repair Serum",
+    name: "Skin Repair Serum",
     price: 55,
     category: "Skin Care",
     imgs: [SkinSerum],
@@ -985,7 +985,7 @@ export const products = [
   },
   {
     id: 13,
-    title: "Toning Solution",
+    name: "Toning Solution",
     price: 25,
     category: "Skin Care",
     imgs: [Toning],
@@ -1071,7 +1071,7 @@ export const products = [
   },
   {
     id: 14,
-    title: "Hair Growth Serum",
+    name: "Hair Growth Serum",
     price: 55,
     category: "Hair Care",
     imgs: [HairSerum],
@@ -1166,7 +1166,7 @@ export const products = [
   },
   {
     id: 15,
-    title: "Hair Growth Serum, Toning Solution and Skin Repair Serum Trio",
+    name: "Hair Growth Serum, Toning Solution and Skin Repair Serum Trio",
     price: 110,
     category: "Hair Care",
     imgs: [HairSkinToning],
@@ -1179,7 +1179,7 @@ export const products = [
   },
   {
     id: 16,
-    title: "8 Week Beginner Strength and Hypertrophy Programme",
+    name: "8 Week Beginner Strength and Hypertrophy Programme",
     price: 30,
     category: "Training Programmes",
     imgs: [Beginner],
@@ -1192,7 +1192,7 @@ export const products = [
   },
   {
     id: 17,
-    title: "8 Week Advanced Strength and Hypertrophy Programme",
+    name: "8 Week Advanced Strength and Hypertrophy Programme",
     price: 40,
     category: "Training Programmes",
     imgs: [Advanced],

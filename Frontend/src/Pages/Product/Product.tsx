@@ -12,7 +12,7 @@ export default function Product() {
   const { addToCart } = useContext(CartContext)!;
 
   const product: ProductContext | undefined = products.find(
-    (p) => p.title.replace(/ /g, "-").toLowerCase() === productTitle
+    (p) => p.name.replace(/ /g, "-").toLowerCase() === productTitle
   )!;
 
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
@@ -22,7 +22,7 @@ export default function Product() {
   const cartItem = {
     id: product.id,
     img: product.imgs[0],
-    title: product.title,
+    name: product.name,
     price: product.price,
     quantity: quantity,
   };
@@ -57,11 +57,11 @@ export default function Product() {
             })}
           </div>
           <div className="display-product">
-            <img src={currImg} alt={product.title} />
+            <img src={currImg} alt={product.name} />
           </div>
         </div>
         <div className="right-side">
-          <div className="product-title">{product.title}</div>
+          <div className="product-name">{product.name}</div>
           <div className="product-price">£{product.price.toFixed(2)}</div>
           <div className="product-category">{product.category}</div>
           <div className="quantity-container">

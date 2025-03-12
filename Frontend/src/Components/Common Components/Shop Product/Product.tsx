@@ -13,19 +13,19 @@ export default function Product(props: ProductContext) {
   const cartItem = {
     id: props.id,
     img: props.imgs[0],
-    title: props.title,
+    name: props.name,
     price: props.price,
     quantity: 1,
   };
 
   return (
-    <div className="shop-product-container" id={props.title}>
+    <div className="shop-product-container" id={props.name}>
       <div className="image-container">
         <img
           src={props.imgs[0]}
           alt=""
           onClick={() =>
-            route(`/product/${props.title.replace(/ /g, "-").toLowerCase()}`)
+            route(`/product/${props.name.replace(/ /g, "-").toLowerCase()}`)
           }
         />
       </div>
@@ -35,7 +35,7 @@ export default function Product(props: ProductContext) {
             props.reviews.length
         )}
       </div>
-      <div className="product-title">{props.title}</div>
+      <div className="product-title">{props.name}</div>
       <div className="add-to-basket">
         <div>
           <div className="product-category">{props.category}</div>

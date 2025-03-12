@@ -48,7 +48,7 @@ export default function Category() {
       setProducts(getProducts);
     } else {
       const filteredProducts = getProducts.filter((product) => {
-        return product.title.toLowerCase().includes(searchValue);
+        return product.name.toLowerCase().includes(searchValue);
       });
       setProducts(filteredProducts);
     }
@@ -78,7 +78,7 @@ export default function Category() {
               return (
                 <Product
                   id={product.id}
-                  title={product.title}
+                  name={product.name}
                   price={product.price}
                   category={product.category}
                   imgs={product.imgs}

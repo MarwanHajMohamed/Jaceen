@@ -26,7 +26,7 @@ export default function Cart() {
           <div className="cart-table">
             <div className="headers">
               <div className="header"></div>
-              <div className="header">Title</div>
+              <div className="header">Name</div>
               <div className="header">Quantity</div>
               <div className="header">Price</div>
             </div>
@@ -40,13 +40,11 @@ export default function Cart() {
                     className="cart-title"
                     onClick={() =>
                       route(
-                        `/product/${item.title
-                          .replace(/ /g, "-")
-                          .toLowerCase()}`
+                        `/product/${item.name.replace(/ /g, "-").toLowerCase()}`
                       )
                     }
                   >
-                    {item.title}
+                    {item.name}
                   </div>
                   <div className="cart-quantity">
                     <button
