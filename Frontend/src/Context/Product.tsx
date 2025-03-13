@@ -10,6 +10,7 @@ export interface reviews {
 export interface ProductContext {
   _id: ObjectId;
   name: string;
+  slug: string;
   price: number;
   category: string;
   imgs: string[];

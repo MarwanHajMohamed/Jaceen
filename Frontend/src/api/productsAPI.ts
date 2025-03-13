@@ -13,9 +13,9 @@ export const getProducts = async () => {
   }
 };
 
-export const getProductByName = async (name: string) => {
+export const getProductBySlug = async (slug: string) => {
     try {
-      const response = await axios.get(`${API_URL}/${encodeURIComponent(name)}`);
+      const response = await axios.get(`${API_URL}/${encodeURIComponent(slug)}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching product:", error);

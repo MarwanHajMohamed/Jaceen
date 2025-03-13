@@ -14,11 +14,10 @@ export default function Product(props: ProductContext) {
     _id: props._id,
     img: props.imgs[0],
     name: props.name,
+    slug: props.slug,
     price: props.price,
     quantity: 1,
   };
-
-  const routeTitle = props.name.toLowerCase().replace(/\s+/g, "-")!!;
 
   return (
     <div className="shop-product-container" id={props.name}>
@@ -26,7 +25,7 @@ export default function Product(props: ProductContext) {
         <img
           src={props.imgs[0]}
           alt=""
-          onClick={() => route(`/product/${routeTitle}`)}
+          onClick={() => route(`/product/${props.slug}`)}
         />
       </div>
       <div className="stars">

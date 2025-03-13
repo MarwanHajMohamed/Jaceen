@@ -18,11 +18,10 @@ export default function Category() {
   const { category } = useParams<string>();
 
   const [products, setProducts] = useState<ProductContext[]>([]);
-  const [allProducts, setAllProducts] = useState<ProductContext[]>([]); // State for storing the original products
-  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [allProducts, setAllProducts] = useState<ProductContext[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string | number>("");
 
-  // Redirect if the category is invalid
   if (typeof category !== "string" || !validCategories.includes(category)) {
     return <Navigate to="/404" replace />;
   }
@@ -33,8 +32,8 @@ export default function Category() {
         setLoading(true);
         const fetchedProducts = await getProducts();
         setLoading(false);
-        setProducts(fetchedProducts.products); // Set the products to show
-        setAllProducts(fetchedProducts.products); // Set the original products to reset
+        setProducts(fetchedProducts.products);
+        setAllProducts(fetchedProducts.products);
       } catch (error) {
         setLoading(false);
         console.error("Error fetching products:", error);
@@ -49,7 +48,7 @@ export default function Category() {
     setSearchTerm(searchValue);
 
     if (searchValue === "") {
-      setProducts(allProducts); // Reset to all products when the search term is cleared
+      setProducts(allProducts);
     } else {
       const filteredProducts = allProducts.filter((product) =>
         product.name.toLowerCase().includes(searchValue)
@@ -58,7 +57,6 @@ export default function Category() {
     }
   };
 
-  // Filter products by category if necessary
   let filteredProducts = products;
   if (category && category !== "All") {
     filteredProducts = products.filter(
@@ -100,6 +98,7 @@ export default function Category() {
               <Product
                 _id={product._id}
                 name={product.name}
+                slug={product.slug}
                 price={product.price}
                 category={product.category}
                 imgs={product.imgs}

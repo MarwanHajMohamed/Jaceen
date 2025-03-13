@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    getProductByName,
+    getProductBySlug,
 // Get all products
   getProducts,
 
@@ -9,6 +9,6 @@ import {
 const router = express.Router();
 
 router.route("/").get(getProducts);
-router.route("/:name").get(getProductByName);
+router.route("/:slug").get(getProductBySlug);
 
 export default router;

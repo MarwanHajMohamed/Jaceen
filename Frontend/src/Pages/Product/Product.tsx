@@ -5,28 +5,23 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
-import { getProductByName } from "../../api/productsAPI";
+import { getProductBySlug } from "../../api/productsAPI";
 import ReactMarkdown from "react-markdown";
 
 export default function Product() {
-  const { productTitle } = useParams<{ productTitle: string }>();
+  const { slug } = useParams<{ slug: string }>();
   const { addToCart } = useContext(CartContext)!;
   const [product, setProduct] = useState<ProductContext | undefined>();
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
 
   useEffect(() => {
-    if (productTitle) {
-      const formattedTitle = productTitle
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-
-      getProductByName(formattedTitle).then((res) => {
+    if (slug) {
+      getProductBySlug(slug).then((res) => {
         setProduct(res);
         setCurrImg(res.imgs[0]);
       });
     }
-  }, [productTitle]);
+  }, [slug]);
 
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
@@ -38,6 +33,7 @@ export default function Product() {
     _id: product._id,
     img: product.imgs[0],
     name: product.name,
+    slug: product.slug,
     price: product.price,
     quantity: quantity,
   };

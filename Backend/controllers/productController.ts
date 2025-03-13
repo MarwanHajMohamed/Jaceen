@@ -7,9 +7,6 @@ import { Response, Request, } from "../types/";
  * @access Public
  */
 const getProducts = asyncHandler(async (req: Request, res: Response) => {
-    const pageSize = 10;
-    const page = Number(req.query.pageNumber) || 1;
-  
     // Get search keyword from request and search for partial match
     const keyword = req.query.keyword
       ? {
@@ -20,19 +17,19 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
         }
       : {};
   
-    const count = await Product.countDocuments({ ...keyword });
-    const products = await Product.find({ ...keyword })
-      .limit(pageSize)
-      .skip(pageSize * (page - 1));
+    // Fetch all products that match the keyword
+    const products = await Product.find({ ...keyword });
   
-    res.json({ products, page, pages: Math.ceil(count / pageSize) });
-  });
+    res.json({ products });
+});
+
+
 
   // productController.js
-const getProductByName = async (req, res) => {
-    const { name } = req.params; // Extract 'name' from the URL parameter
+const getProductBySlug = async (req, res) => {
+    const { slug } = req.params; // Extract 'name' from the URL parameter
     try {
-      const product = await Product.findOne({ name }); // Query the database for the product by name
+      const product = await Product.findOne({ slug }); // Query the database for the product by name
       if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
@@ -45,5 +42,5 @@ const getProductByName = async (req, res) => {
 
   export {
     getProducts,
-    getProductByName
+    getProductBySlug
   };

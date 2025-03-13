@@ -38,11 +38,7 @@ export default function Cart() {
                   </div>
                   <div
                     className="cart-title"
-                    onClick={() =>
-                      route(
-                        `/product/${item.name.replace(/ /g, "-").toLowerCase()}`
-                      )
-                    }
+                    onClick={() => route(`/product/${item.slug}`)}
                   >
                     {item.name}
                   </div>
