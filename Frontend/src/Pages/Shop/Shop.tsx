@@ -4,7 +4,7 @@ import { Navigate, useParams } from "react-router-dom";
 import Product from "../../Components/Common Components/Shop Product/Product";
 import { useEffect, useState } from "react";
 import { ProductContext } from "../../Context/Product";
-import { getProducts } from "../../api/productsAPI"; // Assuming you have this import path for the API function
+import { getProducts } from "../../api/api"; // Assuming you have this import path for the API function
 
 const validCategories: string[] = [
   "Hair Care",

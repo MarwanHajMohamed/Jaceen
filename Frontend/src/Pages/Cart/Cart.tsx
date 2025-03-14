@@ -3,6 +3,7 @@ import "./cart.css";
 import { CartContext } from "../../Context/Cart";
 import { CartItem } from "../../Context/CartInterface";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { handleCheckout } from "../../api/api";
 
 export default function Cart() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
@@ -68,7 +69,16 @@ export default function Cart() {
                 <span>Total: </span>£{getCartTotal().toFixed(2)}
               </div>
             </div>
-            <button className="checkout">Proceed to checkout</button>
+            <div className="coupon">
+              <input type="text" />
+              <button>Apply Coupon</button>
+            </div>
+            <button
+              className="checkout"
+              onClick={() => handleCheckout(cartItems, "")}
+            >
+              Proceed to checkout
+            </button>
           </div>
         </div>
       )}

@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
-import { getProductBySlug } from "../../api/productsAPI";
+import { getProductBySlug } from "../../api/api";
 import ReactMarkdown from "react-markdown";
 
 export default function Product() {

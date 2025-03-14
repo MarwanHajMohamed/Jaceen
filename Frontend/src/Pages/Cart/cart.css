@@ -158,3 +158,29 @@
 .cart-page-container .empty-cart button:hover {
   background-color: var(--hover);
 }
+
+.cart-total-container .coupon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart-total-container .coupon button {
+  width: 164px;
+  height: 31px;
+  background-color: var(--hover);
+  border: 1px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+
+.cart-total-container .coupon button:hover {
+  background-color: white;
+}
+
+.cart-total-container .coupon input {
+  height: 27px;
+  border-radius: 5px;
+  border: 1px solid;
+}
