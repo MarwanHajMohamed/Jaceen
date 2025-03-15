@@ -12,8 +12,14 @@ import cartRoutes from './routes/cartRoutes'
 const PORT = process.env.PORT || 4000;
 const app: Express = express();
 
+const corsOptions = {
+  origin: "http://localhost:5173", // Frontend URL
+  methods: "GET,POST", // Allowed methods
+  credentials: true, // Allow credentials (cookies)
+};
+
 // Middlewares to accept json in body
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Morgan logging

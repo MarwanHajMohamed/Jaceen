@@ -1,15 +1,52 @@
 import "./navbar.css";
-
 import logo from "../../assets/logo.jpg";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
 import { CartContext } from "../../Context/Cart";
+import { useAuth } from "../../hooks/useAuth";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 export default function Navbar() {
   const route: NavigateFunction = useNavigate();
   const { cartItems } = useContext(CartContext);
 
-  const [showInput, setShowInput] = useState<boolean>(false);
+  const [show, setShow] = useState(false);
+  const accountModalRef = useRef<HTMLUListElement | null>(null);
+
+  const API_URL = "http://localhost:4000";
+
+  const { auth, logout } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        `${API_URL}/api/users/logout`,
+        {},
+        { withCredentials: true }
+      );
+      logout();
+      return "success";
+    } catch (error) {
+      console.error("Error logging out", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        accountModalRef.current &&
+        !accountModalRef.current.contains(e.target as Node)
+      ) {
+        setShow(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="navbar-container">
@@ -45,23 +82,6 @@ export default function Navbar() {
           </div>
         </div>
         <div className="right-side">
-          <div className="search-container">
-            {showInput ? (
-              <input
-                type="text"
-                placeholder="Search..."
-                autoFocus
-                onBlur={() => setShowInput(false)}
-                className="search-input"
-              />
-            ) : (
-              <i
-                className="fa-solid fa-magnifying-glass"
-                style={{ cursor: "pointer", fontSize: "20px" }}
-                onClick={() => setShowInput(true)}
-              ></i>
-            )}
-          </div>
           <div className="cart" onClick={() => route("/cart")}>
             <i className="fa-solid fa-cart-shopping"></i>
             <div className="cart-total">
@@ -69,6 +89,39 @@ export default function Navbar() {
                 ? cartItems.reduce((total, item) => total + item.quantity, 0)
                 : 0}
             </div>
+          </div>
+          <div className="account-container">
+            <i className="fa-solid fa-user" onClick={() => setShow(!show)}></i>
+            <ul
+              className={show ? "account-modal show" : "account-modal"}
+              ref={accountModalRef}
+            >
+              {auth === null ? (
+                <>
+                  <li
+                    onClick={() => {
+                      route("/login");
+                      setShow(false);
+                    }}
+                  >
+                    Login
+                  </li>
+                  <li
+                    onClick={() => {
+                      route("/register");
+                      setShow(false);
+                    }}
+                  >
+                    Register
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>Orders</li>
+                  <li onClick={handleLogout}>Logout</li>
+                </>
+              )}
+            </ul>
           </div>
         </div>
       </div>

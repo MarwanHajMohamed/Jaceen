@@ -19,13 +19,14 @@ const authUser = asyncHandler(async (req, res) => {
     // Set token in an HTTP-only cookie
     res.cookie("sessionToken", token, {
       httpOnly: true, // Prevents client-side JS from accessing the cookie
-      secure: process.env.NODE_ENV === "production", // Ensures the cookie is sent over HTTPS in production
+      secure: false, // Ensures the cookie is sent over HTTPS in production
       sameSite: "strict", // Prevents the cookie from being sent with cross-site requests
       maxAge: 3600000, // Expires in 1 hour
     });
 
     res.json({
       _id: user._id,
+      token: token,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
@@ -34,7 +35,6 @@ const authUser = asyncHandler(async (req, res) => {
     res.status(401).json({ message: "Invalid email or password" });
   }
 });
-
 
 /**
  * Register a new user
@@ -74,7 +74,18 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   }
 });
 
+const logoutUser = async (req: Request, res: Response) => {
+  res.clearCookie("sessionToken", {
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
+  });
+
+  res.json({ message: "Logged out successfully" });
+};
+
 export {
   authUser,
   registerUser,
+  logoutUser
 };

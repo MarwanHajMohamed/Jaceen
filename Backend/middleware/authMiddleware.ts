@@ -51,7 +51,6 @@ const protect = asyncHandler(
   }
 );
 
-
 /**
  * Middleware used to protect routes from users who are not flagged as admin
  */

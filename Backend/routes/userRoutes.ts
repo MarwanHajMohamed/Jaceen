@@ -1,6 +1,7 @@
 import express from "express";
 import {
   authUser,
+  logoutUser,
   registerUser,
 
 } from "../controllers/userController";
@@ -10,5 +11,6 @@ const router = express.Router();
 
 router.route("/").post(registerUser).get(protect, admin);
 router.route("/login").post(authUser);
+router.route("/logout").post(logoutUser);
 
 export default router;

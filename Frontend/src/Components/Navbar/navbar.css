@@ -87,7 +87,8 @@
   display: block;
 }
 
-.shop-categories li {
+.shop-categories li,
+.account-modal li {
   padding: 10px;
   cursor: pointer;
 }
@@ -96,21 +97,26 @@
   background-color: #f0f0f0;
 }
 
-.navbar-container .right-side .search-container {
+.account-container {
   position: relative;
 }
 
-.navbar-container .right-side .search-container input {
-  padding: 5px;
-  border-radius: 5px;
-  border: 0;
-  border-radius: 5px;
-  height: 20px;
-  background-color: rgb(21, 21, 21);
-  color: white;
+.account-modal {
+  display: none;
   position: absolute;
-  left: -150px;
-  top: -15px;
+  right: -20px;
+  top: 10px;
+  width: 150px;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-container .account-modal.show {
+  display: block;
+  color: black;
 }
 
 .navbar-container .right-side .cart {

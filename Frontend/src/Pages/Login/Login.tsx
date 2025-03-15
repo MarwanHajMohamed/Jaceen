@@ -31,6 +31,7 @@ export default function Register() {
         console.log(res);
         if (res === "success") {
           navigate("/");
+          window.location.reload();
         } else {
           setMessage({
             text: "Email or password do not match.",

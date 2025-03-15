@@ -70,9 +70,18 @@ export const handleRegister = async (user: User) => {
 
 export const handleLogin = async (email: string, password: string) => {
   try {
-    const response = await axios.post(`${API_URL}/api/users/login`, {email, password});
-    console.log(response.data);
-    return "success"
+    const response = await axios.post(`${API_URL}/api/users/login`, {email, password},  { withCredentials: true });
+
+    if (response.data) {
+      // Store the token in localStorage
+      const token = response.data.token;
+
+      if (token) {
+        localStorage.setItem('authToken', token);
+      }
+    }
+
+    return "success";
   } catch (error) {
     console.log(error);
     

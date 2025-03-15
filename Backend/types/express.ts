@@ -1,4 +1,13 @@
 import { Request as Req, Response as Res, NextFunction as Next } from "express";
+import { User } from "../models"; // Import your User type (adjust the path if necessary)
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: User; // Add the `user` property to the request object
+    }
+  }
+}
 
 /**
  * Custom User interface used in combination with Express Request / Response types
