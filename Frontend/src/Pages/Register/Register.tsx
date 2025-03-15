@@ -61,9 +61,8 @@ export default function Register() {
         message={message?.text || ""}
         type={message?.type || "error"}
       />
-
       <div className="register-container">
-        <div>Create your account</div>
+        <div className="register-title">Create your account</div>
         <form onSubmit={register}>
           <TextField
             variant="filled"
