@@ -1,0 +1,13 @@
+.checkout-page-container {
+  min-height: 100vh;
+  padding: 100px 50px;
+}
+
+.checkout-item {
+  display: flex;
+  align-items: center;
+}
+
+.checkout-item img {
+  width: 50px;
+}

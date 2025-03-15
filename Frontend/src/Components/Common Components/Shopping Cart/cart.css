@@ -1,0 +1,70 @@
+.cart-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cart-table .headers {
+  display: flex;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.cart-table .headers .header {
+  width: 25%;
+  text-align: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.cart-table .cart-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.cart-table .cart-item:last-child {
+  border-bottom: 1px solid rgb(0, 0, 0, 1);
+}
+
+.cart-table .cart-item div {
+  width: 25%;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.cart-table .cart-item .cart-image img {
+  width: 60px;
+}
+
+.cart-table .cart-item .cart-title {
+  color: var(--hover);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cart-page-container .cart-table .cart-item .cart-quantity {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cart-page-container .cart-table .cart-item .cart-quantity .delete,
+.cart-page-container .cart-table .cart-item .cart-quantity .add {
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid rgba(160, 160, 160, 0.1);
+  background-color: rgb(244, 244, 244);
+  transition: 100ms ease-in-out;
+  font-weight: 700;
+}
+
+.cart-page-container .cart-table .cart-item .cart-quantity .delete:hover,
+.cart-page-container .cart-table .cart-item .cart-quantity .add:hover {
+  color: var(--hover);
+}

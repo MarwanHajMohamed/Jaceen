@@ -42,7 +42,7 @@ export default function Product(props: ProductContext) {
         </div>
         <button
           onClick={() => {
-            addToCart(cartItem);
+            addToCart(cartItem, cartItem.quantity);
           }}
         >
           <i className="fa-solid fa-cart-shopping"></i>

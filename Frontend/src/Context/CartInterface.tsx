@@ -13,7 +13,7 @@ export interface CartItem {
 // Define the context type
 export interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
+  addToCart: (item: CartItem, qty: number) => void;
   removeFromCart: (item: CartItem) => void;
   clearCart: () => void;
   getCartTotal: () => number;

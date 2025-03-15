@@ -22,7 +22,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       : []
   );
 
-  const addToCart = (item: CartItem) => {
+  const addToCart = (item: CartItem, qty: number) => {
     setCartItems((prevCartItems) => {
       const isItemInCart = prevCartItems.find(
         (cartItem) => cartItem._id === item._id
@@ -31,7 +31,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       if (isItemInCart) {
         return prevCartItems.map((cartItem) =>
           cartItem._id === item._id
-            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            ? { ...cartItem, quantity: cartItem.quantity + qty }
             : cartItem
         );
       } else {

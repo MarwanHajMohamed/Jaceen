@@ -87,7 +87,9 @@ export default function Product() {
             </button>
           </div>
           <div className="add-to-basket">
-            <button onClick={() => addToCart(cartItem)}>Add to basket</button>
+            <button onClick={() => addToCart(cartItem, quantity)}>
+              Add to basket
+            </button>
           </div>
           {product.description && (
             <div>

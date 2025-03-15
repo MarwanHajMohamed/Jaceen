@@ -3,7 +3,8 @@ import "./cart.css";
 import { CartContext } from "../../Context/Cart";
 import { CartItem } from "../../Context/CartInterface";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { handleCheckout } from "../../api/api";
+
+import ShoppingCart from "../../Components/Common Components/Shopping Cart/Cart";
 
 export default function Cart() {
   const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
@@ -24,7 +25,7 @@ export default function Cart() {
         </div>
       ) : (
         <div className="cart-page">
-          <div className="cart-table">
+          {/* <div className="cart-table">
             <div className="headers">
               <div className="header"></div>
               <div className="header">Name</div>
@@ -59,7 +60,8 @@ export default function Cart() {
                 </div>
               );
             })}
-          </div>
+          </div> */}
+          <ShoppingCart />
           <div className="cart-total-container">
             <div className="top-side">
               <button onClick={clearCart}>
@@ -73,10 +75,7 @@ export default function Cart() {
               <input type="text" />
               <button>Apply Coupon</button>
             </div>
-            <button
-              className="checkout"
-              onClick={() => handleCheckout(cartItems, "")}
-            >
+            <button className="checkout" onClick={() => route("/checkout")}>
               Proceed to checkout
             </button>
           </div>
