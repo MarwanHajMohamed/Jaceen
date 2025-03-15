@@ -1,33 +1,44 @@
-import mongoose, { Document } from "mongoose";
-import bcrypt from "bcryptjs";
+import mongoose, { Document, Schema } from "mongoose";
+import crypto from 'crypto';
 
 // Define TypeScript interface for User
 export interface IUser extends Document {
-  _id: mongoose.Types.ObjectId; // Explicitly set _id as an ObjectId
+  _id: string;
   name: string;
   email: string;
-  password: string;
   isAdmin: boolean;
-  matchPassword(enteredPassword: string): Promise<boolean>;
+  passwordHash: string;
+  passwordSalt: string;
+  setPassword: (password: string) => void;
+  validatePassword: (password: string) => boolean;
 }
 
 // Define Schema
-const userSchema = new mongoose.Schema<IUser>(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    isAdmin: { type: Boolean, default: false },
-  },
-  { timestamps: true }
-);
+const UserSchema: Schema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  isAdmin: { type: Boolean, default: false },
+  passwordHash: { type: String, required: true },
+  passwordSalt: { type: String, required: true },
+}, { timestamps: true });
 
-// Method to match password
-userSchema.methods.matchPassword = async function (enteredPassword: string) {
-  return await bcrypt.compare(enteredPassword, this.password);
+// Instance method: Hash and set password
+UserSchema.methods.setPassword = function (this: IUser, password: string) {
+  this.passwordSalt = crypto.randomBytes(16).toString("hex");
+
+  this.passwordHash = crypto
+    .pbkdf2Sync(password, this.passwordSalt, 1000, 64, "sha512")
+    .toString("hex");
+};
+
+// Instance method: Validate password
+UserSchema.methods.validatePassword = function (this: IUser, password: string) {
+  const hash = crypto
+    .pbkdf2Sync(password, this.passwordSalt, 1000, 64, "sha512")
+    .toString("hex");
+
+  return this.passwordHash === hash;
 };
 
 // Export Model
-const User = mongoose.model<IUser>("User", userSchema);
-
-export { User };
+export default mongoose.model<IUser>("User", UserSchema);

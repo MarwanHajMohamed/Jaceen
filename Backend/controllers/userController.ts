@@ -9,21 +9,20 @@ import generateToken from "../utils/generateToken";
  * @access Public
  */
 const authUser = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password } = req.body as { email: string; password: string };
+  const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
-  if (user && (await user.matchPassword(password))) {
+  if (user && user.validatePassword(password as string)) {
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user.id),
+      token: generateToken(user._id),
     });
   } else {
-    res.status(401);
-    throw new Error("Invalid email or password");
+    res.status(401).json({ message: "Invalid email or password" });
   }
 });
 
@@ -33,24 +32,24 @@ const authUser = asyncHandler(async (req: Request, res: Response) => {
  * @access Public
  */
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { name, email, password } = req.body as {
-    name: string;
-    email: string;
-    password: string;
-  };
+  const { name, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
+    res.status(400).json({ message: "User already exists" });
+    return;
   }
 
-  const user = await User.create({
+  const user = new User({
     name,
     email,
-    password,
+    isAdmin: false, // Default value
   });
+
+  user.setPassword(password);
+
+  await user.save();
 
   if (user) {
     res.status(201).json({
@@ -58,17 +57,16 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user.id),
+      token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user data");
+    res.status(400).json({ message: "Invalid user data" });
   }
 });
+
 
 
 export {
   authUser,
   registerUser,
-  
 };

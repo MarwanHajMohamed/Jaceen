@@ -3,8 +3,8 @@ import { CheckoutRequestBody } from "../types/cart";
 import { applyCoupon } from "./couponController";
 
 export const checkout = async (
-  req,
-  res
+  req: any,
+  res: any
 ) => {
   const { cartItems, couponCode } = req.body;
 
@@ -13,7 +13,7 @@ export const checkout = async (
   }
 
   const cartTotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total: number, item: any) => total + item.price * item.quantity,
     0
   );
 

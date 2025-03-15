@@ -1,5 +1,6 @@
 import axios from "axios";
 import { CartItem } from "../Context/CartInterface";
+import {User} from '../../../Backend/types/user'
 
 const API_URL = "http://localhost:4000";
 
@@ -40,4 +41,34 @@ export const handleCheckout = async (cartItems: CartItem[], discountCode: string
   });
 
   console.log(response.data);
+};
+
+export const handleRegister = async (user: User) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/users`, user);
+    console.log(response.data); // Successfully registered
+    return "success"
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Handle Axios-specific errors
+      if (error.response) {
+        // Backend responded with an error
+        if (error.response.status === 400 && error.response.data.message === "User already exists") {
+          console.error("User already exists. Please try a different email.");
+          return ("duplicate")
+        } else {
+          console.error(`Error: ${error.response.data.message || "Unknown error"}`);
+        }
+      } else if (error.request) {
+        // Request was made but no response received
+        console.error("Network error. Please try again later.");
+      } else {
+        // Something unexpected happened
+        console.error(`Unexpected error: ${error.message}`);
+      }
+    } else {
+      // Non-Axios error (unlikely but still possible)
+      console.error(`Error: ${error}`);
+    }
+  }
 };

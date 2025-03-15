@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "incremental": true,
   },
-  "include": ["src", "src/data/products.jsx"]
+  "include": ["src"]
 }
