@@ -8,6 +8,7 @@ import Product from "./Pages/Product/Product";
 import Cart from "./Pages/Cart/Cart";
 import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,8 +18,22 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/register"
+            element={
+              <ProtectedRoute route="">
+                <Register />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute route="">
+                <Login />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/shop/:category" element={<Shop />} />
           <Route path="/product/:slug" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
