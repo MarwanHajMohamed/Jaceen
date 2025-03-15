@@ -46,13 +46,11 @@ export const handleCheckout = async (cartItems: CartItem[], discountCode: string
 export const handleRegister = async (user: User) => {
   try {
     const response = await axios.post(`${API_URL}/api/users`, user);
-    console.log(response.data); // Successfully registered
+    console.log(response.data);
     return "success"
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      // Handle Axios-specific errors
       if (error.response) {
-        // Backend responded with an error
         if (error.response.status === 400 && error.response.data.message === "User already exists") {
           console.error("User already exists. Please try a different email.");
           return ("duplicate")
@@ -60,15 +58,23 @@ export const handleRegister = async (user: User) => {
           console.error(`Error: ${error.response.data.message || "Unknown error"}`);
         }
       } else if (error.request) {
-        // Request was made but no response received
         console.error("Network error. Please try again later.");
       } else {
-        // Something unexpected happened
         console.error(`Unexpected error: ${error.message}`);
       }
     } else {
-      // Non-Axios error (unlikely but still possible)
       console.error(`Error: ${error}`);
     }
+  }
+};
+
+export const handleLogin = async (email: string, password: string) => {
+  try {
+    const response = await axios.post(`${API_URL}/api/users/login`, {email, password});
+    console.log(response.data);
+    return "success"
+  } catch (error) {
+    console.log(error);
+    
   }
 };

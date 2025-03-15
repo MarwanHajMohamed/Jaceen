@@ -8,23 +8,33 @@ import generateToken from "../utils/generateToken";
  * @route POST /api/users/login
  * @access Public
  */
-const authUser = asyncHandler(async (req: Request, res: Response) => {
+const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
-  if (user && user.validatePassword(password as string)) {
+  if (user && user.validatePassword(password)) {
+    const token = generateToken(user._id);
+
+    // Set token in an HTTP-only cookie
+    res.cookie("sessionToken", token, {
+      httpOnly: true, // Prevents client-side JS from accessing the cookie
+      secure: process.env.NODE_ENV === "production", // Ensures the cookie is sent over HTTPS in production
+      sameSite: "strict", // Prevents the cookie from being sent with cross-site requests
+      maxAge: 3600000, // Expires in 1 hour
+    });
+
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id),
     });
   } else {
     res.status(401).json({ message: "Invalid email or password" });
   }
 });
+
 
 /**
  * Register a new user
@@ -63,8 +73,6 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
     res.status(400).json({ message: "Invalid user data" });
   }
 });
-
-
 
 export {
   authUser,
