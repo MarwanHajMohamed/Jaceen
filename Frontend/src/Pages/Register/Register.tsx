@@ -52,7 +52,7 @@ export default function Register() {
     e: string
   ) => {
     setState(e);
-    setMessage(null); // Clear messages when user types
+    setMessage(null);
   };
 
   return (
@@ -96,7 +96,16 @@ export default function Register() {
             value={confPassword}
             onChange={(e) => handleChange(setConfPassword, e.target.value)}
           />
-          <div className="button-container">
+          <div
+            className={
+              name === "" ||
+              email === "" ||
+              password === "" ||
+              confPassword === ""
+                ? "button-container disabled"
+                : "button-container"
+            }
+          >
             <button type="submit">Register</button>
           </div>
           <div className="login">

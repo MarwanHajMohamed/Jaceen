@@ -39,10 +39,15 @@
 .register-page-container .register-container form .button-container {
   display: flex;
   justify-content: center;
-  /* margin-top: 10px; */
+}
+
+.button-container.disabled button {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .button-container button {
+  opacity: 1;
   background-color: black;
   color: white;
   font-weight: 700;
@@ -55,8 +60,7 @@
 }
 
 .button-container button:hover {
-  background-color: white;
-  color: black;
+  background-color: rgb(21, 21, 21);
 }
 
 .register-page-container .register-container form .login {
