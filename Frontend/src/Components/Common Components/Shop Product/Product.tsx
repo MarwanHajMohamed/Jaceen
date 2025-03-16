@@ -40,14 +40,16 @@ export default function Product(props: ProductContext) {
           <div className="product-category">{props.category}</div>
           <div className="price">£{props.price}</div>
         </div>
-        <button
-          onClick={() => {
-            addToCart(cartItem, cartItem.quantity);
-          }}
-        >
-          <i className="fa-solid fa-cart-shopping"></i>
-        </button>
       </div>
+      <button
+        onClick={() => {
+          addToCart(cartItem, cartItem.quantity);
+        }}
+        className="add"
+      >
+        {/* <i className="fa-solid fa-cart-shopping"></i> */}
+        <div>Add to basket</div>
+      </button>
     </div>
   );
 }

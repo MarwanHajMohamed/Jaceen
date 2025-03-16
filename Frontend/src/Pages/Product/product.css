@@ -72,7 +72,7 @@
 
 .product-page-container .right-side .product-category {
   font-size: 1.2rem;
-  color: var(--hover);
+  color: var(--orange);
   font-weight: 700;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .product-page-container .right-side .quantity-container button:hover {
-  color: var(--hover);
+  color: var(--orange);
 }
 
 .product-page-container .right-side .quantity-container .disabled {
@@ -146,12 +146,12 @@
   border-radius: 5px;
   font-weight: 700;
   transition: 100ms ease-in-out;
-  border: 1px solid black;
+  border: 0;
   cursor: pointer;
 }
 
 .product-page-container .right-side .add-to-basket button:hover {
-  background-color: var(--hover);
+  background-color: var(--black-hover);
 }
 
 .section {

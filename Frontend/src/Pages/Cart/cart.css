@@ -25,7 +25,7 @@
 
 .cart-page-container .empty-cart i {
   font-size: 2rem;
-  color: var(--hover);
+  color: var(--orange);
 }
 
 .cart-page-container .shopping-cart-title {
@@ -33,7 +33,7 @@
   font-weight: 700;
   margin-bottom: 40px;
   padding: 116px 50px 10px;
-  background-color: var(--hover);
+  background-color: var(--orange);
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 20px rgb(0, 0, 0, 0.2);
@@ -66,7 +66,7 @@
 }
 
 .cart-page-container .top-side button:hover {
-  /* color: var(--hover); */
+  color: var(--orange);
 }
 
 .cart-page-container .cart-total span {
@@ -88,31 +88,5 @@
 
 .cart-page-container .checkout:hover,
 .cart-page-container .empty-cart button:hover {
-  background-color: var(--hover);
-}
-
-.cart-total-container .coupon {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.cart-total-container .coupon button {
-  width: 164px;
-  height: 31px;
-  background-color: var(--hover);
-  border: 1px solid;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 100ms ease-in-out;
-}
-
-.cart-total-container .coupon button:hover {
-  background-color: white;
-}
-
-.cart-total-container .coupon input {
-  height: 27px;
-  border-radius: 5px;
-  border: 1px solid;
+  background-color: var(--black-hover);
 }

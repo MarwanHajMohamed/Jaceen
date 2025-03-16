@@ -10,7 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --hover: #d9ba7c;
+  --orange: #d9ba7c;
+  --black-hover: rgb(37, 37, 37);
 }
 
 body {

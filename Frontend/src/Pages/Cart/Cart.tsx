@@ -1,14 +1,12 @@
 import { useContext } from "react";
 import "./cart.css";
 import { CartContext } from "../../Context/Cart";
-import { CartItem } from "../../Context/CartInterface";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import ShoppingCart from "../../Components/Common Components/Shopping Cart/Cart";
 
 export default function Cart() {
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
-    useContext(CartContext);
+  const { cartItems, clearCart, getCartTotal } = useContext(CartContext);
 
   const route: NavigateFunction = useNavigate();
 
@@ -25,42 +23,6 @@ export default function Cart() {
         </div>
       ) : (
         <div className="cart-page">
-          {/* <div className="cart-table">
-            <div className="headers">
-              <div className="header"></div>
-              <div className="header">Name</div>
-              <div className="header">Quantity</div>
-              <div className="header">Price</div>
-            </div>
-            {cartItems.map((item: CartItem) => {
-              return (
-                <div className="cart-item">
-                  <div className="cart-image">
-                    <img src={item.img} alt="" />
-                  </div>
-                  <div
-                    className="cart-title"
-                    onClick={() => route(`/product/${item.slug}`)}
-                  >
-                    {item.name}
-                  </div>
-                  <div className="cart-quantity">
-                    <button
-                      className="delete"
-                      onClick={() => removeFromCart(item)}
-                    >
-                      -
-                    </button>
-                    {item.quantity}
-                    <button className="add" onClick={() => addToCart(item)}>
-                      +
-                    </button>
-                  </div>
-                  <div className="cart-price">£{item.price.toFixed(2)}</div>
-                </div>
-              );
-            })}
-          </div> */}
           <ShoppingCart />
           <div className="cart-total-container">
             <div className="top-side">
@@ -70,10 +32,6 @@ export default function Cart() {
               <div className="cart-total">
                 <span>Total: </span>£{getCartTotal().toFixed(2)}
               </div>
-            </div>
-            <div className="coupon">
-              <input type="text" />
-              <button>Apply Coupon</button>
             </div>
             <button className="checkout" onClick={() => route("/checkout")}>
               Proceed to checkout

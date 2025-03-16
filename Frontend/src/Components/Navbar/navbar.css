@@ -17,7 +17,7 @@
   justify-content: space-between;
   color: white;
   padding: 0 20px;
-  box-shadow: 0 5px 20px rgb(0, 0, 0, 0.4);
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.4);
 }
 
 .navbar-container li {
@@ -48,7 +48,7 @@
 }
 
 .items li:hover {
-  color: var(--hover);
+  color: var(--orange);
   cursor: pointer;
   transition: 100ms ease-in-out;
 }
@@ -62,7 +62,7 @@
 }
 
 .navbar-container .right-side i:hover {
-  color: var(--hover);
+  color: var(--orange);
   transition: 100ms ease-in-out;
   cursor: pointer;
 }

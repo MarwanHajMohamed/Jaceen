@@ -3,6 +3,8 @@
   flex-direction: column;
   width: 250px;
   transition: 100ms ease-in-out;
+  border: 1px solid rgb(233, 233, 233);
+  padding: 20px;
 }
 
 .shop-product-container .image-container {
@@ -36,7 +38,7 @@
 }
 
 .shop-product-container .product-category {
-  color: var(--hover);
+  color: var(--orange);
   font-size: 1.1rem;
   font-weight: 700;
 }
@@ -52,7 +54,7 @@
 }
 
 .shop-product-container button:hover {
-  background-color: var(--hover);
+  background-color: var(--orange);
   color: white;
 }
 
@@ -71,10 +73,10 @@
   justify-content: space-between;
 }
 
-.shop-product-container .add-to-basket button {
-  width: 40px;
+.shop-product-container .add {
+  /* width: 40px; */
   height: 40px;
-  border-radius: 50%;
+  border-radius: 5px;
   background-color: black;
   color: white;
   position: relative;
@@ -84,7 +86,6 @@
   z-index: 0;
 }
 
-.shop-product-container .add-to-basket button:hover {
-  background-color: white;
-  color: var(--hover);
+.shop-product-container .add:hover {
+  background-color: var(--black-hover);
 }

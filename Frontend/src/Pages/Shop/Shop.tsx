@@ -5,6 +5,7 @@ import Product from "../../Components/Common Components/Shop Product/Product";
 import { useEffect, useState } from "react";
 import { ProductContext } from "../../Context/Product";
 import { getProducts } from "../../api/api"; // Assuming you have this import path for the API function
+import { TextField } from "@mui/material";
 
 const validCategories: string[] = [
   "Hair Care",
@@ -69,7 +70,9 @@ export default function Category() {
       <div className="title-container">
         <div className="search-container">
           <div className="category-title">{category}</div>
-          <input
+          <TextField
+            fullWidth
+            variant="outlined"
             type="text"
             placeholder="Search..."
             value={searchTerm}
