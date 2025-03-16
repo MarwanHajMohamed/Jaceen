@@ -38,7 +38,7 @@
 }
 
 .cart-table .cart-item .cart-title {
-  color: var(--hover);
+  color: var(--orange);
   font-weight: 800;
   cursor: pointer;
 }
@@ -66,5 +66,5 @@
 
 .cart-table .cart-item .cart-quantity .delete:hover,
 .cart-table .cart-item .cart-quantity .add:hover {
-  color: var(--hover);
+  color: var(--orange);
 }
