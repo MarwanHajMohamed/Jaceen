@@ -11,6 +11,14 @@ export default function Landing() {
   return (
     <>
       <div className="landing-container">
+        <div className="advertisement">
+          <div className="slider">
+            <div className="content">
+              <div>International Shipping</div>
+              <div>Free UK Shipping over £60</div>
+            </div>
+          </div>
+        </div>
         <div className="products-container">
           <ParallaxProvider>
             <Parallax speed={-10}>

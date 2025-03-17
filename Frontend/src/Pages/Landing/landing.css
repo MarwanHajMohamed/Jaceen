@@ -1,6 +1,43 @@
 .landing-container {
   position: relative;
 }
+.landing-container .advertisement {
+  display: flex;
+  height: 90px;
+  position: absolute;
+  top: 0;
+  background-color: var(--orange);
+  width: 100vw;
+  z-index: 1;
+}
+
+.advertisement .slider {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 20px;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 400px;
+}
+
+.slider .content {
+  display: flex;
+  gap: 50px;
+  animation: slide 10s linear infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
 
 .landing-container .title-container {
   display: flex;
@@ -10,7 +47,6 @@
   top: 0;
   right: 50%;
   transform: translate(50%, 0);
-  /* right: 0px; */
   margin-top: 110px;
 }
 
