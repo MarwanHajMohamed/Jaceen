@@ -6,10 +6,18 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
+import { getProducts } from "../../api/api";
+import { ProductContext } from "../../Context/Product";
+
+interface GroupedProducts {
+  [category: string]: ProductContext[];
+}
+
 export default function Navbar() {
   const route: NavigateFunction = useNavigate();
   const { cartItems } = useContext(CartContext);
 
+  const [groupedProducts, setGroupedProducts] = useState<GroupedProducts>({});
   const [show, setShow] = useState(false);
   const accountModalRef = useRef<HTMLUListElement | null>(null);
 
@@ -32,6 +40,28 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await getProducts();
+
+        // Group products by category
+        const grouped: GroupedProducts = fetchedProducts.products.reduce(
+          (acc: GroupedProducts, product: ProductContext) => {
+            acc[product.category] = acc[product.category] || [];
+            acc[product.category].push(product);
+            return acc;
+          },
+          {}
+        );
+
+        setGroupedProducts(grouped);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+
     const handleClickOutside = (e: MouseEvent) => {
       if (
         accountModalRef.current &&
@@ -53,26 +83,31 @@ export default function Navbar() {
       <div className="wrapper">
         <div className="left-side">
           <ul className="items">
-            <li onClick={() => route("/")}>Home</li>
-            <li className="shop-link">
-              <div onClick={() => route("/shop/All")}>
-                Shop{" "}
-                <span>
-                  <i className="fa-solid fa-caret-down"></i>
-                </span>
-              </div>
+            <li className="nav-item">
+              <div onClick={() => route("/")}>Home</div>
+            </li>
+            <li className="nav-item expand">
+              <div onClick={() => route("/shop/All")}>Shop</div>
               <ul className="shop-categories">
-                <li onClick={() => route("/shop/Hair Care")}>Hair Care</li>
-                <li onClick={() => route("/shop/Skin Care")}>Skin Care</li>
-                <li onClick={() => route("/shop/Sports Nutrition")}>
-                  Sports Nutrition
-                </li>
-                <li onClick={() => route("/shop/Training Programmes")}>
-                  Training Programmes
-                </li>
+                {Object.entries(groupedProducts).map(([category, products]) => (
+                  <li key={category} className="shop-item">
+                    <div onClick={() => route(`/shop/${category}`)}>
+                      {category}
+                    </div>
+                    <ul className="product-list">
+                      {products.map((product) => (
+                        <li onClick={() => route(`/product/${product.slug}`)}>
+                          {product.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
               </ul>
             </li>
-            <li>Contact</li>
+            <li className="nav-item">
+              <div onClick={() => route("/contact")}>Contact</div>
+            </li>
           </ul>
         </div>
         <div className="middle-side">
