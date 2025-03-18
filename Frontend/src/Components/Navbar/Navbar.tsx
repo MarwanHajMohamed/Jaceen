@@ -80,6 +80,14 @@ export default function Navbar() {
 
   return (
     <div className="navbar-container">
+      <div className="advertisement">
+        <div className="slider">
+          <div className="content">
+            <div>International Shipping</div>
+            <div>Free UK Shipping over £60</div>
+          </div>
+        </div>
+      </div>
       <div className="wrapper">
         <div className="left-side">
           <ul className="items">
@@ -87,7 +95,7 @@ export default function Navbar() {
               <div onClick={() => route("/")}>Home</div>
             </li>
             <li className="nav-item expand">
-              <div onClick={() => route("/shop/All")}>Shop</div>
+              <div onClick={() => route("/shop/All Products")}>Shop</div>
               <ul className="shop-categories">
                 {Object.entries(groupedProducts).map(([category, products]) => (
                   <li key={category} className="shop-item">
@@ -117,14 +125,6 @@ export default function Navbar() {
           </div>
         </div>
         <div className="right-side">
-          <div className="cart" onClick={() => route("/cart")}>
-            <i className="fa-solid fa-cart-shopping"></i>
-            <div className="cart-total">
-              {cartItems.length !== 0
-                ? cartItems.reduce((total, item) => total + item.quantity, 0)
-                : 0}
-            </div>
-          </div>
           <div className="account-container">
             <i className="fa-solid fa-user" onClick={() => setShow(!show)}></i>
             <ul
@@ -157,6 +157,14 @@ export default function Navbar() {
                 </>
               )}
             </ul>
+          </div>
+          <div className="cart" onClick={() => route("/cart")}>
+            <i className="fa-solid fa-cart-shopping"></i>
+            <div className="cart-total">
+              {cartItems.length !== 0
+                ? cartItems.reduce((total, item) => total + item.quantity, 0)
+                : 0}
+            </div>
           </div>
         </div>
       </div>

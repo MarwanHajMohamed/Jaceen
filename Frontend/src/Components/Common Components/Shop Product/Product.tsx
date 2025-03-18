@@ -28,16 +28,26 @@ export default function Product(props: ProductContext) {
           onClick={() => route(`/product/${props.slug}`)}
         />
       </div>
+      <div
+        className="product-title"
+        onClick={() => route(`/product/${props.slug}`)}
+      >
+        {props.name}
+      </div>
       <div className="stars">
         {renderStars(
           props.reviews.reduce((sum, review) => sum + review.rating, 0) /
             props.reviews.length
         )}
       </div>
-      <div className="product-title">{props.name}</div>
       <div className="add-to-basket">
         <div>
-          <div className="product-category">{props.category}</div>
+          <div
+            className="product-category"
+            onClick={() => route(`/shop/${props.category}`)}
+          >
+            {props.category}
+          </div>
           <div className="price">£{props.price}</div>
         </div>
       </div>
@@ -47,8 +57,7 @@ export default function Product(props: ProductContext) {
         }}
         className="add"
       >
-        {/* <i className="fa-solid fa-cart-shopping"></i> */}
-        <div>Add to basket</div>
+        Add to basket
       </button>
     </div>
   );

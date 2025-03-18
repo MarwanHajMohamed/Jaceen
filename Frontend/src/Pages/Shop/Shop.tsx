@@ -12,7 +12,7 @@ const validCategories: string[] = [
   "Skin Care",
   "Sports Nutrition",
   "Training Programmes",
-  "All",
+  "All Products",
 ];
 
 export default function Category() {
@@ -59,7 +59,7 @@ export default function Category() {
   };
 
   let filteredProducts = products;
-  if (category && category !== "All") {
+  if (category && category !== "All Products") {
     filteredProducts = products.filter(
       (product) => product.category === category
     );
@@ -69,15 +69,19 @@ export default function Category() {
     <div className="shop-page-container">
       <div className="title-container">
         <div className="search-container">
-          <div className="category-title">{category}</div>
-          <TextField
-            fullWidth
-            variant="outlined"
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+          <div className="category-title">
+            <div className="category-title-content">{category}</div>
+          </div>
+          <div className="search">
+            <TextField
+              fullWidth
+              variant="outlined"
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </div>
         </div>
       </div>
       <div className="products">
