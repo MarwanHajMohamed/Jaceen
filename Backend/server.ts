@@ -8,6 +8,7 @@ import connectDB from "./config/db";
 import productRoutes from "./routes/productRoutes";
 import userRoutes from "./routes/userRoutes";
 import cartRoutes from './routes/cartRoutes'
+import reviewRoutes from './routes/reviewRoutes'
 
 const PORT = process.env.PORT || 4000;
 const app: Express = express();
@@ -36,6 +37,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/products/", productRoutes);
 app.use("/api/users/", userRoutes);
 app.use("/api/cart/", cartRoutes);
+app.use("/api/products/", reviewRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);

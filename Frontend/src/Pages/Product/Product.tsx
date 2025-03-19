@@ -3,16 +3,21 @@ import "./product.css";
 import { useContext, useEffect, useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
-import { AddReview, GetReviews } from "../../Context/Review/Review";
+import { AddReview } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
 import { getProductBySlug } from "../../api/api";
 import ReactMarkdown from "react-markdown";
+import { getReviews } from "../../api/api";
+import Pagination from "../../Components/Common Components/Pagination/Pagination";
 
 export default function Product() {
   const { slug } = useParams<{ slug: string }>();
   const { addToCart } = useContext(CartContext)!;
   const [product, setProduct] = useState<ProductContext | undefined>();
   const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
+  const [reviews, setReviews] = useState<reviews[]>([]);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [expandedSection, setExpandedSection] = useState<string>("description");
 
   useEffect(() => {
     if (slug) {
@@ -23,8 +28,21 @@ export default function Product() {
     }
   }, [slug]);
 
-  const [quantity, setQuantity] = useState<number>(1);
-  const [expandedSection, setExpandedSection] = useState<string>("description");
+  useEffect(() => {
+    const fetchReviews = async () => {
+      if (product?._id) {
+        try {
+          const { data } = await getReviews(product._id.toString());
+          setReviews(data);
+        } catch (error) {
+          if (error === "") console.error("Error fetching reviews:", error);
+          setReviews([]);
+        }
+      }
+    };
+
+    fetchReviews();
+  }, [product]);
 
   if (!product)
     return <div className="product-not-found">Product not found</div>;
@@ -224,24 +242,12 @@ export default function Product() {
         </div>
       </div>
       <div className="bottom">
-        <h3>Reviews ({product.reviews.length})</h3>
+        <h3>Reviews ({reviews.length})</h3>
         <div className="review-container">
-          {product.reviews.length === 0 ? (
-            <div>Be the first to leave a review on this product!</div>
-          ) : (
-            product.reviews.map((review: reviews) => {
-              return (
-                <div>
-                  <GetReviews {...review} />
-                </div>
-              );
-            })
-          )}
+          <Pagination reviews={reviews} />
         </div>
-        <hr />
         <div>
-          <div className="subtitle">Add a review</div>
-          <AddReview />
+          <AddReview productId={product._id} />
         </div>
       </div>
     </div>

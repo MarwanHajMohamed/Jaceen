@@ -14,16 +14,8 @@ export interface Product {
     product_highlights: Element | undefined;
     ingredients: Element | undefined;
     countInStock: number;
-}
-
-/**
- * Represents a product review
- */
-export interface Review {
-  user: string;
-  name: string;
-  rating: number;
-  comment: string;
+    numReviews: number;
+    rating: number;
 }
 
 /**
@@ -31,7 +23,6 @@ export interface Review {
  */
 interface ProductInDatabase extends Product {
   user: string;
-  reviews: Review[];
 }
 
 export interface ProductDocument extends ProductInDatabase, Document {}

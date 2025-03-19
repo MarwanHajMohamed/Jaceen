@@ -1,29 +1,6 @@
 import { model, Schema } from "mongoose";
 import { ProductDocument } from "../types/";
 
-const reviewSchema = new Schema(
-  {
-    user: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    comment: {
-      type: String,
-      required: true,
-    },
-  },
-  { timestamps: true }
-);
-
 const productSchema = new Schema(
   {
     user: {
@@ -63,8 +40,17 @@ const productSchema = new Schema(
     ingredients: {
       type: String,
     },
-    reviews: [reviewSchema],
     countInStock: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    numReviews: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    rating: {
       type: Number,
       required: true,
       default: 0,

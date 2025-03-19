@@ -1,0 +1,18 @@
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.pagination-controls .pagination-button {
+  border-radius: 5px;
+  background-color: var(--orange);
+  border: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.pagination-controls .pagination-button:disabled {
+  pointer-events: none;
+}

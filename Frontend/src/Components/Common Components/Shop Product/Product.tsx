@@ -34,12 +34,7 @@ export default function Product(props: ProductContext) {
       >
         {props.name}
       </div>
-      <div className="stars">
-        {renderStars(
-          props.reviews.reduce((sum, review) => sum + review.rating, 0) /
-            props.reviews.length
-        )}
-      </div>
+      <div className="stars">{renderStars(3)}</div>
       <div className="add-to-basket">
         <div>
           <div

@@ -1,10 +1,14 @@
 import { ObjectId } from "bson";
+import { Date } from "mongoose";
 
 export interface reviews {
+  productId: ObjectId;
+  user: ObjectId;
+  title: string;
   name: string;
-  review: string;
-  date: string;
   rating: number;
+  comment: string;
+  createdAt: string | Date;
 }
 
 export interface ProductContext {
@@ -19,5 +23,6 @@ export interface ProductContext {
   how_to_use: string | undefined;
   product_highlights: string | undefined;
   ingredients: string | undefined;
-  reviews: reviews[];
+  countInStock: number;
+  rating: number;
 }
