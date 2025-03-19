@@ -121,7 +121,7 @@ export default function Navbar() {
         <div className="middle-side">
           <div className="logo" onClick={() => route("/")}>
             <img src={logo} alt="" />
-            <div>Jaceen</div>
+            {/* <div>Jaceen</div> */}
           </div>
         </div>
         <div className="right-side">

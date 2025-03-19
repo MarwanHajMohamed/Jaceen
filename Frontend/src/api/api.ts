@@ -52,8 +52,7 @@ export const handleCheckout = async (cartItems: CartItem[], discountCode: string
 // HANDLE REGISTER
 export const handleRegister = async (user: User): Promise<"success" | "duplicate" | undefined> => {
   try {
-    const response = await axios.post(`${API_URL}/api/users`, user);
-    console.log(response.data);
+    await axios.post(`${API_URL}/api/users`, user);
     return "success"
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -134,7 +133,7 @@ export const addReview = async (
 
     const response = await axios.post<ReviewResponse>(
       `${API_URL}/api/products/${productId.toString()}/reviews`,
-      { rating, comment, title },
+      { rating, title, comment },
       {
         headers: {
           Authorization: "Bearer "+ token,

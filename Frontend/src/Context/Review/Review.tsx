@@ -46,11 +46,12 @@ export const AddReview = ({ productId }: AddReviewProps) => {
   const handleReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const review = await addReview(stars, comment, title, productId);
+    const review = await addReview(stars, title, comment, productId);
 
     if (review === "success") {
-      GetReviews;
+      window.location.reload();
     }
+    window.location.reload();
   };
 
   const token = localStorage.getItem("authToken");
