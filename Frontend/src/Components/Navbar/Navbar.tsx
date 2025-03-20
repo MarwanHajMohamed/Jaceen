@@ -19,7 +19,12 @@ export default function Navbar() {
 
   const [groupedProducts, setGroupedProducts] = useState<GroupedProducts>({});
   const [show, setShow] = useState(false);
+  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+  const [showSidebarCategories, setShowSidebarCategories] =
+    useState<boolean>(false);
+
   const accountModalRef = useRef<HTMLUListElement | null>(null);
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   const API_URL = "http://localhost:4000";
 
@@ -69,6 +74,13 @@ export default function Navbar() {
       ) {
         setShow(false);
       }
+
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target as Node)
+      ) {
+        setShowSidebar(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -77,6 +89,12 @@ export default function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const handleSideNav = (path: string) => {
+    route(path);
+    setShowSidebar(false);
+    setShowSidebarCategories(false);
+  };
 
   return (
     <div className="navbar-container">
@@ -90,21 +108,80 @@ export default function Navbar() {
       </div>
       <div className="wrapper">
         <div className="left-side">
+          {/* HAMBURGER MENU */}
+          <i
+            className="fa-solid fa-bars"
+            onClick={() => setShowSidebar(!showSidebar)}
+          ></i>
+          <div
+            ref={sidebarRef}
+            className={showSidebar ? "sidebar show" : "sidebar hide"}
+          >
+            <i
+              className="fa-solid fa-x"
+              onClick={() => setShowSidebar(false)}
+            ></i>
+            <ul>
+              <li className="sidebar-item" onClick={() => handleSideNav("/")}>
+                Home
+              </li>
+              <li className="sidebar-item">
+                <div
+                  className="shop"
+                  onClick={() => handleSideNav("/shop/All Products")}
+                >
+                  Shop
+                </div>
+                <span
+                  className={`arrow ${showSidebarCategories ? "rotate" : ""}`}
+                  onClick={() =>
+                    setShowSidebarCategories(!showSidebarCategories)
+                  }
+                >
+                  ▼
+                </span>
+              </li>
+              {/* CATEGORY LIST (TOGGLE VISIBILITY) */}
+              <ul
+                className={`sidebar-categories ${
+                  showSidebarCategories ? "show" : ""
+                }`}
+              >
+                {Object.entries(groupedProducts).map(([category]) => (
+                  <li
+                    key={category}
+                    className="shop-item"
+                    onClick={() => handleSideNav(`/shop/${category}`)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+              <li className="sidebar-item">Contact</li>
+            </ul>
+          </div>
+          {/* NAVBAR */}
           <ul className="items">
             <li className="nav-item">
               <div onClick={() => route("/")}>Home</div>
             </li>
             <li className="nav-item expand">
-              <div onClick={() => route("/shop/All Products")}>Shop</div>
+              <div onClick={() => handleSideNav("/shop/All Products")}>
+                Shop
+              </div>
               <ul className="shop-categories">
                 {Object.entries(groupedProducts).map(([category, products]) => (
                   <li key={category} className="shop-item">
-                    <div onClick={() => route(`/shop/${category}`)}>
+                    <div onClick={() => handleSideNav(`/shop/${category}`)}>
                       {category}
                     </div>
                     <ul className="product-list">
                       {products.map((product) => (
-                        <li onClick={() => route(`/product/${product.slug}`)}>
+                        <li
+                          onClick={() =>
+                            handleSideNav(`/product/${product.slug}`)
+                          }
+                        >
                           {product.name}
                         </li>
                       ))}
@@ -121,7 +198,6 @@ export default function Navbar() {
         <div className="middle-side">
           <div className="logo" onClick={() => route("/")}>
             <img src={logo} alt="" />
-            {/* <div>Jaceen</div> */}
           </div>
         </div>
         <div className="right-side">

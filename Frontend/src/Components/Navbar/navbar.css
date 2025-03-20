@@ -40,7 +40,7 @@
 }
 
 .items .nav-item:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: var(--white-hover);
   color: black;
 }
 
@@ -55,7 +55,7 @@
   left: 0;
   top: 60px;
   width: 100vw;
-  background-color: rgb(233, 233, 233);
+  background-color: var(--white-hover);
 }
 
 .nav-item.expand:hover .shop-categories {
@@ -143,6 +143,11 @@
 .account-modal li {
   padding: 10px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.account-modal li:hover {
+  background-color: var(--white-hover);
 }
 
 .account-container .account-modal.show {
@@ -172,6 +177,7 @@
   transition: 100ms ease-in-out;
 }
 
+/* AD BANNER UNDERNEATH NAVBAR */
 .advertisement {
   display: flex;
   height: 90px;
@@ -201,6 +207,15 @@
   animation: slide 10s linear infinite;
 }
 
+/* HAMBURGER MENU */
+.navbar-container .wrapper .left-side .fa-bars {
+  display: none;
+}
+
+.sidebar {
+  display: none;
+}
+
 @keyframes slide {
   from {
     transform: translateX(100%);
@@ -211,5 +226,114 @@
 }
 
 @media (max-width: 860px) {
+  .navbar-container .wrapper .left-side .items {
+    display: none;
+  }
+
+  .navbar-container .wrapper .left-side .fa-bars {
+    display: block;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .navbar-container .middle-side .logo {
+    margin-right: 0px;
+    margin-left: 50px;
+  }
+
+  .sidebar {
+    display: block;
+    position: absolute;
+    width: 250px;
+    background-color: black;
+    box-shadow: 0 0px 20px 10px rgb(0, 0, 0, 0.5);
+    left: 0;
+    height: 100vh;
+    top: 0;
+    padding: 40px 0px;
+    transition: 200ms ease-in-out;
+    transform: translateX(-120%);
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .sidebar .fa-solid.fa-x {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .sidebar .fa-solid.fa-x:hover {
+    background-color: var(--black-hover);
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar ul li {
+    padding: 0 20px;
+    height: 80px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .sidebar ul li:hover {
+    background-color: var(--white-hover);
+    color: black;
+  }
+
+  .sidebar .sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-categories {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out;
+    background-color: rgb(38, 38, 38);
+  }
+
+  .sidebar-categories.show {
+    max-height: 500px; /* Ensure this value covers your content's full height */
+  }
+
+  .sidebar-item .shop {
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .sidebar-item .arrow {
+    transition: transform 0.2s ease-in-out;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 2;
+  }
+
+  .sidebar-item .arrow.rotate {
+    transform: rotate(180deg); /* Rotate the arrow when expanded */
+  }
+
+  .sidebar-categories .shop-item {
+    padding-left: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+
   /* Change to hamburger menu */
 }
