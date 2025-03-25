@@ -27,7 +27,8 @@ const authUser = asyncHandler(async (req, res) => {
     res.json({
       _id: user._id,
       token: token,
-      name: user.name,
+      firstName: user.firstName,
+      surname: user.surname,
       email: user.email,
       isAdmin: user.isAdmin,
     });
@@ -42,7 +43,7 @@ const authUser = asyncHandler(async (req, res) => {
  * @access Public
  */
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { name, email, password } = req.body;
+  const { firstName, surname, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -52,9 +53,10 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   }
 
   const user = new User({
-    name,
+    firstName,
+    surname,
     email,
-    isAdmin: false, // Default value
+    isAdmin: false,
   });
 
   user.setPassword(password);
@@ -64,7 +66,8 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   if (user) {
     res.status(201).json({
       _id: user._id,
-      name: user.name,
+      firstName: user.firstName,
+      surname: user.surname,
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
@@ -72,6 +75,29 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   } else {
     res.status(400).json({ message: "Invalid user data" });
   }
+});
+
+/**
+ * @desc Get user profile
+ * @route GET /api/users/profile
+ * @access Private
+ */
+const getUserProfile = asyncHandler(async (req: Request, res: Response) => {
+  // The user is already attached to the request by the protect middleware
+  if (!req.user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  // Return user details, excluding password
+  const user = await User.findById(req.user._id).select('-password');
+
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  res.json(user);
 });
 
 const logoutUser = async (req: Request, res: Response) => {
@@ -87,5 +113,6 @@ const logoutUser = async (req: Request, res: Response) => {
 export {
   authUser,
   registerUser,
-  logoutUser
+  logoutUser,
+  getUserProfile
 };

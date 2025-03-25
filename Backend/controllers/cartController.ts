@@ -1,5 +1,3 @@
-import { Request, Response } from "express";
-import { CheckoutRequestBody } from "../types/cart";
 import { applyCoupon } from "./couponController";
 
 export const checkout = async (

@@ -4,7 +4,8 @@ import { Model, Document } from "mongoose";
  * Represents a user
  */
 export interface User {
-  name: string;
+  firstName: string;
+  surname: string;
   email: string;
   password: string;
   isAdmin?: boolean;

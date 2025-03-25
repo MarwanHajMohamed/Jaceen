@@ -4,7 +4,8 @@ import crypto from 'crypto';
 // Define TypeScript interface for User
 export interface IUser extends Document {
   _id: string;
-  name: string;
+  firstName: string;
+  surname: string,
   email: string;
   isAdmin: boolean;
   passwordHash: string;
@@ -15,7 +16,8 @@ export interface IUser extends Document {
 
 // Define Schema
 const UserSchema: Schema = new Schema({
-  name: { type: String, required: true },
+  firstName: { type: String, required: true },
+  surname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   isAdmin: { type: Boolean, default: false },
   passwordHash: { type: String, required: true },

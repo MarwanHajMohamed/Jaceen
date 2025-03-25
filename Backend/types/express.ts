@@ -1,36 +1,46 @@
-import { Request as Req, Response as Res, NextFunction as Next } from "express";
-import { User } from "../models"; // Import your User type (adjust the path if necessary)
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: User; // Add the `user` property to the request object
-    }
-  }
-}
-
-export interface RequestWithUser extends Request {
-  user?: {
-    _id: string;
-    name: string;
-    email: string;
-    isAdmin?: boolean;
-  };
-}
+import { Request as ExpressRequest, Response as ExpressResponse, NextFunction as ExpressNextFunction } from "express";
 
 /**
- * Custom User interface used in combination with Express Request / Response types
+ * User interface for authenticated requests
  */
 interface User {
   _id: string;
-  name: string;
+  firstName: string;
+  surname: string;
   email: string;
   isAdmin?: boolean;
 }
 
 /**
- * Combine Express types with customer User interface
+ * Extend Express Request to include user property
  */
-export type Request = Req & User;
-export type Response = Res & User;
-export type NextFunction = Next;
+export interface RequestWithUser extends ExpressRequest {
+  user?: {
+    _id: string;
+    firstName: string;
+    surname: string;
+    email: string;
+    isAdmin?: boolean;
+  };
+}
+
+// Declare the global namespace extension properly
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        _id: string;
+        firstName: string;
+        surname: string;
+        email: string;
+        isAdmin?: boolean;
+      };
+    }
+  }
+}
+
+// Export the types - but don't combine Request with User
+export type Request = RequestWithUser;
+export type Response = ExpressResponse;
+export type NextFunction = ExpressNextFunction;
+

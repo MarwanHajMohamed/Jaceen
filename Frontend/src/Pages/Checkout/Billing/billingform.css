@@ -1,0 +1,15 @@
+.checkout-page-container .top-side .right-side .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-page-container .top-side .right-side .form .name {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.checkout-page-container .top-side .right-side .form .name .MuiTextField-root {
+  flex: 1;
+}

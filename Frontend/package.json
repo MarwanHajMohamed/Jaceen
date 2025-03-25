@@ -19,6 +19,7 @@
     "country-state-city": "^3.2.1",
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
     "react": "^19.0.0",
     "react-country-state-city": "^1.1.12",
     "react-dom": "^19.0.0",

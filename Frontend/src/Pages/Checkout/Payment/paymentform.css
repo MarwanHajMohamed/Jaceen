@@ -1,0 +1,31 @@
+.checkout-page-container .bottom-side {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(234, 234, 234);
+  background-color: rgb(250, 250, 250);
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.checkout-page-container .bottom-side .month-cvc {
+  display: flex;
+  gap: 20px;
+}
+
+.checkout-page-container .order {
+  margin-top: 30px;
+  background-color: var(--orange);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 0;
+  color: white;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 200px;
+}
+
+.checkout-page-container .error {
+  margin-top: 10px;
+}

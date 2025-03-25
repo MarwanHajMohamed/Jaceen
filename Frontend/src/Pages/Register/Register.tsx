@@ -6,7 +6,8 @@ import { handleRegister } from "../../api/api";
 import MessageBox from "../../Components/MessageBox/MessageBox";
 
 export default function Register() {
-  const [name, setName] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confPassword, setConfPassword] = useState<string>("");
@@ -26,19 +27,21 @@ export default function Register() {
     }
 
     try {
-      await handleRegister({ name, email, password }).then((res) => {
-        if (res === "duplicate") {
-          setMessage({
-            text: "User with this email address already exists.",
-            type: "error",
-          });
-        } else if (res === "success") {
-          setMessage({
-            text: "You have successfully registered your account!",
-            type: "success",
-          });
+      await handleRegister({ firstName, surname, email, password }).then(
+        (res) => {
+          if (res === "duplicate") {
+            setMessage({
+              text: "User with this email address already exists.",
+              type: "error",
+            });
+          } else if (res === "success") {
+            setMessage({
+              text: "You have successfully registered your account!",
+              type: "success",
+            });
+          }
         }
-      });
+      );
     } catch (error) {
       setMessage({
         text: "Failed to register. Please try again.",
@@ -66,11 +69,19 @@ export default function Register() {
         <form onSubmit={register}>
           <TextField
             variant="filled"
-            label="Full Name"
+            label="First Name"
             type="text"
             required
-            value={name}
-            onChange={(e) => handleChange(setName, e.target.value)}
+            value={firstName}
+            onChange={(e) => handleChange(setFirstName, e.target.value)}
+          />
+          <TextField
+            variant="filled"
+            label="Surname"
+            type="text"
+            required
+            value={surname}
+            onChange={(e) => handleChange(setSurname, e.target.value)}
           />
           <TextField
             variant="filled"
@@ -98,7 +109,8 @@ export default function Register() {
           />
           <div
             className={
-              name === "" ||
+              firstName === "" ||
+              surname === "" ||
               email === "" ||
               password === "" ||
               confPassword === ""

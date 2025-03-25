@@ -9,14 +9,16 @@ import productRoutes from "./routes/productRoutes";
 import userRoutes from "./routes/userRoutes";
 import cartRoutes from './routes/cartRoutes'
 import reviewRoutes from './routes/reviewRoutes'
+import orderRoutes from './routes/orderRoutes'
+import paymentRoutes from './routes/paymentRoutes'
 
 const PORT = process.env.PORT || 4000;
 const app: Express = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Frontend URL
-  methods: "GET,POST", // Allowed methods
-  credentials: true, // Allow credentials (cookies)
+  origin: "https://localhost:5173",
+  methods: "GET,POST",
+  credentials: true,
 };
 
 // Middlewares to accept json in body
@@ -38,6 +40,8 @@ app.use("/api/products/", productRoutes);
 app.use("/api/users/", userRoutes);
 app.use("/api/cart/", cartRoutes);
 app.use("/api/products/", reviewRoutes)
+app.use("/api/orders/", orderRoutes)
+app.use(paymentRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);

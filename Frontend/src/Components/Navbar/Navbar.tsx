@@ -8,6 +8,7 @@ import axios from "axios";
 
 import { getProducts } from "../../api/api";
 import { ProductContext } from "../../Context/Product";
+import { API_URL } from "../../config/constants";
 
 interface GroupedProducts {
   [category: string]: ProductContext[];
@@ -26,9 +27,7 @@ export default function Navbar() {
   const accountModalRef = useRef<HTMLUListElement | null>(null);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
-  const API_URL = "http://localhost:4000";
-
-  const { auth, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -207,7 +206,7 @@ export default function Navbar() {
               className={show ? "account-modal show" : "account-modal"}
               ref={accountModalRef}
             >
-              {auth === null ? (
+              {user === null ? (
                 <>
                   <li
                     onClick={() => {
