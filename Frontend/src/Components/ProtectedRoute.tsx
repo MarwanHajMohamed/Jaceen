@@ -9,9 +9,9 @@ const ProtectedRoute = ({
   children: JSX.Element;
   route: string;
 }) => {
-  const { auth } = useAuth();
+  const { user } = useAuth();
 
-  if (auth) {
+  if (user) {
     return <Navigate to={"/" + route} />;
   }
 

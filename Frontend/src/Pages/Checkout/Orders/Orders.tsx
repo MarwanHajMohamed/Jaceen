@@ -7,7 +7,12 @@ import Cart from "../../../Components/Common Components/Shopping Cart/Cart";
 import { TextField } from "@mui/material";
 import { getCode, getNames } from "country-list";
 
-export default function Orders() {
+interface Props {
+  shipping: number;
+  setShipping: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function Orders(props: Props) {
   const route: NavigateFunction = useNavigate();
 
   const { cartItems, getCartTotal } = useContext<CartContextType>(CartContext);
@@ -36,11 +41,12 @@ export default function Orders() {
     fetchUserCountry();
   }, []);
 
-  const shipping: number =
+  props.setShipping(
     getCartTotal() > 60 &&
-    selectedCountry === "United Kingdom of Great Britain and Northern Ireland"
+      selectedCountry === "United Kingdom of Great Britain and Northern Ireland"
       ? 0
-      : 5;
+      : 5
+  );
 
   return (
     <div className="orders-component-container">
@@ -59,7 +65,7 @@ export default function Orders() {
             </div>
             <div className="row">
               <label>Shipping</label>
-              <div>£{shipping.toFixed(2)}</div>
+              <div>£{props.shipping.toFixed(2)}</div>
             </div>
             <div className="coupon">
               <TextField
@@ -76,7 +82,7 @@ export default function Orders() {
             </div>
             <div className="row">
               <label>Total</label>
-              <div>£{(getCartTotal() + shipping).toFixed(2)}</div>
+              <div>£{(getCartTotal() + props.shipping).toFixed(2)}</div>
             </div>
           </div>
         </div>

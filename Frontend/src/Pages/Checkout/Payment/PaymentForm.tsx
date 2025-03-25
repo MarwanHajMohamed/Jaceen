@@ -59,9 +59,12 @@ interface Props {
     city: string;
     setCity: React.Dispatch<React.SetStateAction<string>>;
   };
+  shipping: number;
 }
 
 export default function PaymentForm(props: Props) {
+  const { clearCart } = useContext<CartContextType>(CartContext);
+
   const [cardNumber, setCardNumber] = useState<string>("");
   const [expiry, setExpiry] = useState<string>("");
   const [cvc, setCvc] = useState<string>("");
@@ -72,6 +75,7 @@ export default function PaymentForm(props: Props) {
 
   const route: NavigateFunction = useNavigate();
 
+  // HANDLE PAYMENT AND CREATE ORDER
   const handlePayment = async (e: FormEvent<HTMLFormElement>) => {
     setError("");
     e.preventDefault();
@@ -163,7 +167,7 @@ export default function PaymentForm(props: Props) {
                       email: props.email,
                     },
                   }),
-                  totalAmount: props.totalAmount,
+                  totalAmount: props.totalAmount + props.shipping,
                   paymentId: paymentResult.transactionId,
                   items: cartItems.map((item) => ({
                     productId: item._id,
@@ -176,7 +180,16 @@ export default function PaymentForm(props: Props) {
                 };
 
                 const createdOrder = await createOrder(newOrder);
-                route("/order-success");
+
+                clearCart();
+
+                route("/order-success", {
+                  state: {
+                    cartItems: cartItems,
+                    shippingFee: props.shipping,
+                    totalAmount: props.totalAmount,
+                  },
+                });
 
                 console.log("Order created successfully:", createdOrder);
               }

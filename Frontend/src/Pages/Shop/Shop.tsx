@@ -114,7 +114,6 @@ export default function Category() {
                 product_highlights={product.product_highlights}
                 how_to_use={product.how_to_use}
                 ingredients={product.ingredients}
-                reviews={product.reviews}
               />
             ))
           )

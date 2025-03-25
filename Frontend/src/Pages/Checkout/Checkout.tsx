@@ -25,6 +25,9 @@ export default function Checkout() {
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
+  // SHIPPING FEE
+  const [shipping, setShipping] = useState<number>(0);
+
   // Prefill user details when user is loaded
   useEffect(() => {
     if (user) {
@@ -56,7 +59,7 @@ export default function Checkout() {
       <div className="top-side">
         <div className="left-side">
           <div className="title">Your orders</div>
-          <Orders />
+          <Orders shipping={shipping} setShipping={setShipping} />
         </div>
         <div className="right-side">
           <div className="title">Billing Details</div>
@@ -93,6 +96,7 @@ export default function Checkout() {
           firstName={firstName}
           surname={surname}
           shippingInfo={shippingInfo}
+          shipping={shipping}
         />
       </div>
     </div>

@@ -19,7 +19,9 @@ export default function Cart() {
             <i className="fa-solid fa-trash-can"></i> Your shopping cart is
             empty
           </div>
-          <button onClick={() => route("/shop/All")}>Browse products</button>
+          <button onClick={() => route("/shop/All Products")}>
+            Browse products
+          </button>
         </div>
       ) : (
         <div className="cart-page">

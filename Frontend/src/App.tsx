@@ -10,6 +10,7 @@ import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Checkout from "./Pages/Checkout/Checkout";
+import OrderSuccess from "./Pages/OrderSuccess/OrderSuccess";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/product/:slug" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
         </Routes>
         <Footer />
       </Router>
