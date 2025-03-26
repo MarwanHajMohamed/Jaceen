@@ -174,6 +174,7 @@ export default function PaymentForm(props: Props) {
                     name: item.name,
                     price: item.price,
                     quantity: item.quantity,
+                    slug: item.slug,
                   })),
                   shippingAddress: props.shippingInfo,
                   status: OrderStatus.PAID,

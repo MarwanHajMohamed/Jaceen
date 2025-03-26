@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import { Request, Response, NextFunction } from "../types/express";
 import Order from "../models/orderModel";
+import mongoose from "mongoose";
 
 interface CreateOrderRequest {
   userId?: string;
@@ -17,6 +18,7 @@ interface CreateOrderRequest {
     name: string;
     price: number;
     quantity: number;
+    slug: string;
   }[];
   shippingAddress: {
     street: string;
@@ -94,4 +96,23 @@ const createOrder = asyncHandler(
   }
 );
 
-export { createOrder };
+/**
+ * @desc Fetch orders for the logged-in user
+ * @route GET /api/orders
+ * @access Private (Requires authentication)
+ */
+const getOrders = asyncHandler(async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    // Convert userId to ObjectId
+    const orders = await Order.find({ userId: new mongoose.Types.ObjectId(userId) })
+      .sort({ createdAt: -1 });
+
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching orders", error });
+  }
+});
+
+export { createOrder, getOrders };

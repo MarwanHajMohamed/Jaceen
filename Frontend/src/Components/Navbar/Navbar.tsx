@@ -16,6 +16,11 @@ interface GroupedProducts {
 
 export default function Navbar() {
   const route: NavigateFunction = useNavigate();
+  const handleRoute = (path: string) => {
+    route(path);
+    setShow(false);
+  };
+
   const { cartItems } = useContext(CartContext);
 
   const [groupedProducts, setGroupedProducts] = useState<GroupedProducts>({});
@@ -195,7 +200,7 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="middle-side">
-          <div className="logo" onClick={() => route("/")}>
+          <div className="logo" onClick={() => handleRoute("/")}>
             <img src={logo} alt="" />
           </div>
         </div>
@@ -208,28 +213,14 @@ export default function Navbar() {
             >
               {user === null ? (
                 <>
-                  <li
-                    onClick={() => {
-                      route("/login");
-                      setShow(false);
-                    }}
-                  >
-                    Login
-                  </li>
-                  <li
-                    onClick={() => {
-                      route("/register");
-                      setShow(false);
-                    }}
-                  >
-                    Register
-                  </li>
+                  <li onClick={() => handleRoute("/login")}>Login</li>
+                  <li onClick={() => handleRoute("/register")}>Register</li>
                 </>
               ) : (
-                <>
-                  <li>Orders</li>
+                <ul>
+                  <li onClick={() => handleRoute("/account")}>Your Account</li>
                   <li onClick={handleLogout}>Logout</li>
-                </>
+                </ul>
               )}
             </ul>
           </div>

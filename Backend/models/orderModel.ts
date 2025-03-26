@@ -6,6 +6,7 @@ export interface IOrderItem {
   name: string;
   price: number;
   quantity: number;
+  slug: string;
 }
 
 export interface IShippingAddress {
@@ -98,6 +99,10 @@ const OrderSchema: Schema = new Schema({
       },
       quantity: {
         type: Number,
+        required: true
+      },
+      slug: {
+        type: String,
         required: true
       }
     }],

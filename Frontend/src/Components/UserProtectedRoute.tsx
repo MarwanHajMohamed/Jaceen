@@ -2,7 +2,8 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { JSX } from "react";
 
-const ProtectedRoute = ({
+// PROTECT ROUTES FROM LOGGED IN USERS
+const UserProtectedRoute = ({
   children,
   route,
 }: {
@@ -18,4 +19,4 @@ const ProtectedRoute = ({
   return children;
 };
 
-export default ProtectedRoute;
+export default UserProtectedRoute;
