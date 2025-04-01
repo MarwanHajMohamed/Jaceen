@@ -45,7 +45,7 @@ export default function BillingForm(props: Props) {
       props.setSurname(user.surname || "");
       props.setPhone(user.phone || "");
       props.setEmail(user.email || "");
-      props.setCountry(user.shippingAddress.country);
+      props.setCountry(user.shippingAddress.country || "");
       props.setStreet(user.shippingAddress.street || "");
       props.setCounty(user.shippingAddress.county || "");
       props.setApartment(user.shippingAddress.apartment || "");

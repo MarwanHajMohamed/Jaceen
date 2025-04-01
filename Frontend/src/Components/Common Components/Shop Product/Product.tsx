@@ -34,7 +34,7 @@ export default function Product(props: ProductContext) {
       >
         {props.name}
       </div>
-      <div className="stars">{renderStars(3)}</div>
+      <div className="stars">{renderStars(1)}</div>
       <div className="add-to-basket">
         <div>
           <div

@@ -54,6 +54,11 @@ export default function Orders() {
                   <div className="order-quantity">
                     Quantity: {item.quantity}
                   </div>
+                  <button
+                    onClick={() => route(`/product/${item.slug}#reviews`)}
+                  >
+                    Add a product review
+                  </button>
                 </div>
                 <div>
                   <div className="order-createdAt">

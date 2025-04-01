@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import "./product.css";
 import { useContext, useEffect, useState } from "react";
 
@@ -18,6 +18,8 @@ export default function Product() {
   const [reviews, setReviews] = useState<reviews[]>([]);
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
+
+  const location = useLocation();
 
   useEffect(() => {
     if (slug) {
@@ -43,6 +45,17 @@ export default function Product() {
 
     fetchReviews();
   }, [product]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (location.hash) {
+        const element = document.getElementById(location.hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, 300); // Delay to allow component rendering
+  }, [location]);
 
   if (!product)
     return <div className="product-not-found">Product not found</div>;
@@ -243,7 +256,7 @@ export default function Product() {
       </div>
       <div className="bottom">
         <h3>Reviews ({reviews.length})</h3>
-        <div className="review-container">
+        <div className="review-container" id="reviews">
           <Pagination reviews={reviews} />
         </div>
         <div>
