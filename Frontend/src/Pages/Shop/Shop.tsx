@@ -91,6 +91,8 @@ export default function Category() {
               <div className="img"></div>
               <div className="title"></div>
               <div className="title"></div>
+              <div className="price"></div>
+              <div className="button"></div>
             </div>
           ))
         ) : filteredProducts.length > 0 || searchTerm !== "" ? (

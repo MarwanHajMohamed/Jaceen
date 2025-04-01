@@ -6,13 +6,17 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
   const route: NavigateFunction = useNavigate();
 
   useEffect(() => {
     const loadOrders = async () => {
+      setLoading(true);
       const data = await fetchOrders();
 
       setOrders(data);
+      setLoading(false);
     };
 
     loadOrders();
@@ -20,7 +24,17 @@ export default function Orders() {
 
   return (
     <div className="orders-table">
-      {orders.length === 0 ? (
+      {loading && orders.length === 0 ? (
+        Array.from({ length: 3 }).map((_, index) => (
+          <div key={index} className="order loading">
+            <div>
+              <div className="order-name"></div>
+              <div className="order-quantity"></div>
+            </div>
+            <div className="order-date"></div>
+          </div>
+        ))
+      ) : orders.length === 0 ? (
         <div className="empty-orders">
           You have no orders. <a href="/shop/All Products">Browse the shop</a>{" "}
           to place an order!
