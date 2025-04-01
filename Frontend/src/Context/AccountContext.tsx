@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import Orders from "../Pages/Account/Orders/Orders";
 import Address from "../Pages/Account/Address/Address";
+import LoginDetails from "../Pages/Account/LoginDetails/LoginDetails";
+import Payment from "../Pages/Account/Payment/Payment";
 
 // Define context type
 interface AccountContextType {
@@ -16,7 +18,9 @@ const AccountContext = createContext<AccountContextType | undefined>(undefined);
 export function AccountProvider({ children }: { children: ReactNode }) {
   const sections: Record<string, ReactNode> = {
     "Your Orders": <Orders />,
+    "Your Payment": <Payment />,
     "Your Address": <Address />,
+    "Login Details": <LoginDetails />,
   };
 
   const [title, setTitle] = useState("Your Orders");

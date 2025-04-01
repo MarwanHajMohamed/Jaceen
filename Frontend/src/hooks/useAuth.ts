@@ -16,7 +16,7 @@ export interface User {
   firstName: string;
   surname: string;
   email: string;
-  phoneNumber?: string;
+  phone?: string;
   shippingAddress: Address;
 }
 
@@ -49,7 +49,7 @@ export function useAuth() {
           },
         });
 
-        setUser(response.data); // This should update the state
+        setUser(response.data);
         setIsLoading(false);
       } catch (err) {
         console.error("Failed to fetch user details:", err);

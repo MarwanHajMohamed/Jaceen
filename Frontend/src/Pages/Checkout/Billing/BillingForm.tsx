@@ -6,7 +6,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { getCode, getNames } from "country-list";
+import { getNames } from "country-list";
 import { useEffect } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 
@@ -39,31 +39,11 @@ export default function BillingForm(props: Props) {
   const { user } = useAuth(); // Get user from auth hook
 
   useEffect(() => {
-    // const fetchUserCountry = async () => {
-    //   try {
-    //     const response = await fetch("https://ipapi.co/json/");
-    //     const data = await response.json();
-
-    //     const userCountryCode = data.country;
-    //     const countryName = getNames().find(
-    //       (name) => getCode(name) === userCountryCode
-    //     );
-
-    //     if (countryName) {
-    //       props.setCountry(countryName);
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching user country:", error);
-    //   }
-    // };
-
-    // fetchUserCountry();
-
     if (user) {
       // Prefill personal details
       props.setFirstName(user.firstName || "");
       props.setSurname(user.surname || "");
-      props.setPhone(user.phoneNumber || "");
+      props.setPhone(user.phone || "");
       props.setEmail(user.email || "");
       props.setCountry(user.shippingAddress.country);
       props.setStreet(user.shippingAddress.street || "");
@@ -150,7 +130,7 @@ export default function BillingForm(props: Props) {
         <TextField
           variant="standard"
           label="Phone Number"
-          type="tel"
+          type="text"
           value={props.phone}
           onChange={(e) => props.setPhone(e.target.value)}
           required

@@ -5,10 +5,11 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
+  padding-top: 20px;
 }
 
 .register-page-container .register-container {
-  background-color: var(--hover);
+  background-color: var(--orange);
   padding: 50px 50px;
   width: 300px;
   border-radius: 15px;

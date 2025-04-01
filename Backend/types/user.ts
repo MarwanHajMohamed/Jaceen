@@ -9,16 +9,14 @@ export interface Address {
   county?: string;
 }
 
-/**
- * Represents a user
- */
 export interface User {
   firstName: string;
   surname: string;
   email: string;
+  phone: string;
   password: string;
   isAdmin?: boolean;
-  shippingAddress: Address
+  shippingAddress?: Address
 }
 
 export interface UserDocument extends User, Document {

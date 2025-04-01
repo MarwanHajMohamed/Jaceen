@@ -1,30 +1,41 @@
-.address-container {
+.login-details-container {
   display: flex;
   flex-direction: column;
+  width: 60vw;
+  max-width: 400px;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-details-container .wrapper {
   border: 1px solid rgb(234, 234, 234);
   background-color: rgb(250, 250, 250);
-  max-width: 400px;
-  width: 60vw;
   padding: 20px 40px;
   border-radius: 10px;
   margin-top: 20px;
+  max-width: 400px;
+  width: 60vw;
 }
 
-.address-container .form {
+.login-details-container .form {
   gap: 10px;
   width: 100%;
 }
 
-.address-container .form .name {
+.login-details-container .form .name {
   display: flex;
   gap: 20px;
 }
 
-.address-container .form .name .MuiTextField-root {
+.login-details-container .form .name .MuiTextField-root {
   width: 100%;
 }
 
-.address-container .form button {
+.login-details-container .form a {
+  font-size: 12px;
+}
+
+.login-details-container .form button {
   height: 40px;
   font-weight: 799;
   border: 0;
@@ -36,6 +47,6 @@
   transition: 100ms ease-in-out;
 }
 
-.address-container .form button:hover {
+.login-details-container .form button:hover {
   background-color: var(--black-hover);
 }

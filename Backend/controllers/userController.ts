@@ -28,6 +28,7 @@ const authUser = asyncHandler(async (req, res) => {
       token: token,
       firstName: user.firstName,
       surname: user.surname,
+      phone: user.phone,
       email: user.email,
       isAdmin: user.isAdmin,
       shippingAddress: user.shippingAddress
@@ -43,7 +44,7 @@ const authUser = asyncHandler(async (req, res) => {
  * @access Public
  */
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { firstName, surname, email, password, shippingAddress } = req.body;
+  const { firstName, surname, email, phone, password, shippingAddress } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -56,6 +57,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
     firstName,
     surname,
     email,
+    phone,
     isAdmin: false,
     shippingAddress
   });
@@ -65,15 +67,19 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
   await user.save();
 
   if (user) {
+    console.log("User: ", user);
+    
     res.status(201).json({
       _id: user._id,
       firstName: user.firstName,
       surname: user.surname,
       email: user.email,
+      phone: user.phone,
       isAdmin: user.isAdmin,
       shippingAddress: user.shippingAddress,
       token: generateToken(user._id),
     });
+
   } else {
     res.status(400).json({ message: "Invalid user data" });
   }
@@ -137,6 +143,43 @@ const updateUserAddress = asyncHandler(async (req: Request, res: Response) => {
       firstName: updatedUser.firstName,
       surname: updatedUser.surname,
       email: updatedUser.email,
+      phone: updatedUser.phone,
+      isAdmin: updatedUser.isAdmin,
+      shippingAddress: updatedUser.shippingAddress
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+/**
+ * Update user's profile details
+ * @route PUT /api/users/profile
+ * @access Private
+ */
+const updateUserDetails = asyncHandler(async (req: Request, res: Response) => {
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Not authorized, no token');
+  }
+
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.firstName = req.body.firstName || user.firstName;
+    user.surname = req.body.surname || user.surname;
+    user.email = req.body.email || user.email;
+    user.phone = req.body.phone || user.phone;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      firstName: updatedUser.firstName,
+      surname: updatedUser.surname,
+      email: updatedUser.email,
+      phone: updatedUser.phone,
       isAdmin: updatedUser.isAdmin,
       shippingAddress: updatedUser.shippingAddress
     });
@@ -151,5 +194,6 @@ export {
   registerUser,
   logoutUser,
   getUserProfile,
-  updateUserAddress
+  updateUserAddress,
+  updateUserDetails
 };

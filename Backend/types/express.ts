@@ -7,6 +7,7 @@ interface User {
   _id: string;
   firstName: string;
   surname: string;
+  phone: string;
   email: string;
   isAdmin?: boolean;
 }
@@ -19,6 +20,7 @@ export interface RequestWithUser extends ExpressRequest {
     _id: string;
     firstName: string;
     surname: string;
+    phone: string;
     email: string;
     isAdmin?: boolean;
   };
@@ -32,6 +34,7 @@ declare global {
         _id: string;
         firstName: string;
         surname: string;
+        phone: string;
         email: string;
         isAdmin?: boolean;
       };

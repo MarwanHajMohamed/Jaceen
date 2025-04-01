@@ -42,13 +42,13 @@ export default function Register() {
   };
 
   return (
-    <div className="register-page-container">
+    <div className="login-page-container">
       <MessageBox
         message={message?.text || ""}
         type={message?.type || "error"}
       />
-      <div className="register-container">
-        <div className="register-title">Login to your account</div>
+      <div className="login-container">
+        <div className="login-title">Login to your account</div>
         <form onSubmit={login}>
           <TextField
             variant="filled"

@@ -16,6 +16,7 @@ export interface IUser extends Document {
   firstName: string;
   surname: string,
   email: string;
+  phone: string;
   isAdmin: boolean;
   passwordHash: string;
   passwordSalt: string;
@@ -29,6 +30,7 @@ const UserSchema: Schema = new Schema({
   firstName: { type: String, required: true },
   surname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  phone: { type: String, unique: true},
   isAdmin: { type: Boolean, default: false },
   passwordHash: { type: String, required: true },
   passwordSalt: { type: String, required: true },

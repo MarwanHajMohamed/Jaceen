@@ -41,18 +41,18 @@ export const getProductByCategory = async (category: string): Promise<ProductCon
 
 // HANDLE CHECKOUT
 export const handleCheckout = async (cartItems: CartItem[], discountCode: string): Promise<void> => {
-  const response = await axios.post(`${API_URL}/api/cart/checkout`, {
+  await axios.post(`${API_URL}/api/cart/checkout`, {
     cartItems: cartItems,
     couponCode: discountCode
   });
 
-  console.log(response.data);
 };
 
 // HANDLE REGISTER
 export const handleRegister = async (user: User): Promise<"success" | "duplicate" | undefined> => {
   try {
     user.shippingAddress = user.shippingAddress || { street: "", city: "", postcode: "", country: "" };
+    user.phone = ""
     await axios.post(`${API_URL}/api/users`, user);
     return "success"
   } catch (error) {
@@ -249,6 +249,27 @@ export const updateAddress = async (addressData: Address) => {
   try {
     const response = await axios.put(`${API_URL}/api/users/address`, 
       addressData,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error('Error updating address:', error);
+    throw error;
+  }
+}
+
+// UPDATE USER ADDRESS
+export const updateLoginDetails = async (userData: User) => {
+  const token = localStorage.getItem('authToken');
+
+  try {
+    const response = await axios.put(`${API_URL}/api/users/details`, 
+    userData,
       {
         headers: {
           'Authorization': `Bearer ${token}`

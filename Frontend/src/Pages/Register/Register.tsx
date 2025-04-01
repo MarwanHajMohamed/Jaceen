@@ -9,6 +9,7 @@ export default function Register() {
   const [firstName, setFirstName] = useState<string>("");
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const phone = "";
   const [password, setPassword] = useState<string>("");
   const [confPassword, setConfPassword] = useState<string>("");
   const [message, setMessage] = useState<{
@@ -38,6 +39,7 @@ export default function Register() {
         firstName,
         surname,
         email,
+        phone,
         password,
         shippingAddress,
       }).then((res) => {

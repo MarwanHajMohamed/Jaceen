@@ -33,6 +33,7 @@ const protect = asyncHandler(
           _id: user._id,
           firstName: user.firstName,
           surname: user.surname,
+          phone: user.phone,
           email: user.email,
           isAdmin: user.isAdmin,
         };
@@ -92,6 +93,7 @@ const optionalAuth = async (req: Request, res: Response, next: NextFunction): Pr
       _id: user._id,
       firstName: user.firstName,
       surname: user.surname,
+      phone: user.phone,
       email: user.email,
       isAdmin: user.isAdmin,
     };

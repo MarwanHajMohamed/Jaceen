@@ -1,4 +1,4 @@
-.register-page-container {
+.login-page-container {
   display: flex;
   height: 100vh;
   flex-direction: column;
@@ -7,7 +7,7 @@
   background-color: rgb(255, 255, 255);
 }
 
-.register-page-container .register-container {
+.login-page-container .login-container {
   background-color: var(--orange);
   padding: 50px 50px;
   width: 300px;
@@ -15,28 +15,28 @@
   box-shadow: 0 10px 20px rgb(0, 0, 0, 0.2);
 }
 
-.register-page-container .register-container .register-title {
+.login-page-container .login-container .login-title {
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
 }
 
-.register-page-container .register-container form {
+.login-page-container .login-container form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   margin-top: 10px;
 }
 
-.register-page-container .register-container form label {
+.login-page-container .login-container form label {
   letter-spacing: 1px;
 }
 
-.register-page-container .register-container form input {
+.login-page-container .login-container form input {
   width: 100%;
 }
 
-.register-page-container .register-container form .button-container {
+.login-page-container .login-container form .button-container {
   display: flex;
   justify-content: center;
 }
@@ -63,15 +63,16 @@
   background-color: rgb(21, 21, 21);
 }
 
-.register-page-container .register-container form .login {
+.login-page-container .login-container form .login {
   font-size: 14px;
   text-align: center;
   color: rgb(0, 0, 0, 0.6);
 }
 
-.register-page-container .register-container form .login span {
+.login-page-container .login-container form .login span {
   font-weight: 700;
   color: black;
+  cursor: pointer;
 }
 
 .error-container {
