@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CartItem } from "../Context/CartInterface";
-import { User } from '../../../Backend/types/user'
+import { Address, User } from '../../../Backend/types/user'
 import { ObjectId } from "bson";
 import { ProductContext } from "../Context/Product";
 import { CreateOrderRequest } from "../Context/Order";
@@ -52,6 +52,7 @@ export const handleCheckout = async (cartItems: CartItem[], discountCode: string
 // HANDLE REGISTER
 export const handleRegister = async (user: User): Promise<"success" | "duplicate" | undefined> => {
   try {
+    user.shippingAddress = user.shippingAddress || { street: "", city: "", postcode: "", country: "" };
     await axios.post(`${API_URL}/api/users`, user);
     return "success"
   } catch (error) {
@@ -79,7 +80,7 @@ export const handleLogin = async (email: string, password: string): Promise<"suc
   try {
     const response = await axios.post(`${API_URL}/api/users/login`, {email, password},  { withCredentials: true });
 
-    if (response.data) {
+    if (response.data) {    
       const token = response.data.token;
 
       if (token) {
@@ -215,7 +216,6 @@ export const createOrder = async (orderData: CreateOrderRequest) => {
   } catch (error) {
     console.error('Error creating order:', error);
     
-    // Improved error handling
     if (axios.isAxiosError(error)) {
       const errorMessage = error.response?.data?.error || 'Failed to create order';
       throw new Error(errorMessage);
@@ -226,7 +226,7 @@ export const createOrder = async (orderData: CreateOrderRequest) => {
 };
 
 // GET ORDERS BY USER
-export const fetchOrders =async () => {
+export const fetchOrders = async () => {
   const token = localStorage.getItem('authToken');
 
   try {
@@ -239,5 +239,26 @@ export const fetchOrders =async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching orders: ', error)
+  }
+}
+
+// UPDATE USER ADDRESS
+export const updateAddress = async (addressData: Address) => {
+  const token = localStorage.getItem('authToken');
+
+  try {
+    const response = await axios.put(`${API_URL}/api/users/address`, 
+      addressData,
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error('Error updating address:', error);
+    throw error;
   }
 }

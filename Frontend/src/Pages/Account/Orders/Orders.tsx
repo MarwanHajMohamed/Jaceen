@@ -30,17 +30,24 @@ export default function Orders() {
           return order.items.map((item) => {
             return (
               <div className="order">
-                <div
-                  className="order-name"
-                  onClick={() => route(`/product/${item.slug}`)}
-                >
-                  {item.name}
+                <div>
+                  <div
+                    className="order-name"
+                    onClick={() => route(`/product/${item.slug}`)}
+                  >
+                    {item.name}
+                  </div>
+                  <div className="order-quantity">
+                    Quantity: {item.quantity}
+                  </div>
                 </div>
-                <div className="order-createdAt">
-                  Ordered at{" "}
-                  {order.createdAt
-                    ? new Date(order.createdAt).toLocaleString()
-                    : "N/A"}
+                <div>
+                  <div className="order-createdAt">
+                    Ordered:{" "}
+                    {order.createdAt
+                      ? new Date(order.createdAt).toLocaleDateString("en-US")
+                      : "N/A"}
+                  </div>
                 </div>
               </div>
             );

@@ -15,6 +15,13 @@ export default function Register() {
     text: string;
     type: "error" | "success";
   } | null>(null);
+  const shippingAddress = {
+    country: "",
+    city: "",
+    street: "",
+    postcode: "",
+    county: "",
+  };
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -27,21 +34,25 @@ export default function Register() {
     }
 
     try {
-      await handleRegister({ firstName, surname, email, password }).then(
-        (res) => {
-          if (res === "duplicate") {
-            setMessage({
-              text: "User with this email address already exists.",
-              type: "error",
-            });
-          } else if (res === "success") {
-            setMessage({
-              text: "You have successfully registered your account!",
-              type: "success",
-            });
-          }
+      await handleRegister({
+        firstName,
+        surname,
+        email,
+        password,
+        shippingAddress,
+      }).then((res) => {
+        if (res === "duplicate") {
+          setMessage({
+            text: "User with this email address already exists.",
+            type: "error",
+          });
+        } else if (res === "success") {
+          setMessage({
+            text: "You have successfully registered your account!",
+            type: "success",
+          });
         }
-      );
+      });
     } catch (error) {
       setMessage({
         text: "Failed to register. Please try again.",

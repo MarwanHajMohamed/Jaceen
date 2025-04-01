@@ -8,20 +8,17 @@ export default function Account() {
     <div className="account-page-container">
       <div className="account-navbar">
         <ul>
-          {[
-            "Your Orders",
-            "Your Payments",
-            "Your Address",
-            "Login Details",
-          ].map((section) => (
-            <li
-              className={title === section ? "active" : ""}
-              key={section}
-              onClick={() => setSection(section)}
-            >
-              {section}
-            </li>
-          ))}
+          {["Your Orders", "Your Payment", "Your Address", "Login Details"].map(
+            (section) => (
+              <li
+                className={title === section ? "active" : ""}
+                key={section}
+                onClick={() => setSection(section)}
+              >
+                {section}
+              </li>
+            )
+          )}
         </ul>
       </div>
       <div className="account-main">

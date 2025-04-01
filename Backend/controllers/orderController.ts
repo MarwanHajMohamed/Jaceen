@@ -23,6 +23,7 @@ interface CreateOrderRequest {
   shippingAddress: {
     street: string;
     city: string;
+    apartment?: string;
     county?: string;
     postcode: string;
     country: string;

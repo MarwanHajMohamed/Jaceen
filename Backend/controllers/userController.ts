@@ -16,12 +16,11 @@ const authUser = asyncHandler(async (req, res) => {
   if (user && user.validatePassword(password)) {
     const token = generateToken(user._id);
 
-    // Set token in an HTTP-only cookie
     res.cookie("sessionToken", token, {
-      httpOnly: true, // Prevents client-side JS from accessing the cookie
-      secure: false, // Ensures the cookie is sent over HTTPS in production
-      sameSite: "strict", // Prevents the cookie from being sent with cross-site requests
-      maxAge: 3600000, // Expires in 1 hour
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+      maxAge: 3600000,
     });
 
     res.json({
@@ -31,6 +30,7 @@ const authUser = asyncHandler(async (req, res) => {
       surname: user.surname,
       email: user.email,
       isAdmin: user.isAdmin,
+      shippingAddress: user.shippingAddress
     });
   } else {
     res.status(401).json({ message: "Invalid email or password" });
@@ -43,7 +43,7 @@ const authUser = asyncHandler(async (req, res) => {
  * @access Public
  */
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { firstName, surname, email, password } = req.body;
+  const { firstName, surname, email, password, shippingAddress } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -57,6 +57,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
     surname,
     email,
     isAdmin: false,
+    shippingAddress
   });
 
   user.setPassword(password);
@@ -70,6 +71,7 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
       surname: user.surname,
       email: user.email,
       isAdmin: user.isAdmin,
+      shippingAddress: user.shippingAddress,
       token: generateToken(user._id),
     });
   } else {
@@ -83,7 +85,6 @@ const registerUser = asyncHandler(async (req: Request, res: Response) => {
  * @access Private
  */
 const getUserProfile = asyncHandler(async (req: Request, res: Response) => {
-  // The user is already attached to the request by the protect middleware
   if (!req.user) {
     res.status(404);
     throw new Error('User not found');
@@ -110,9 +111,45 @@ const logoutUser = async (req: Request, res: Response) => {
   res.json({ message: "Logged out successfully" });
 };
 
+/**
+ * Update user's shipping address
+ * @route PUT /api/users/address
+ * @access Private
+ */
+const updateUserAddress = asyncHandler(async (req: Request, res: Response) => {
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Not authorized, no token');
+  }
+
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.shippingAddress = {
+      ...user.shippingAddress,
+      ...req.body
+    };
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      firstName: updatedUser.firstName,
+      surname: updatedUser.surname,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      shippingAddress: updatedUser.shippingAddress
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
 export {
   authUser,
   registerUser,
   logoutUser,
-  getUserProfile
+  getUserProfile,
+  updateUserAddress
 };

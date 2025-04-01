@@ -1,7 +1,16 @@
 import mongoose, { Document, Schema } from "mongoose";
 import crypto from 'crypto';
 
-// Define TypeScript interface for User
+export interface IAddress {
+  country: string;
+  city: string;
+  street: string;
+  postcode: string;
+  apartment?: string;
+  county?: string;
+}
+
+// Define interface for User
 export interface IUser extends Document {
   _id: string;
   firstName: string;
@@ -10,6 +19,7 @@ export interface IUser extends Document {
   isAdmin: boolean;
   passwordHash: string;
   passwordSalt: string;
+  shippingAddress: IAddress;
   setPassword: (password: string) => void;
   validatePassword: (password: string) => boolean;
 }
@@ -22,6 +32,14 @@ const UserSchema: Schema = new Schema({
   isAdmin: { type: Boolean, default: false },
   passwordHash: { type: String, required: true },
   passwordSalt: { type: String, required: true },
+  shippingAddress: {
+    country: { type: String, default: "" },
+    city: { type: String, default: "" },
+    street: { type: String, default: "" },
+    postcode: { type: String, default: "" },
+    apartment: { type: String, default: "" },
+    county: { type: String, default: "" },
+  },
 }, { timestamps: true });
 
 // Instance method: Hash and set password

@@ -8,11 +8,16 @@
 
 .orders-table .order {
   display: flex;
-  flex-direction: column;
   border: 1px solid rgb(206, 206, 206);
   padding: 20px;
   justify-content: space-between;
+  align-items: center;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.orders-table .order:hover {
+  border: 1px solid;
 }
 
 .orders-table .order .order-name {
@@ -26,6 +31,10 @@
 
 .orders-table .order .order-createdAt {
   font-size: 0.7rem;
+}
+
+.orders-table .order .order-quantity {
+  font-size: 0.8rem;
 }
 
 .orders-table .empty-orders {

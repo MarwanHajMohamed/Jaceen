@@ -1,0 +1,25 @@
+.address-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(234, 234, 234);
+  background-color: rgb(250, 250, 250);
+  max-width: 400px;
+  width: 60vw;
+  padding: 20px 40px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.address-container .form {
+  gap: 10px;
+  width: 100%;
+}
+
+.address-container .form .name {
+  display: flex;
+  gap: 20px;
+}
+
+.address-container .form .name .MuiTextField-root {
+  width: 100%;
+}

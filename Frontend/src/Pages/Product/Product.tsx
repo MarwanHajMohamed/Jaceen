@@ -125,7 +125,6 @@ export default function Product() {
                   ▼
                 </span>
               </h4>
-              <hr />
               <ReactMarkdown
                 className={`section ${
                   expandedSection === "description" ? "expand" : "hide"
@@ -133,6 +132,7 @@ export default function Product() {
               >
                 {product.description}
               </ReactMarkdown>
+              <hr />
             </div>
           )}
           {product.why_jaceen && (
@@ -151,7 +151,6 @@ export default function Product() {
                   ▼
                 </span>
               </h4>
-              <hr />
               <ReactMarkdown
                 className={`section ${
                   expandedSection === "why_jaceen" ? "expand" : "hide"
@@ -159,6 +158,7 @@ export default function Product() {
               >
                 {product.why_jaceen}
               </ReactMarkdown>
+              <hr />
             </div>
           )}
           {product.product_highlights && (
@@ -177,7 +177,6 @@ export default function Product() {
                   ▼
                 </span>
               </h4>
-              <hr />
               <ReactMarkdown
                 className={`section ${
                   expandedSection === "product_highlights" ? "expand" : "hide"
@@ -185,6 +184,7 @@ export default function Product() {
               >
                 {product.product_highlights}
               </ReactMarkdown>
+              <hr />
             </div>
           )}
           {product.how_to_use && (
@@ -203,7 +203,6 @@ export default function Product() {
                   ▼
                 </span>
               </h4>
-              <hr />
               <ReactMarkdown
                 className={`section ${
                   expandedSection === "how_to_use" ? "expand" : "hide"
@@ -211,6 +210,7 @@ export default function Product() {
               >
                 {product.how_to_use}
               </ReactMarkdown>
+              <hr />
             </div>
           )}
           {product.ingredients && (
@@ -229,7 +229,6 @@ export default function Product() {
                   ▼
                 </span>
               </h4>
-              <hr />
               <ReactMarkdown
                 className={`section ${
                   expandedSection === "ingredients" ? "expand" : "hide"
@@ -237,6 +236,7 @@ export default function Product() {
               >
                 {product.ingredients}
               </ReactMarkdown>
+              <hr />
             </div>
           )}
         </div>

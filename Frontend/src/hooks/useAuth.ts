@@ -2,12 +2,22 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../config/constants";
 
+export interface Address {
+  country: string;
+  city: string;
+  street: string;
+  postcode: string;
+  apartment?: string;
+  county?: string;
+}
+
 export interface User {
   _id: string;
   firstName: string;
   surname: string;
   email: string;
   phoneNumber?: string;
+  shippingAddress: Address;
 }
 
 export function useAuth() {

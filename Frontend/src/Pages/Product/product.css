@@ -78,7 +78,7 @@
 
 .arrow {
   display: inline-block;
-  transition: transform 200ms ease-in-out;
+  transition: transform 400ms ease-in-out;
 }
 
 .arrow.rotate {
@@ -97,6 +97,11 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  transition: 100ms ease-in-out;
+}
+
+.product-page-container .right-side h4:hover {
+  color: var(--orange);
 }
 
 .product-page-container .right-side .quantity-container {
@@ -157,10 +162,13 @@
 .section {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+  transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
   padding: 0 10px;
+  /* transition: 0.3s ease-in-out; */
 }
 
 .section.expand {
+  padding: 0 10px;
   max-height: 500px;
+  transition: 100me ease-in-out;
 }

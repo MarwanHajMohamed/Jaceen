@@ -1,5 +1,14 @@
 import { Model, Document } from "mongoose";
 
+export interface Address {
+  country: string;
+  city: string;
+  street: string;
+  postcode: string;
+  apartment?: string;
+  county?: string;
+}
+
 /**
  * Represents a user
  */
@@ -9,6 +18,7 @@ export interface User {
   email: string;
   password: string;
   isAdmin?: boolean;
+  shippingAddress: Address
 }
 
 export interface UserDocument extends User, Document {
