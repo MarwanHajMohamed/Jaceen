@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { getCode, getNames } from "country-list";
 import { useEffect } from "react";
+import { useAuth } from "../../../hooks/useAuth";
 
 interface Props {
   firstName: string;
@@ -35,27 +36,43 @@ interface Props {
 export default function BillingForm(props: Props) {
   const countries: string[] = getNames();
 
+  const { user } = useAuth(); // Get user from auth hook
+
   useEffect(() => {
-    const fetchUserCountry = async () => {
-      try {
-        const response = await fetch("https://ipapi.co/json/");
-        const data = await response.json();
+    // const fetchUserCountry = async () => {
+    //   try {
+    //     const response = await fetch("https://ipapi.co/json/");
+    //     const data = await response.json();
 
-        const userCountryCode = data.country;
-        const countryName = getNames().find(
-          (name) => getCode(name) === userCountryCode
-        );
+    //     const userCountryCode = data.country;
+    //     const countryName = getNames().find(
+    //       (name) => getCode(name) === userCountryCode
+    //     );
 
-        if (countryName) {
-          props.setCountry(countryName);
-        }
-      } catch (error) {
-        console.error("Error fetching user country:", error);
-      }
-    };
+    //     if (countryName) {
+    //       props.setCountry(countryName);
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching user country:", error);
+    //   }
+    // };
 
-    fetchUserCountry();
-  }, []);
+    // fetchUserCountry();
+
+    if (user) {
+      // Prefill personal details
+      props.setFirstName(user.firstName || "");
+      props.setSurname(user.surname || "");
+      props.setPhone(user.phoneNumber || "");
+      props.setEmail(user.email || "");
+      props.setCountry(user.shippingAddress.country);
+      props.setStreet(user.shippingAddress.street || "");
+      props.setCounty(user.shippingAddress.county || "");
+      props.setApartment(user.shippingAddress.apartment || "");
+      props.setPostcode(user.shippingAddress.postcode || "");
+      props.setCity(user.shippingAddress.city || "");
+    }
+  }, [user]);
   return (
     <div>
       <FormControl fullWidth className="form">
