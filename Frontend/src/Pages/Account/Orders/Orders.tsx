@@ -1,30 +1,23 @@
 import "./orders.css";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { fetchOrders } from "../../../api/api";
 import { Order } from "../../../Context/Order";
-import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function Orders() {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const route = useNavigate();
 
-  const route: NavigateFunction = useNavigate();
-
-  useEffect(() => {
-    const loadOrders = async () => {
-      setLoading(true);
-      const data = await fetchOrders();
-
-      setOrders(data);
-      setLoading(false);
-    };
-
-    loadOrders();
-  }, []);
+  // Fetch orders with caching
+  const { data: orders, isLoading } = useQuery({
+    queryKey: ["orders"],
+    queryFn: fetchOrders,
+    staleTime: 1000 * 60 * 5, // Cache orders for 5 minutes
+    refetchOnWindowFocus: false, // Prevent refetching when switching tabs
+  });
 
   return (
     <div className="orders-table">
-      {loading && orders.length === 0 ? (
+      {isLoading ? (
         Array.from({ length: 3 }).map((_, index) => (
           <div key={index} className="order loading">
             <div>
@@ -34,44 +27,38 @@ export default function Orders() {
             <div className="order-date"></div>
           </div>
         ))
-      ) : orders.length === 0 ? (
+      ) : !orders || orders.length === 0 ? (
         <div className="empty-orders">
           You have no orders. <a href="/shop/All Products">Browse the shop</a>{" "}
           to place an order!
         </div>
       ) : (
-        orders.map((order) => {
-          return order.items.map((item) => {
-            return (
-              <div className="order">
-                <div>
-                  <div
-                    className="order-name"
-                    onClick={() => route(`/product/${item.slug}`)}
-                  >
-                    {item.name}
-                  </div>
-                  <div className="order-quantity">
-                    Quantity: {item.quantity}
-                  </div>
-                  <button
-                    onClick={() => route(`/product/${item.slug}#reviews`)}
-                  >
-                    Add a product review
-                  </button>
+        orders.map((order: Order) =>
+          order.items.map((item) => (
+            <div className="order" key={item.slug}>
+              <div>
+                <div
+                  className="order-name"
+                  onClick={() => route(`/product/${item.slug}`)}
+                >
+                  {item.name}
                 </div>
-                <div>
-                  <div className="order-createdAt">
-                    Ordered:{" "}
-                    {order.createdAt
-                      ? new Date(order.createdAt).toLocaleDateString("en-US")
-                      : "N/A"}
-                  </div>
+                <div className="order-quantity">Quantity: {item.quantity}</div>
+                <a onClick={() => route(`/product/${item.slug}#reviews`)}>
+                  Add a product review
+                </a>
+              </div>
+              <div>
+                <div className="order-createdAt">
+                  Ordered:{" "}
+                  {order.createdAt
+                    ? new Date(order.createdAt).toLocaleDateString("en-US")
+                    : "N/A"}
                 </div>
               </div>
-            );
-          });
-        })
+            </div>
+          ))
+        )
       )}
     </div>
   );

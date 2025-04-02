@@ -18,9 +18,13 @@ import { AccountProvider } from "./Context/AccountContext";
 import UserProtectedRoute from "./Components/UserProtectedRoute";
 import GuestProtectedRoute from "./Components/GuestProtectedRoute";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Router>
         <ScrollToTop />
         <Navbar />
@@ -60,7 +64,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </>
+    </QueryClientProvider>
   );
 }
 
