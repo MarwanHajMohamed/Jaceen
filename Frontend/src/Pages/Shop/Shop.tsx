@@ -27,10 +27,10 @@ export default function Category() {
 
   // Fetch products with React Query
   const { data: allProducts, isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", category],
     queryFn: getProducts,
-    staleTime: 1000 * 60 * 5, // Cache products for 5 minutes
-    refetchOnWindowFocus: false, // Prevent refetching when switching tabs
+    refetchOnMount: false,
+    refetchOnReconnect: true,
   });
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +72,7 @@ export default function Category() {
       </div>
       <div className="products">
         {isLoading ? (
-          Array.from({ length: 15 }).map((_, index) => (
+          Array.from({ length: 8 }).map((_, index) => (
             <div key={index} className="loading-products">
               <div className="img"></div>
               <div className="title"></div>

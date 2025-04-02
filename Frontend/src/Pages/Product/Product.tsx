@@ -8,7 +8,6 @@ import { CartContext } from "../../Context/Cart";
 import { getProductBySlug } from "../../api/api";
 import ReactMarkdown from "react-markdown";
 import { getReviews } from "../../api/api";
-import Pagination from "../../Components/Common Components/Pagination/Pagination";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
 
 export default function Product() {
