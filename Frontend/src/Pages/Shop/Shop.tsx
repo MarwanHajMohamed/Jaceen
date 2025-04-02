@@ -87,6 +87,7 @@ export default function Category() {
             itemsPerPage={8}
             renderItem={(product: ProductContext) => (
               <Product
+                key={product._id.toString()}
                 _id={product._id}
                 name={product.name}
                 slug={product.slug}
