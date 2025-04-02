@@ -51,7 +51,6 @@ export const AddReview = ({ productId }: AddReviewProps) => {
     if (review === "success") {
       window.location.reload();
     }
-    window.location.reload();
   };
 
   const token = localStorage.getItem("authToken");

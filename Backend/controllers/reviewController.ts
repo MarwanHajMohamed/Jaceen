@@ -23,7 +23,7 @@ export const addReviewToProduct = async (req, res) => {
       const newReview = new Review({
           product: productId,
           user: userId,
-          name: req.user.name,
+          name: req.user.firstName + " " + req.user.surname,
           rating,
           title,
           comment,
