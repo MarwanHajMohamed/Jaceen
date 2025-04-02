@@ -1,10 +1,10 @@
 .shop-page-container {
   display: flex;
   flex-direction: column;
-  /* padding: 0 50px 20px; */
   align-items: center;
   min-height: 100vh;
   position: relative;
+  margin-bottom: 50px;
 }
 
 .shop-page-container .title-container {
@@ -52,6 +52,16 @@
   justify-content: center;
   gap: 30px;
   margin: 0 50px;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.items-container.products-pagination {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-error {

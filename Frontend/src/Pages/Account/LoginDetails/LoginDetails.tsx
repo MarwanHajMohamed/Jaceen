@@ -13,7 +13,7 @@ export default function LoginDetails() {
   const [surname, setSurname] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("********");
+  const [password] = useState<string>("********");
 
   const [message, setMessage] = useState<{
     text: string;

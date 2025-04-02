@@ -1,11 +1,12 @@
 import "./shop.css";
-
 import { Navigate, useParams } from "react-router-dom";
 import Product from "../../Components/Common Components/Shop Product/Product";
-import { useEffect, useState } from "react";
-import { ProductContext } from "../../Context/Product";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../api/api";
+import { ProductContext } from "../../Context/Product";
 import { TextField } from "@mui/material";
+import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
 
 const validCategories: string[] = [
   "Hair Care",
@@ -18,50 +19,35 @@ const validCategories: string[] = [
 export default function Category() {
   const { category } = useParams<string>();
 
-  const [products, setProducts] = useState<ProductContext[]>([]);
-  const [allProducts, setAllProducts] = useState<ProductContext[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [searchTerm, setSearchTerm] = useState<string | number>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   if (typeof category !== "string" || !validCategories.includes(category)) {
     return <Navigate to="/404" replace />;
   }
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const fetchedProducts = await getProducts();
-        setLoading(false);
-        setProducts(fetchedProducts.products);
-        setAllProducts(fetchedProducts.products);
-      } catch (error) {
-        setLoading(false);
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, [category]);
+  // Fetch products with React Query
+  const { data: allProducts, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+    staleTime: 1000 * 60 * 5, // Cache products for 5 minutes
+    refetchOnWindowFocus: false, // Prevent refetching when switching tabs
+  });
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = event.target.value.toLowerCase();
-    setSearchTerm(searchValue);
-
-    if (searchValue === "") {
-      setProducts(allProducts);
-    } else {
-      const filteredProducts = allProducts.filter((product) =>
-        product.name.toLowerCase().includes(searchValue)
-      );
-      setProducts(filteredProducts);
-    }
+    setSearchTerm(event.target.value.toLowerCase());
   };
 
-  let filteredProducts = products;
+  let filteredProducts = allProducts?.products || [];
+
+  if (searchTerm) {
+    filteredProducts = filteredProducts.filter((product: ProductContext) =>
+      product.name.toLowerCase().includes(searchTerm)
+    );
+  }
+
   if (category && category !== "All Products") {
-    filteredProducts = products.filter(
-      (product) => product.category === category
+    filteredProducts = filteredProducts.filter(
+      (product: ProductContext) => product.category === category
     );
   }
 
@@ -85,7 +71,7 @@ export default function Category() {
         </div>
       </div>
       <div className="products">
-        {loading ? (
+        {isLoading ? (
           Array.from({ length: 15 }).map((_, index) => (
             <div key={index} className="loading-products">
               <div className="img"></div>
@@ -95,15 +81,11 @@ export default function Category() {
               <div className="button"></div>
             </div>
           ))
-        ) : filteredProducts.length > 0 || searchTerm !== "" ? (
-          filteredProducts.length <= 0 ? (
-            <div className="search-error">
-              <i className="fa-solid fa-magnifying-glass"></i>
-              It seems like what you are looking for does not exist. Try another
-              search term.
-            </div>
-          ) : (
-            filteredProducts.map((product) => (
+        ) : filteredProducts.length > 0 ? (
+          <ReusablePagination
+            items={filteredProducts}
+            itemsPerPage={8}
+            renderItem={(product: ProductContext) => (
               <Product
                 _id={product._id}
                 name={product.name}
@@ -117,10 +99,15 @@ export default function Category() {
                 how_to_use={product.how_to_use}
                 ingredients={product.ingredients}
               />
-            ))
-          )
+            )}
+            emptyMessage="Be the first to leave a review on this product!"
+            className="products-pagination"
+          />
         ) : (
-          <div>No products found</div>
+          <div className="search-error">
+            <i className="fa-solid fa-magnifying-glass"></i>
+            No products found. Try another search term.
+          </div>
         )}
       </div>
     </div>

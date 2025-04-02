@@ -3,12 +3,13 @@ import "./product.css";
 import { useContext, useEffect, useState } from "react";
 
 import { ProductContext, reviews } from "../../Context/Product";
-import { AddReview } from "../../Context/Review/Review";
+import { AddReview, GetReviews } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
 import { getProductBySlug } from "../../api/api";
 import ReactMarkdown from "react-markdown";
 import { getReviews } from "../../api/api";
 import Pagination from "../../Components/Common Components/Pagination/Pagination";
+import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
 
 export default function Product() {
   const { slug } = useParams<{ slug: string }>();
@@ -257,7 +258,13 @@ export default function Product() {
       <div className="bottom">
         <h3>Reviews ({reviews.length})</h3>
         <div className="review-container" id="reviews">
-          <Pagination reviews={reviews} />
+          <ReusablePagination
+            items={reviews}
+            itemsPerPage={5}
+            renderItem={(review) => <GetReviews {...review} />}
+            emptyMessage="Be the first to leave a review on this product!"
+            className="reviews-pagination"
+          />
         </div>
         <div>
           <AddReview productId={product._id} />
