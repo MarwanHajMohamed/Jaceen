@@ -5,7 +5,7 @@ import "./product.css";
 import { ProductContext, reviews } from "../../../Context/Product";
 import { renderStars } from "../../../Context/Stars";
 import { CartContext } from "../../../Context/Cart";
-import { getReviews } from "../../../api/api";
+import { getReviews } from "../../../api/reviewsApi";
 
 export default function Product(props: ProductContext) {
   const route: NavigateFunction = useNavigate();

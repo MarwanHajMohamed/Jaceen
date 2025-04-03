@@ -6,7 +6,7 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-import { getProducts } from "../../api/api";
+import { getProducts } from "../../api/productsApi";
 import { ProductContext } from "../../Context/Product";
 import { API_URL } from "../../config/constants";
 

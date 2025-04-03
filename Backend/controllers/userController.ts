@@ -107,6 +107,10 @@ const getUserProfile = asyncHandler(async (req: Request, res: Response) => {
   res.json(user);
 });
 
+
+/**
+ * @desc Logout
+ */
 const logoutUser = async (req: Request, res: Response) => {
   res.clearCookie("sessionToken", {
     httpOnly: true,

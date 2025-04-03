@@ -3,7 +3,7 @@ import "./login.css";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import MessageBox from "../../Components/MessageBox/MessageBox";
-import { handleLogin } from "../../api/api";
+import { handleLogin } from "../../api/userApi";
 
 export default function Register() {
   const [email, setEmail] = useState<string>("");

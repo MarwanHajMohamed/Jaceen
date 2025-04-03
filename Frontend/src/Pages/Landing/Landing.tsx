@@ -7,7 +7,7 @@ import Testimonials from "../../Components/Testimonials/Testimonials";
 
 import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 import { useQueryClient } from "@tanstack/react-query";
-import { getProducts } from "../../api/api";
+import { getProducts } from "../../api/productsApi";
 import { useEffect } from "react";
 
 export default function Landing() {
@@ -20,11 +20,6 @@ export default function Landing() {
       queryFn: getProducts,
       staleTime: 1000 * 60 * 5, // Match your current staleTime
     });
-
-    console.log(
-      "Current React Query cache:",
-      queryClient.getQueryCache().getAll()
-    );
   }, [queryClient]);
 
   return (

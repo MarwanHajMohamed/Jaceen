@@ -3,7 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import Product from "../../Components/Common Components/Shop Product/Product";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../api/api";
+import { getProducts } from "../../api/productsApi";
 import { ProductContext } from "../../Context/Product";
 import { TextField } from "@mui/material";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
@@ -99,6 +99,7 @@ export default function Category() {
                 product_highlights={product.product_highlights}
                 how_to_use={product.how_to_use}
                 ingredients={product.ingredients}
+                countInStock={product.countInStock}
               />
             )}
             emptyMessage="Be the first to leave a review on this product!"

@@ -1,7 +1,7 @@
 import "./orders.css";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchOrders } from "../../../api/api";
+import { fetchOrders } from "../../../api/ordersApi";
 import { Order } from "../../../Context/Order";
 
 export default function Orders() {

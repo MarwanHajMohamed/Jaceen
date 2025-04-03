@@ -5,9 +5,9 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
-import { getProductBySlug } from "../../api/api";
+import { getProductBySlug } from "../../api/productsApi";
 import ReactMarkdown from "react-markdown";
-import { getReviews } from "../../api/api";
+import { getReviews } from "../../api/reviewsApi";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
 
 export default function Product() {

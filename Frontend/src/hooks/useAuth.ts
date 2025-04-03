@@ -18,6 +18,7 @@ export interface User {
   email: string;
   phone?: string;
   shippingAddress: Address;
+  isAdmin: boolean;
 }
 
 export function useAuth() {

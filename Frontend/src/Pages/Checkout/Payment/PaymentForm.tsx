@@ -1,12 +1,13 @@
 import "./paymentform.css";
 import { FormControl, TextField } from "@mui/material";
 import { FormEvent, useContext, useState } from "react";
-import { createOrder, processPayment } from "../../../api/api";
+import { createOrder } from "../../../api/ordersApi";
 import { CreateOrderRequest, OrderStatus } from "../../../Context/Order";
 import { CartContextType } from "../../../Context/CartInterface";
 import { CartContext } from "../../../Context/Cart";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import MessageBox from "../../../Components/MessageBox/MessageBox";
+import { processPayment } from "../../../api/paymentApi";
 
 declare global {
   interface Window {

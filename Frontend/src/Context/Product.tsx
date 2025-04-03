@@ -23,4 +23,5 @@ export interface ProductContext {
   how_to_use: string | undefined;
   product_highlights: string | undefined;
   ingredients: string | undefined;
+  countInStock: number | undefined;
 }

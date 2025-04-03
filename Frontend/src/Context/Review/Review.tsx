@@ -3,7 +3,7 @@ import "./review.css";
 
 import { StarRating, renderStars } from "../Stars";
 import { reviews } from "../Product";
-import { addReview } from "../../api/api";
+import { addReview } from "../../api/reviewsApi";
 import { ObjectId } from "bson";
 import { format } from "date-fns";
 
@@ -46,7 +46,7 @@ export const AddReview = ({ productId }: AddReviewProps) => {
   const handleReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const review = await addReview(stars, title, comment, productId);
+    const review = await addReview(stars, title, comment, productId.toString());
 
     if (review === "success") {
       window.location.reload();

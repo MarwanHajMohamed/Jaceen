@@ -1,13 +1,13 @@
 import asyncHandler from "express-async-handler";
 import { Product } from "../models/";
 import { Response, Request, } from "../types/";
+
 /**
  * Fetch all products
  * @route GET /api/products
  * @access Public
  */
 const getProducts = asyncHandler(async (req: Request, res: Response) => {
-    // Get search keyword from request and search for partial match
     const keyword = req.query.keyword
       ? {
           name: {
@@ -17,30 +17,85 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
         }
       : {};
   
-    // Fetch all products that match the keyword
     const products = await Product.find({ ...keyword });
   
     res.json({ products });
 });
 
-
-
-  // productController.js
+/**
+ * Fetch products by slug
+ * @route GET /api/products/:slug
+ * @access Public
+ */
 const getProductBySlug = async (req, res) => {
-    const { slug } = req.params; // Extract 'name' from the URL parameter
-    try {
-      const product = await Product.findOne({ slug }); // Query the database for the product by name
-      if (!product) {
-        return res.status(404).json({ message: "Product not found" });
-      }
-      res.status(200).json(product); // Return the product details
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching product", error });
-    }
-  };
-  
+  const { slug } = req.params;
+  try {
+    const product = await Product.findOne({ slug });
 
-  export {
-    getProducts,
-    getProductBySlug
-  };
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching product", error });
+  }
+};
+
+/**
+ * Add new product
+ * @route POST /api/products
+ * @access Public
+ */
+const addProduct = async(req, res) => {
+  try {
+    const {
+      user,
+      name,
+      price,
+      category,
+      imgs,
+      description,
+      why_jaceen,
+      how_to_use,
+      product_highlights,
+      ingredients,
+      countInStock,
+    } = req.body;
+
+    // Validate required fields
+    if (!user || !name || !price || !category || !imgs?.length) {
+      return res.status(400).json({ message: "Missing required fields" });
+    }
+
+    // Create new product
+    const product = new Product({
+      user,
+      name,
+      price,
+      category,
+      imgs,
+      description,
+      why_jaceen,
+      how_to_use,
+      product_highlights,
+      ingredients,
+      countInStock,
+    });
+
+    // Save to database
+    const createdProduct = await product.save();
+
+    // Return response
+    res.status(201).json(createdProduct);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
+
+export {
+  getProducts,
+  getProductBySlug,
+  addProduct
+};

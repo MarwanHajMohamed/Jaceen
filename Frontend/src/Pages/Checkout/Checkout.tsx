@@ -34,7 +34,7 @@ export default function Checkout() {
       // Prefill personal details
       setFirstName(user.firstName || "");
       setSurname(user.surname || "");
-      setPhone(user.phoneNumber || "");
+      setPhone(user.phone || "");
       setEmail(user.email || "");
     }
   }, [user]);

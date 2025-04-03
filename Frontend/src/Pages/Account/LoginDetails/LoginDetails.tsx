@@ -2,7 +2,7 @@ import { FormControl, TextField } from "@mui/material";
 import "./logindetails.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
-import { updateLoginDetails } from "../../../api/api";
+import { updateLoginDetails } from "../../../api/userApi";
 import MessageBox from "../../../Components/MessageBox/MessageBox";
 
 export default function LoginDetails() {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./register.css";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
-import { handleRegister } from "../../api/api";
+import { handleRegister } from "../../api/userApi";
 import MessageBox from "../../Components/MessageBox/MessageBox";
 
 export default function Register() {

@@ -9,7 +9,7 @@ import {
 import { getNames } from "country-list";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
-import { updateAddress } from "../../../api/api";
+import { updateAddress } from "../../../api/userApi";
 
 export default function Address() {
   const countries: string[] = getNames();
