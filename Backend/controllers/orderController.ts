@@ -51,8 +51,6 @@ const createOrder = asyncHandler(
 
     const userId = isAuthenticated ? req.user._id.toString() : undefined;
 
-    console.log("User from request:", req.user);
-
     // If authenticated, validate the user can only create orders for themselves
     if (
       isAuthenticated &&
@@ -62,7 +60,7 @@ const createOrder = asyncHandler(
     ) {
       res
         .status(403)
-        .json({ error: "Unauthorized to create order for this user." });
+        .json({ error: "Unauthorised to create order for this user." });
       return;
     }
 

@@ -24,7 +24,7 @@ export default function Account() {
                   key={section}
                   onClick={() => setSection(section)}
                 >
-                  {section}
+                  <div>{section}</div>
                 </li>
               ))}
             </ul>
@@ -45,7 +45,7 @@ export default function Account() {
                     key={section}
                     onClick={() => setSection(section)}
                   >
-                    {section}
+                    <div>{section}</div>
                   </li>
                 )
               )}

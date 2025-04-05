@@ -26,15 +26,22 @@
   list-style: none;
   font-size: 0.9rem;
   cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.account-page-container .account-navbar ul li div {
   border-bottom: 3px solid transparent;
   transition: 50ms ease-in-out;
 }
 
-.account-page-container .account-navbar ul li.active {
+.account-page-container .account-navbar ul li.active div {
   border-bottom: 2px solid var(--orange);
 }
 
-.account-page-container .account-navbar ul li:hover {
+.account-page-container .account-navbar ul li:hover div {
   border-bottom: 3px solid var(--orange);
 }
 

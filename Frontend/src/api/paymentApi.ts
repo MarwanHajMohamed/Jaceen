@@ -3,12 +3,14 @@ import { CartItem } from "../Context/CartInterface";
 import { API_URL } from "../config/constants";
 
 // HANDLE CHECKOUT
-export const handleCheckout = async (cartItems: CartItem[], discountCode: string): Promise<void> => {
+export const handleCheckout = async (
+  cartItems: CartItem[],
+  discountCode: string
+): Promise<void> => {
   await axios.post(`${API_URL}/api/cart/checkout`, {
     cartItems: cartItems,
-    couponCode: discountCode
+    couponCode: discountCode,
   });
-
 };
 
 // HANDLE PAYMENT
@@ -25,15 +27,18 @@ interface PaymentResponse {
 }
 
 // PROCESS PAYMENT
-export const processPayment = async (response: PaymentResponse, totalAmount: number) => {
+export const processPayment = async (
+  response: PaymentResponse,
+  totalAmount: number
+) => {
   if (!response.opaqueData?.dataValue) {
-    throw new Error('Payment token is missing.');
+    throw new Error("Payment token is missing.");
   }
 
   try {
     const requestData = {
       paymentToken: response.opaqueData.dataValue,
-      amount: totalAmount
+      amount: totalAmount,
     };
 
     const res = await fetch(`${API_URL}/api/payment`, {
@@ -44,7 +49,9 @@ export const processPayment = async (response: PaymentResponse, totalAmount: num
 
     if (!res.ok) {
       const errorData = await res.json();
-      throw new Error(`Payment processing failed: ${errorData.error || res.statusText}`);
+      throw new Error(
+        `Payment processing failed: ${errorData.error || res.statusText}`
+      );
     }
 
     return await res.json();

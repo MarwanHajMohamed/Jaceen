@@ -9,7 +9,11 @@
 .manage-products-container .products-table {
   width: 80vw;
   max-width: 1500px;
-  margin-top: 30px;
+  margin-top: 50px;
+}
+
+.products-table-wrapper {
+  position: relative;
 }
 
 .products-table tr {
@@ -42,10 +46,18 @@
   text-align: start;
 }
 
+.products-table .gear {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .products-table i {
   cursor: pointer;
   font-size: 1.2rem;
   transition: 50ms ease-in-out;
+  padding: 5px;
 }
 
 .products-table i:hover {
@@ -59,4 +71,19 @@
 
 .stock.low {
   color: red;
+}
+
+.new-product {
+  cursor: pointer;
+  background-color: black;
+  border: 0;
+  color: white;
+  padding: 10px 20px;
+  position: absolute;
+  right: 0;
+  border-radius: 5px;
+}
+
+.new-product:hover {
+  background-color: var(--black-hover);
 }

@@ -11,6 +11,7 @@ import cartRoutes from './routes/cartRoutes'
 import reviewRoutes from './routes/reviewRoutes'
 import orderRoutes from './routes/orderRoutes'
 import paymentRoutes from './routes/paymentRoutes'
+import uploadRoutes from './routes/uploadRoutes'
 
 const PORT = process.env.PORT || 4000;
 const app: Express = express();
@@ -41,6 +42,7 @@ app.use("/api/users/", userRoutes);
 app.use("/api/cart/", cartRoutes);
 app.use("/api/products/", reviewRoutes)
 app.use("/api/orders/", orderRoutes)
+app.use("/api", uploadRoutes)
 app.use(paymentRoutes)
 
 app.listen(PORT, () => {

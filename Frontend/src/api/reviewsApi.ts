@@ -1,6 +1,5 @@
 import axios from "axios";
 import { API_URL } from "../config/constants";
-import { ObjectId } from "mongoose";
 
 // GET REVIEWS
 export const getReviews = async (productId: string) => {

@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import { Product } from "../models/";
-import { Response, Request, } from "../types/";
+import { Response, Request } from "../types/express";
 
 /**
  * Fetch all products
@@ -8,18 +8,18 @@ import { Response, Request, } from "../types/";
  * @access Public
  */
 const getProducts = asyncHandler(async (req: Request, res: Response) => {
-    const keyword = req.query.keyword
-      ? {
-          name: {
-            $regex: req.query.keyword,
-            $options: "i",
-          } as any,
-        }
-      : {};
-  
-    const products = await Product.find({ ...keyword });
-  
-    res.json({ products });
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        } as any,
+      }
+    : {};
+
+  const products = await Product.find({ ...keyword });
+
+  res.json({ products });
 });
 
 /**
@@ -47,13 +47,17 @@ const getProductBySlug = async (req, res) => {
  * @route POST /api/products
  * @access Public
  */
-const addProduct = async(req, res) => {
+const addProduct = async (req, res) => {
+  if (!req.user || !req.user.isAdmin) {
+    return res.status(403).json({message: "Unauthorised to create product."})
+  }
+
   try {
     const {
-      user,
       name,
       price,
       category,
+      slug,
       imgs,
       description,
       why_jaceen,
@@ -63,14 +67,16 @@ const addProduct = async(req, res) => {
       countInStock,
     } = req.body;
 
+    console.log("Request body: ", req.body);
+    
+
     // Validate required fields
-    if (!user || !name || !price || !category || !imgs?.length) {
-      return res.status(400).json({ message: "Missing required fields" });
+    if (!name || !price || !category || !slug || !countInStock) {
+      return res.status(400).json({ message: "Missing required fields." });
     }
 
     // Create new product
     const product = new Product({
-      user,
       name,
       price,
       category,
@@ -92,10 +98,6 @@ const addProduct = async(req, res) => {
     console.error(error);
     res.status(500).json({ message: "Server error" });
   }
-}
-
-export {
-  getProducts,
-  getProductBySlug,
-  addProduct
 };
+
+export { getProducts, getProductBySlug, addProduct };

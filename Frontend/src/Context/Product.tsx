@@ -25,3 +25,17 @@ export interface ProductContext {
   ingredients: string | undefined;
   countInStock: number | undefined;
 }
+
+export interface NewProduct {
+  name: string;
+  slug: string;
+  price: number;
+  category: string;
+  imgs?: string[];
+  description?: string | undefined;
+  why_jaceen?: string | undefined;
+  how_to_use?: string | undefined;
+  product_highlights?: string | undefined;
+  ingredients?: string | undefined;
+  countInStock: number | undefined;
+}

@@ -19,6 +19,7 @@ import UserProtectedRoute from "./Components/UserProtectedRoute";
 import GuestProtectedRoute from "./Components/GuestProtectedRoute";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import NewProductPage from "./Pages/Account/NewProduct/NewProductPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -58,6 +59,14 @@ function App() {
                 <AccountProvider>
                   <Account />
                 </AccountProvider>
+              </GuestProtectedRoute>
+            }
+          />
+          <Route
+            path="/account/new-product"
+            element={
+              <GuestProtectedRoute route="">
+                <NewProductPage />
               </GuestProtectedRoute>
             }
           />

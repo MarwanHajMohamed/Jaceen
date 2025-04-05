@@ -1,0 +1,64 @@
+.new-product-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  margin: 0 50px;
+  margin-bottom: 50px;
+}
+
+.new-product-container .form {
+  width: 80vw;
+  max-width: 800px;
+}
+
+.new-product-container .form .form-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.new-product-container .form .form-section:nth-child(3) {
+  margin-bottom: 20px;
+}
+
+.new-product-container .form .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.new-product-container .form .row div {
+  width: 100%;
+}
+
+.new-product-container .images {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.new-product-container .images i {
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.new-product-container .form .add {
+  width: 200px;
+  padding: 10px 0;
+  background-color: var(--orange);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.1);
+  border: 0;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.new-product-container .form .add:hover {
+  background-color: var(--orange-hover);
+}

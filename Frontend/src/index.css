@@ -11,6 +11,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   --orange: #d9ba7c;
+  --orange-hover: #d5ae5e;
   --black-hover: rgb(37, 37, 37);
   --white-hover: rgb(238, 238, 238);
 }
