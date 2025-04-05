@@ -46,6 +46,21 @@ export const getProductByCategory = async (
   }
 };
 
+// GET CATEGORIES
+export const getCategories = async() => {
+  try {
+    const response = await axios.get(`${API_URL}/api/categories`)
+
+    console.log(response);
+
+    return response.data
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error;
+  }
+}
+
+// ADD NEW PRODUCT
 export const addNewProduct = async (productData: NewProduct, images: File[]) => {
   const uploadedImageUrls: string[] = [];
 

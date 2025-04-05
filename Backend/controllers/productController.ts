@@ -43,13 +43,39 @@ const getProductBySlug = async (req, res) => {
 };
 
 /**
+ * Fetch categories
+ * @route GET /api/cactegories
+ * @access Public
+ */
+const getCategories = async (req, res) => {
+  try {
+    const products = await Product.find().select("category");
+
+    // Extract unique categories using a Set
+    const categories = [
+      ...new Set(products.map((product) => product.category)),
+    ];
+
+    if (!categories.length) {
+      return res.status(404).json({ message: "No categories found" });
+    }
+
+    // Send back the unique categories as the response
+    res.status(200).json(categories);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+/**
  * Add new product
  * @route POST /api/products
  * @access Public
  */
 const addProduct = async (req, res) => {
   if (!req.user || !req.user.isAdmin) {
-    return res.status(403).json({message: "Unauthorised to create product."})
+    return res.status(403).json({ message: "Unauthorised to create product." });
   }
 
   try {
@@ -68,7 +94,6 @@ const addProduct = async (req, res) => {
     } = req.body;
 
     console.log("Request body: ", req.body);
-    
 
     // Validate required fields
     if (!name || !price || !category || !slug || !countInStock) {
@@ -78,6 +103,7 @@ const addProduct = async (req, res) => {
     // Create new product
     const product = new Product({
       name,
+      slug,
       price,
       category,
       imgs,
@@ -100,4 +126,4 @@ const addProduct = async (req, res) => {
   }
 };
 
-export { getProducts, getProductBySlug, addProduct };
+export { getProducts, getProductBySlug, addProduct, getCategories };

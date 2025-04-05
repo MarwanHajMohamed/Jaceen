@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addProduct,
+    getCategories,
     getProductBySlug,
 // Get all products
   getProducts,
@@ -10,8 +11,9 @@ import { admin, protect } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
-router.route("/").get(getProducts);
-router.route("/").post(protect, admin, addProduct);
-router.route("/:slug").get(getProductBySlug);
+router.route("/products").get(getProducts);
+router.route("/products").post(protect, admin, addProduct);
+router.route("/products/:slug").get(getProductBySlug);
+router.route("/categories").get(getCategories);
 
 export default router;

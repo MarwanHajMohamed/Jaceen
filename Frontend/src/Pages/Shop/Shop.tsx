@@ -1,22 +1,32 @@
 import "./shop.css";
 import { Navigate, useParams } from "react-router-dom";
 import Product from "../../Components/Common Components/Shop Product/Product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../api/productsApi";
+import { getCategories, getProducts } from "../../api/productsApi";
 import { ProductContext } from "../../Context/Product";
 import { TextField } from "@mui/material";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
 
-const validCategories: string[] = [
-  "Hair Care",
-  "Skin Care",
-  "Sports Nutrition",
-  "Training Programmes",
-  "All Products",
-];
-
 export default function Category() {
+  const [validCategories, setValidCategories] = useState<string[]>([
+    "All Products",
+  ]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await getCategories();
+
+        setValidCategories((prevCategories) => [...prevCategories, ...res]);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   const { category } = useParams<string>();
 
   const [searchTerm, setSearchTerm] = useState<string>("");

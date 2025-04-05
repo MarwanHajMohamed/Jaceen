@@ -5,7 +5,7 @@ import { API_URL } from "../config/constants";
 export const getReviews = async (productId: string) => {
   try {
     const response = await axios.get(
-      `${API_URL}/api/products/${productId}/reviews`
+      `${API_URL}/api/reviews/${productId}/reviews`
     );
 
     return response;
@@ -42,7 +42,7 @@ export const addReview = async (
     const token = localStorage.getItem("authToken");
 
     const response = await axios.post<ReviewResponse>(
-      `${API_URL}/api/products/${productId.toString()}/reviews`,
+      `${API_URL}/api/reviews/${productId.toString()}/reviews`,
       { rating, title, comment },
       {
         headers: {

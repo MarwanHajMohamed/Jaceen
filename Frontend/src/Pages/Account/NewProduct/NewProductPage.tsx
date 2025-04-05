@@ -4,6 +4,7 @@ import { useState } from "react";
 import RichTextEditor from "../../../Components/Common Components/RichTextEditor/RichTextEditor";
 import { addNewProduct } from "../../../api/productsApi";
 import { NewProduct } from "../../../Context/Product";
+import TurndownService from "turndown";
 
 export default function NewProductPage() {
   // New product details
@@ -19,23 +20,23 @@ export default function NewProductPage() {
   const [ingredients, setIngredients] = useState<string>("");
   const [images, setImages] = useState<File[]>([]);
 
+  const turndownService = new TurndownService();
+
   const productData: NewProduct = {
     category: category,
     countInStock: Number(stock),
     name: name,
     price: Number(price),
     slug: slug,
-    description: description,
-    how_to_use: howToUse,
-    ingredients: ingredients,
-    product_highlights: productHighlights,
-    why_jaceen: whyJaceen,
+    description: turndownService.turndown(description),
+    how_to_use: turndownService.turndown(howToUse),
+    ingredients: turndownService.turndown(ingredients),
+    product_highlights: turndownService.turndown(productHighlights),
+    why_jaceen: turndownService.turndown(whyJaceen),
   };
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Check if files are selected
     const files = e.target.files;
     if (files) {
-      // Convert the FileList to an array and update the state
       setImages((prevImages) => [...prevImages, ...Array.from(files)]);
     }
   };
@@ -169,7 +170,7 @@ export default function NewProductPage() {
                     <li>{image.name}</li>
                     <i
                       className="fa-solid fa-trash-can"
-                      onClick={() => handleDeleteImage(index)} // Call the delete handler on click
+                      onClick={() => handleDeleteImage(index)}
                     ></i>
                   </div>
                 ))}

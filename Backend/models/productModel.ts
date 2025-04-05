@@ -20,6 +20,10 @@ const productSchema = new Schema(
       type: Array,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
     },
