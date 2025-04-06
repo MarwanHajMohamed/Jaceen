@@ -181,7 +181,7 @@ export default function PaymentForm(props: Props) {
                   status: OrderStatus.PAID,
                 };
 
-                const createdOrder = await createOrder(newOrder);
+                await createOrder(newOrder);
 
                 clearCart();
 
@@ -192,8 +192,6 @@ export default function PaymentForm(props: Props) {
                     totalAmount: props.totalAmount,
                   },
                 });
-
-                console.log("Order created successfully:", createdOrder);
               }
             } catch (error: any) {
               setError(error.message || "Payment processing failed");

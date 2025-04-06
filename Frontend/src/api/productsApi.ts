@@ -77,7 +77,6 @@ export const addNewProduct = async (productData: NewProduct, images: File[]) => 
     uploadedImageUrls.push(response.data.secure_url);
   }
 
-  // Now send productData + uploadedImageUrls to your backend or DB
   return await axios.post(`${API_URL}/api/products`, {
     ...productData,
     imgs: uploadedImageUrls,

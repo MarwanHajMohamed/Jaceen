@@ -20,6 +20,7 @@ import GuestProtectedRoute from "./Components/GuestProtectedRoute";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NewProductPage from "./Pages/Account/NewProduct/NewProductPage";
+import Success from "./Pages/Account/NewProduct/Success";
 
 function App() {
   const queryClient = new QueryClient();
@@ -67,6 +68,14 @@ function App() {
             element={
               <GuestProtectedRoute route="">
                 <NewProductPage />
+              </GuestProtectedRoute>
+            }
+          />
+          <Route
+            path="/account/new-product/success"
+            element={
+              <GuestProtectedRoute route="">
+                <Success />
               </GuestProtectedRoute>
             }
           />
