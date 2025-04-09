@@ -30,7 +30,7 @@ export default function Account() {
             </ul>
           </div>
           <div className="account-main">
-            <div className="title">{title}</div>
+            <div className="subtitle">{title}</div>
             <div className="content">{ContentComponent}</div>
           </div>
         </>
@@ -52,7 +52,7 @@ export default function Account() {
             </ul>
           </div>
           <div className="account-main">
-            <div className="title">{title}</div>
+            <div className="subtitle">{title}</div>
             <div className="content">{ContentComponent}</div>
           </div>
         </>
