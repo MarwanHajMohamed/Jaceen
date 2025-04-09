@@ -224,19 +224,20 @@ export default function PaymentForm(props: Props) {
 
   return (
     <FormControl fullWidth onSubmit={handlePayment} component="form">
-      <TextField
-        variant="standard"
-        label="Card Number"
-        value={cardNumber}
-        onChange={(e) => setCardNumber(e.target.value)}
-        inputProps={{
-          inputMode: "numeric",
-          pattern: "[0-9]*",
-        }}
-        required
-        disabled={isProcessing}
-      />
-
+      <div className="card-number">
+        <TextField
+          variant="standard"
+          label="Card Number"
+          value={cardNumber}
+          onChange={(e) => setCardNumber(e.target.value)}
+          inputProps={{
+            inputMode: "numeric",
+            pattern: "[0-9]*",
+          }}
+          required
+          disabled={isProcessing}
+        />
+      </div>
       <div className="month-cvc">
         <TextField
           variant="standard"

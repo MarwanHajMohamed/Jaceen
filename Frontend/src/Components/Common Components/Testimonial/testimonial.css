@@ -24,6 +24,7 @@
   font-size: 1.3rem;
   margin-top: 20px;
   text-align: end;
+  font-size: clamp(1rem, 1.2vw, 1.5rem);
 }
 
 .testimonial-container .description {
@@ -33,4 +34,11 @@
   overflow: hidden;
   letter-spacing: 1px;
   margin-top: 10px;
+  font-size: clamp(0.7rem, 1.2vw, 1.5rem);
+}
+
+@media (max-width: 800px) {
+  .testimonial-container {
+    min-width: 250px;
+  }
 }

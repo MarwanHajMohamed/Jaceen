@@ -1,52 +1,55 @@
 .product-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 30px 30px 0 30px;
-  background: rgb(0, 0, 0);
-  color: white;
   width: 230px;
-  height: 270px;
-  border-radius: 40px;
+  height: 330px;
+  border-radius: 20px;
   cursor: pointer;
-}
-
-.product-container .jaceen-logo {
-  position: absolute;
-}
-
-.product-container .jaceen-logo img {
-  width: 40px;
-  height: 40px;
-  transition: 300ms ease-in-out;
+  position: relative;
 }
 
 .product-container .product-title {
   font-weight: 700;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
 }
 
 .product-container:hover .product-title {
   color: var(--orange);
 }
 
-.product-container:hover .jaceen-logo img {
-  rotate: 380deg;
-  transform: scale(1.2);
-}
-
 .product-container .image-container {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+.product-container .bottom {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 .product-container img {
-  width: 160px;
-  height: 160px;
+  width: 300px;
+  aspect-ratio: 1;
   object-fit: cover;
-  margin-bottom: 30px;
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
 
 .product-container .product-title {
   transition: 100ms ease-in-out;
   letter-spacing: 1px;
+}
+
+.product-container .price {
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+}
+
+@media (max-width: 1000px) {
+  .product-container img {
+    width: 250px;
+  }
 }

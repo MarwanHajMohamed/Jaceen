@@ -8,7 +8,8 @@ import axios from "axios";
 
 import { getProducts } from "../../api/productsApi";
 import { ProductContext } from "../../Context/Product";
-import { API_URL } from "../../config/constants";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface GroupedProducts {
   [category: string]: ProductContext[];

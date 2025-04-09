@@ -14,16 +14,18 @@
 }
 
 .benefits-container .title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 600;
 }
 
 .benefits-container .description {
   letter-spacing: 1px;
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
 }
 
 .benefits-container .benefits {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 90vw;
 }

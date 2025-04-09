@@ -1,6 +1,7 @@
 import axios from "axios";
 import { CreateOrderRequest } from "../Context/Order";
-import { API_URL } from "../config/constants";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // CREATE ORDER
 export const createOrder = async (orderData: CreateOrderRequest) => {

@@ -14,11 +14,10 @@ export default function Landing() {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    // Prefetch the "All Products" data when this component mounts
     queryClient.prefetchQuery({
       queryKey: ["products", "All Products"],
       queryFn: getProducts,
-      staleTime: 1000 * 60 * 5, // Match your current staleTime
+      staleTime: 1000 * 60 * 5,
     });
   }, [queryClient]);
 
@@ -28,14 +27,7 @@ export default function Landing() {
         <div className="products-container">
           <ParallaxProvider>
             <Parallax speed={-10}>
-              <div
-                style={{
-                  height: "100vh",
-                  backgroundImage: "url('src/assets/protein_powder.jpg')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
+              <div className="parallax-image" />
             </Parallax>
           </ParallaxProvider>
         </div>

@@ -63,64 +63,66 @@ export default function Category() {
 
   return (
     <div className="shop-page-container">
-      <div className="title-container">
-        <div className="search-container">
-          <div className="category-title">
-            <div className="category-title-content">{category}</div>
-          </div>
-          <div className="search">
-            <TextField
-              fullWidth
-              variant="outlined"
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
+      <div className="wrapper">
+        <div className="title-container">
+          <div className="search-container">
+            <div className="category-title">
+              <div className="category-title-content">{category}</div>
+            </div>
+            <div className="search">
+              <TextField
+                fullWidth
+                variant="outlined"
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="products">
-        {isLoading ? (
-          Array.from({ length: 8 }).map((_, index) => (
-            <div key={index} className="loading-products">
-              <div className="img"></div>
-              <div className="title"></div>
-              <div className="title"></div>
-              <div className="price"></div>
-              <div className="button"></div>
+        <div className="products">
+          {isLoading ? (
+            Array.from({ length: 8 }).map((_, index) => (
+              <div key={index} className="loading-products">
+                <div className="img"></div>
+                <div className="title"></div>
+                <div className="title"></div>
+                <div className="price"></div>
+                <div className="button"></div>
+              </div>
+            ))
+          ) : filteredProducts.length > 0 ? (
+            <ReusablePagination
+              items={filteredProducts}
+              itemsPerPage={8}
+              renderItem={(product: ProductContext) => (
+                <Product
+                  key={product._id.toString()}
+                  _id={product._id}
+                  name={product.name}
+                  slug={product.slug}
+                  price={product.price}
+                  category={product.category}
+                  imgs={product.imgs}
+                  description={product.description}
+                  why_jaceen={product.why_jaceen}
+                  product_highlights={product.product_highlights}
+                  how_to_use={product.how_to_use}
+                  ingredients={product.ingredients}
+                  countInStock={product.countInStock}
+                />
+              )}
+              emptyMessage="Be the first to leave a review on this product!"
+              className="products-pagination"
+            />
+          ) : (
+            <div className="search-error">
+              <i className="fa-solid fa-magnifying-glass"></i>
+              No products found. Try another search term.
             </div>
-          ))
-        ) : filteredProducts.length > 0 ? (
-          <ReusablePagination
-            items={filteredProducts}
-            itemsPerPage={8}
-            renderItem={(product: ProductContext) => (
-              <Product
-                key={product._id.toString()}
-                _id={product._id}
-                name={product.name}
-                slug={product.slug}
-                price={product.price}
-                category={product.category}
-                imgs={product.imgs}
-                description={product.description}
-                why_jaceen={product.why_jaceen}
-                product_highlights={product.product_highlights}
-                how_to_use={product.how_to_use}
-                ingredients={product.ingredients}
-                countInStock={product.countInStock}
-              />
-            )}
-            emptyMessage="Be the first to leave a review on this product!"
-            className="products-pagination"
-          />
-        ) : (
-          <div className="search-error">
-            <i className="fa-solid fa-magnifying-glass"></i>
-            No products found. Try another search term.
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

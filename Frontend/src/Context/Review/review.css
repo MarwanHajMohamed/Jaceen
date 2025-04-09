@@ -1,8 +1,8 @@
 .review-container {
   display: flex;
   flex-direction: column;
-  width: 1000px;
-  max-width: 80vw;
+  width: 100%;
+  /* max-width: 80vw; */
   gap: 20px;
 }
 
@@ -13,6 +13,7 @@
   padding: 20px;
   border-radius: 5px;
   gap: 20px;
+  /* width: 100%; */
 }
 
 .review .title {
@@ -39,6 +40,8 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  width: 1500px;
+  max-width: 90vw;
 }
 
 .product-page-container .add-review-container .subtitle {

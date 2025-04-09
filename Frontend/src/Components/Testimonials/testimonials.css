@@ -8,12 +8,13 @@
 }
 
 .testimonials-container .title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 600;
 }
 
 .testimonials-container .description {
   letter-spacing: 1px;
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
 }
 
 .testimonials-container .testimonials {

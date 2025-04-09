@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Address, User } from "../../../Backend/types/user";
-import { API_URL } from "../config/constants";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 // HANDLE REGISTER
 export const handleRegister = async (

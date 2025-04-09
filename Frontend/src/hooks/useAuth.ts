@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { API_URL } from "../config/constants";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface Address {
   country: string;

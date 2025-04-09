@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { Location, useLocation, useParams } from "react-router-dom";
 import "./product.css";
 import { useContext, useEffect, useState } from "react";
 
@@ -19,7 +19,7 @@ export default function Product() {
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
 
-  const location = useLocation();
+  const location: Location<any> = useLocation();
 
   useEffect(() => {
     if (slug) {
@@ -31,7 +31,7 @@ export default function Product() {
   }, [slug]);
 
   useEffect(() => {
-    const fetchReviews = async () => {
+    const fetchReviews: () => Promise<void> = async () => {
       if (product?._id) {
         try {
           const { data } = await getReviews(product._id.toString());
@@ -81,192 +81,194 @@ export default function Product() {
 
   return (
     <div className="product-page-container">
-      <div className="top">
-        <div className="left-side">
-          <div className="product-images">
-            {product.imgs.map((img) => {
-              return (
-                <img
-                  className={`${currImg === img ? "active" : ""}`}
-                  src={img}
-                  alt=""
-                  onClick={() => setCurrImg(img)}
-                />
-              );
-            })}
+      <div className="wrapper">
+        <div className="top">
+          <div className="left-side">
+            <div className="product-images">
+              {product.imgs.map((img) => {
+                return (
+                  <img
+                    className={`${currImg === img ? "active" : ""}`}
+                    src={img}
+                    alt=""
+                    onClick={() => setCurrImg(img)}
+                  />
+                );
+              })}
+            </div>
+            <div className="display-product">
+              <img src={currImg} alt={product.name} />
+            </div>
           </div>
-          <div className="display-product">
-            <img src={currImg} alt={product.name} />
-          </div>
-        </div>
-        <div className="right-side">
-          <div className="product-name">{product.name}</div>
-          <div className="product-price">£{product.price.toFixed(2)}</div>
-          <div className="product-category">{product.category}</div>
-          <div className="quantity-container">
-            <button
-              className={`
+          <div className="right-side">
+            <div className="product-name">{product.name}</div>
+            <div className="product-price">£{product.price.toFixed(2)}</div>
+            <div className="product-category">{product.category}</div>
+            <div className="quantity-container">
+              <button
+                className={`
                   ${quantity === 0 ? "disabled" : ""}
             `}
-              onClick={() => addSubtractItems("minus")}
-            >
-              <i className="fa-solid fa-minus"></i>
-            </button>
-            <div className="counter">{quantity}</div>
-            <button onClick={() => addSubtractItems("add")}>
-              <i className="fa-solid fa-plus"></i>
-            </button>
+                onClick={() => addSubtractItems("minus")}
+              >
+                <i className="fa-solid fa-minus"></i>
+              </button>
+              <div className="counter">{quantity}</div>
+              <button onClick={() => addSubtractItems("add")}>
+                <i className="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <div className="add-to-basket">
+              <button onClick={() => addToCart(cartItem, quantity)}>
+                Add to basket
+              </button>
+            </div>
+            {product.description && (
+              <div>
+                <h4
+                  onClick={() => {
+                    toggleExpand("description");
+                  }}
+                >
+                  Description
+                  <span
+                    className={`arrow ${
+                      expandedSection === "description" ? "rotate" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </h4>
+                <ReactMarkdown
+                  className={`section ${
+                    expandedSection === "description" ? "expand" : "hide"
+                  }`}
+                >
+                  {product.description}
+                </ReactMarkdown>
+                <hr />
+              </div>
+            )}
+            {product.why_jaceen && (
+              <div>
+                <h4
+                  onClick={() => {
+                    toggleExpand("why_jaceen");
+                  }}
+                >
+                  Why Jaceen
+                  <span
+                    className={`arrow ${
+                      expandedSection === "why_jaceen" ? "rotate" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </h4>
+                <ReactMarkdown
+                  className={`section ${
+                    expandedSection === "why_jaceen" ? "expand" : "hide"
+                  }`}
+                >
+                  {product.why_jaceen}
+                </ReactMarkdown>
+                <hr />
+              </div>
+            )}
+            {product.product_highlights && (
+              <div>
+                <h4
+                  onClick={() => {
+                    toggleExpand("product_highlights");
+                  }}
+                >
+                  Product Highlights
+                  <span
+                    className={`arrow ${
+                      expandedSection === "product_highlights" ? "rotate" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </h4>
+                <ReactMarkdown
+                  className={`section ${
+                    expandedSection === "product_highlights" ? "expand" : "hide"
+                  }`}
+                >
+                  {product.product_highlights}
+                </ReactMarkdown>
+                <hr />
+              </div>
+            )}
+            {product.how_to_use && (
+              <div>
+                <h4
+                  onClick={() => {
+                    toggleExpand("how_to_use");
+                  }}
+                >
+                  How to Use
+                  <span
+                    className={`arrow ${
+                      expandedSection === "how_to_use" ? "rotate" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </h4>
+                <ReactMarkdown
+                  className={`section ${
+                    expandedSection === "how_to_use" ? "expand" : "hide"
+                  }`}
+                >
+                  {product.how_to_use}
+                </ReactMarkdown>
+                <hr />
+              </div>
+            )}
+            {product.ingredients && (
+              <div>
+                <h4
+                  onClick={() => {
+                    toggleExpand("ingredients");
+                  }}
+                >
+                  Ingredients
+                  <span
+                    className={`arrow ${
+                      expandedSection === "ingredients" ? "rotate" : ""
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </h4>
+                <ReactMarkdown
+                  className={`section ${
+                    expandedSection === "ingredients" ? "expand" : "hide"
+                  }`}
+                >
+                  {product.ingredients}
+                </ReactMarkdown>
+                <hr />
+              </div>
+            )}
           </div>
-          <div className="add-to-basket">
-            <button onClick={() => addToCart(cartItem, quantity)}>
-              Add to basket
-            </button>
+        </div>
+        <div className="bottom">
+          <h3>Reviews ({reviews.length})</h3>
+          <div className="review-container" id="reviews">
+            <ReusablePagination
+              items={reviews}
+              itemsPerPage={5}
+              renderItem={(review) => <GetReviews {...review} />}
+              emptyMessage="Be the first to leave a review on this product!"
+              className="reviews-pagination"
+            />
           </div>
-          {product.description && (
-            <div>
-              <h4
-                onClick={() => {
-                  toggleExpand("description");
-                }}
-              >
-                Description
-                <span
-                  className={`arrow ${
-                    expandedSection === "description" ? "rotate" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </h4>
-              <ReactMarkdown
-                className={`section ${
-                  expandedSection === "description" ? "expand" : "hide"
-                }`}
-              >
-                {product.description}
-              </ReactMarkdown>
-              <hr />
-            </div>
-          )}
-          {product.why_jaceen && (
-            <div>
-              <h4
-                onClick={() => {
-                  toggleExpand("why_jaceen");
-                }}
-              >
-                Why Jaceen
-                <span
-                  className={`arrow ${
-                    expandedSection === "why_jaceen" ? "rotate" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </h4>
-              <ReactMarkdown
-                className={`section ${
-                  expandedSection === "why_jaceen" ? "expand" : "hide"
-                }`}
-              >
-                {product.why_jaceen}
-              </ReactMarkdown>
-              <hr />
-            </div>
-          )}
-          {product.product_highlights && (
-            <div>
-              <h4
-                onClick={() => {
-                  toggleExpand("product_highlights");
-                }}
-              >
-                Product Highlights
-                <span
-                  className={`arrow ${
-                    expandedSection === "product_highlights" ? "rotate" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </h4>
-              <ReactMarkdown
-                className={`section ${
-                  expandedSection === "product_highlights" ? "expand" : "hide"
-                }`}
-              >
-                {product.product_highlights}
-              </ReactMarkdown>
-              <hr />
-            </div>
-          )}
-          {product.how_to_use && (
-            <div>
-              <h4
-                onClick={() => {
-                  toggleExpand("how_to_use");
-                }}
-              >
-                How to Use
-                <span
-                  className={`arrow ${
-                    expandedSection === "how_to_use" ? "rotate" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </h4>
-              <ReactMarkdown
-                className={`section ${
-                  expandedSection === "how_to_use" ? "expand" : "hide"
-                }`}
-              >
-                {product.how_to_use}
-              </ReactMarkdown>
-              <hr />
-            </div>
-          )}
-          {product.ingredients && (
-            <div>
-              <h4
-                onClick={() => {
-                  toggleExpand("ingredients");
-                }}
-              >
-                Ingredients
-                <span
-                  className={`arrow ${
-                    expandedSection === "ingredients" ? "rotate" : ""
-                  }`}
-                >
-                  ▼
-                </span>
-              </h4>
-              <ReactMarkdown
-                className={`section ${
-                  expandedSection === "ingredients" ? "expand" : "hide"
-                }`}
-              >
-                {product.ingredients}
-              </ReactMarkdown>
-              <hr />
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="bottom">
-        <h3>Reviews ({reviews.length})</h3>
-        <div className="review-container" id="reviews">
-          <ReusablePagination
-            items={reviews}
-            itemsPerPage={5}
-            renderItem={(review) => <GetReviews {...review} />}
-            emptyMessage="Be the first to leave a review on this product!"
-            className="reviews-pagination"
-          />
-        </div>
-        <div>
-          <AddReview productId={product._id} />
+          <div>
+            <AddReview productId={product._id} />
+          </div>
         </div>
       </div>
     </div>
