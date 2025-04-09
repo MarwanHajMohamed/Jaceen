@@ -26,7 +26,7 @@ export default function ManageProducts() {
   const itemsPerPage = 10;
 
   // Make sure allProducts is defined and has products array
-  const products = allProducts?.products || [];
+  const products = allProducts || [];
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
@@ -70,10 +70,10 @@ export default function ManageProducts() {
             <table className="products-table">
               <thead>
                 <tr>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Stock</th>
-                  <th></th>
+                  <th className="image-column">Image</th>
+                  <th className="name-column">Name</th>
+                  <th className="stock-column">Stock</th>
+                  <th className="gear-column"></th>
                 </tr>
               </thead>
               <tbody>
@@ -86,7 +86,7 @@ export default function ManageProducts() {
                 ) : (
                   currentProducts.map((product: ProductContext) => (
                     <tr key={product._id.toString()}>
-                      <td>
+                      <td className="image-column">
                         <img
                           style={{
                             width: 50,
@@ -98,17 +98,15 @@ export default function ManageProducts() {
                           alt={product.name}
                         />
                       </td>
-                      <td>{product.name}</td>
-                      <td
-                        className={
-                          Number(product.countInStock) < 10
-                            ? "stock low"
-                            : "stock"
-                        }
-                      >
-                        {product.countInStock}
+                      <td className="name-column">{product.name}</td>
+                      <td className="stock-column">
+                        {Number(product.countInStock) < 10 ? (
+                          <span className="low">{product.countInStock}</span>
+                        ) : (
+                          product.countInStock
+                        )}
                       </td>
-                      <td className="gear">
+                      <td className="gear-column">
                         <i className="fa-solid fa-gear"></i>
                       </td>
                     </tr>
