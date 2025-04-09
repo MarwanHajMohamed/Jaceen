@@ -55,7 +55,7 @@ export default function Navbar() {
         const fetchedProducts = await getProducts();
 
         // Group products by category
-        const grouped: GroupedProducts = fetchedProducts.products.reduce(
+        const grouped: GroupedProducts = fetchedProducts.reduce(
           (acc: GroupedProducts, product: ProductContext) => {
             acc[product.category] = acc[product.category] || [];
             acc[product.category].push(product);
