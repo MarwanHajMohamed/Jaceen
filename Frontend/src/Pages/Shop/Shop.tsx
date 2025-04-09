@@ -3,61 +3,64 @@ import { Navigate, useParams } from "react-router-dom";
 import Product from "../../Components/Common Components/Shop Product/Product";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getCategories, getProducts } from "../../api/productsApi";
+import {
+  getCategories,
+  getProductByCategory,
+  getProducts,
+} from "../../api/productsApi";
 import { ProductContext } from "../../Context/Product";
 import { TextField } from "@mui/material";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
 
 export default function Category() {
-  const [validCategories, setValidCategories] = useState<string[]>([
-    "All Products",
-  ]);
+  const [validCategories, setValidCategories] = useState<string[] | null>(null);
+  const { category } = useParams<string>();
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await getCategories();
-
-        setValidCategories((prevCategories) => [...prevCategories, ...res]);
+        setValidCategories(["All Products", ...res]);
       } catch (error) {
         console.error("Error fetching categories:", error);
+        setValidCategories([]);
       }
     };
 
     fetchCategories();
   }, []);
 
-  const { category } = useParams<string>();
-
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  if (typeof category !== "string" || !validCategories.includes(category)) {
-    return <Navigate to="/404" replace />;
-  }
-
-  // Fetch products with React Query
-  const { data: allProducts, isLoading } = useQuery({
+  const { data: productsData, isLoading } = useQuery({
     queryKey: ["products", category],
-    queryFn: getProducts,
-    refetchOnMount: false,
-    refetchOnReconnect: true,
+    queryFn: () => {
+      if (category === undefined || category === "All Products") {
+        console.log("All Products", getProducts());
+
+        return getProducts();
+      }
+      return getProductByCategory(category); // Fetch products by category
+    },
+    enabled: !!category, // Make sure the query is enabled when category exists
   });
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
-  let filteredProducts = allProducts?.products || [];
+  if (validCategories === null) {
+    return <div className="loading">Loading categories...</div>;
+  }
+
+  if (!category || !validCategories.includes(category)) {
+    return <Navigate to="/404" replace />;
+  }
+
+  let filteredProducts = productsData || [];
 
   if (searchTerm) {
     filteredProducts = filteredProducts.filter((product: ProductContext) =>
       product.name.toLowerCase().includes(searchTerm)
-    );
-  }
-
-  if (category && category !== "All Products") {
-    filteredProducts = filteredProducts.filter(
-      (product: ProductContext) => product.category === category
     );
   }
 
@@ -97,21 +100,7 @@ export default function Category() {
               items={filteredProducts}
               itemsPerPage={8}
               renderItem={(product: ProductContext) => (
-                <Product
-                  key={product._id.toString()}
-                  _id={product._id}
-                  name={product.name}
-                  slug={product.slug}
-                  price={product.price}
-                  category={product.category}
-                  imgs={product.imgs}
-                  description={product.description}
-                  why_jaceen={product.why_jaceen}
-                  product_highlights={product.product_highlights}
-                  how_to_use={product.how_to_use}
-                  ingredients={product.ingredients}
-                  countInStock={product.countInStock}
-                />
+                <Product key={product._id.toString()} {...product} />
               )}
               emptyMessage="Be the first to leave a review on this product!"
               className="products-pagination"

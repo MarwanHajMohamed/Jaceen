@@ -43,8 +43,33 @@ const getProductBySlug = async (req, res) => {
 };
 
 /**
+ * Fetch products by category
+ * @route GET /api/products/category/:category
+ * @access Public
+ */
+const getProductByCategory = async (req, res) => {
+  const { category } = req.params; // Get category from URL parameter
+
+  try {
+    // Find products that match the category
+    const products = await Product.find({ category: category });
+
+    if (!products || products.length === 0) {
+      return res.status(404).json({ message: "No products found for this category" });
+    }
+
+    // Return the found products
+    res.status(200).json({ products });
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    res.status(500).json({ message: "Error fetching products by category", error });
+  }
+};
+
+
+/**
  * Fetch categories
- * @route GET /api/cactegories
+ * @route GET /api/categories
  * @access Public
  */
 const getCategories = async (req, res) => {
@@ -126,4 +151,4 @@ const addProduct = async (req, res) => {
   }
 };
 
-export { getProducts, getProductBySlug, addProduct, getCategories };
+export { getProducts, getProductBySlug, getProductByCategory, addProduct, getCategories };

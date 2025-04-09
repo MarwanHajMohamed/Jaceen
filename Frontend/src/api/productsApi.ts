@@ -9,7 +9,7 @@ const token = localStorage.getItem("authToken");
 export const getProducts = async () => {
   try {
     const response = await axios.get(`${API_URL}/api/products`);
-    return response.data;
+    return response.data.products;
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error;
@@ -31,20 +31,19 @@ export const getProductBySlug = async (
   }
 };
 
-// GET PRODUCTS BY CATEGORY
-export const getProductByCategory = async (
-  category: string
-): Promise<ProductContext> => {
+// GET PRODUCT BY CATEGORY
+export const getProductByCategory = async (category: string): Promise<ProductContext[]> => {
   try {
     const response = await axios.get(
-      `${API_URL}/${encodeURIComponent(category)}`
+      `${API_URL}/api/category/${encodeURIComponent(category)}`
     );
-    return response.data;
+    return response.data.products; // Ensure the returned data matches the shape
   } catch (error) {
-    console.error("Error fetching product:", error);
+    console.error("Error fetching products by category:", error);
     throw error;
   }
 };
+
 
 // GET CATEGORIES
 export const getCategories = async() => {
