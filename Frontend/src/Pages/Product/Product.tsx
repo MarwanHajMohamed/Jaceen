@@ -140,12 +140,21 @@ export default function Product() {
                   </span>
                 </h4>
                 <ReactMarkdown
-                  className={`section ${
-                    expandedSection === "description" ? "expand" : "hide"
-                  }`}
+                  components={{
+                    p: ({ node, children }) => (
+                      <p
+                        className={`section ${
+                          expandedSection === "description" ? "expand" : "hide"
+                        }`}
+                      >
+                        {children}
+                      </p>
+                    ),
+                  }}
                 >
                   {product.description}
                 </ReactMarkdown>
+
                 <hr />
               </div>
             )}
@@ -166,12 +175,21 @@ export default function Product() {
                   </span>
                 </h4>
                 <ReactMarkdown
-                  className={`section ${
-                    expandedSection === "why_jaceen" ? "expand" : "hide"
-                  }`}
+                  components={{
+                    p: ({ node, children }) => (
+                      <p
+                        className={`section ${
+                          expandedSection === "why_jaceen" ? "expand" : "hide"
+                        }`}
+                      >
+                        {children}
+                      </p>
+                    ),
+                  }}
                 >
                   {product.why_jaceen}
                 </ReactMarkdown>
+
                 <hr />
               </div>
             )}
@@ -192,12 +210,23 @@ export default function Product() {
                   </span>
                 </h4>
                 <ReactMarkdown
-                  className={`section ${
-                    expandedSection === "product_highlights" ? "expand" : "hide"
-                  }`}
+                  components={{
+                    p: ({ node, children }) => (
+                      <p
+                        className={`section ${
+                          expandedSection === "product_highlights"
+                            ? "expand"
+                            : "hide"
+                        }`}
+                      >
+                        {children}
+                      </p>
+                    ),
+                  }}
                 >
                   {product.product_highlights}
                 </ReactMarkdown>
+
                 <hr />
               </div>
             )}
@@ -218,12 +247,21 @@ export default function Product() {
                   </span>
                 </h4>
                 <ReactMarkdown
-                  className={`section ${
-                    expandedSection === "how_to_use" ? "expand" : "hide"
-                  }`}
+                  components={{
+                    p: ({ node, children }) => (
+                      <p
+                        className={`section ${
+                          expandedSection === "how_to_use" ? "expand" : "hide"
+                        }`}
+                      >
+                        {children}
+                      </p>
+                    ),
+                  }}
                 >
                   {product.how_to_use}
                 </ReactMarkdown>
+
                 <hr />
               </div>
             )}
@@ -244,12 +282,21 @@ export default function Product() {
                   </span>
                 </h4>
                 <ReactMarkdown
-                  className={`section ${
-                    expandedSection === "ingredients" ? "expand" : "hide"
-                  }`}
+                  components={{
+                    p: ({ node, children }) => (
+                      <p
+                        className={`section ${
+                          expandedSection === "ingredients" ? "expand" : "hide"
+                        }`}
+                      >
+                        {children}
+                      </p>
+                    ),
+                  }}
                 >
                   {product.ingredients}
                 </ReactMarkdown>
+
                 <hr />
               </div>
             )}
