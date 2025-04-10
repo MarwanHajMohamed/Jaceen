@@ -1,5 +1,4 @@
 import { ObjectId } from "bson";
-import { Date } from "mongoose";
 
 export interface reviews {
   productId: ObjectId;
