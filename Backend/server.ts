@@ -20,6 +20,7 @@ const corsOptions = {
   origin: [
     "https://172.20.10.10:5173",
     "https://6679-82-132-186-219.ngrok-free.app",
+    "https://jaceen-production-40e0.up.railway.app/",
     "https://localhost:5173"
   ],
   methods: "GET,POST,PUT",
