@@ -1,6 +1,6 @@
 .parallax-image {
   height: 100vh;
-  background-image: url("src/assets/protein_powder.jpg");
+  background-image: url("/protein_powder.jpg");
   background-size: cover;
   background-position: center;
 }
