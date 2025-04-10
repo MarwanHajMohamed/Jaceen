@@ -141,7 +141,7 @@ export default function Product() {
                 </h4>
                 <ReactMarkdown
                   components={{
-                    p: ({ node, children }) => (
+                    p: ({ children }) => (
                       <p
                         className={`section ${
                           expandedSection === "description" ? "expand" : "hide"
@@ -176,7 +176,7 @@ export default function Product() {
                 </h4>
                 <ReactMarkdown
                   components={{
-                    p: ({ node, children }) => (
+                    p: ({ children }) => (
                       <p
                         className={`section ${
                           expandedSection === "why_jaceen" ? "expand" : "hide"
@@ -211,7 +211,7 @@ export default function Product() {
                 </h4>
                 <ReactMarkdown
                   components={{
-                    p: ({ node, children }) => (
+                    p: ({ children }) => (
                       <p
                         className={`section ${
                           expandedSection === "product_highlights"
@@ -248,7 +248,7 @@ export default function Product() {
                 </h4>
                 <ReactMarkdown
                   components={{
-                    p: ({ node, children }) => (
+                    p: ({ children }) => (
                       <p
                         className={`section ${
                           expandedSection === "how_to_use" ? "expand" : "hide"
@@ -283,7 +283,7 @@ export default function Product() {
                 </h4>
                 <ReactMarkdown
                   components={{
-                    p: ({ node, children }) => (
+                    p: ({ children }) => (
                       <p
                         className={`section ${
                           expandedSection === "ingredients" ? "expand" : "hide"
