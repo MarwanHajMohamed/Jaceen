@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Address, User } from "../../../Backend/types/user";
+import { Address, User } from '../types/user'
 
 const API_URL = import.meta.env.VITE_API_URL;
 
