@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Coupon from "../models/Coupon";
+import Coupon from "../models/coupon";
 
 // Create a coupon
 export const createCoupon = async (req: Request, res: Response) => {
