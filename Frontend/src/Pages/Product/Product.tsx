@@ -1,25 +1,26 @@
-import { Location, useLocation, useParams } from "react-router-dom";
-import "./product.css";
 import { useContext, useEffect, useState } from "react";
-
+import { useParams, useLocation, Location } from "react-router-dom";
 import { ProductContext, reviews } from "../../Context/Product";
 import { AddReview, GetReviews } from "../../Context/Review/Review";
 import { CartContext } from "../../Context/Cart";
 import { getProductBySlug } from "../../api/productsApi";
-import ReactMarkdown from "react-markdown";
 import { getReviews } from "../../api/reviewsApi";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
+import ExpandableMarkdown from "../../Components/ExpandableMarkdown/ExpandableMarkdown";
+import ImageGallery from "../../Components/ImageGallery/ImageGallery";
+import ProductInfo from "../../Components/ProductInfo/ProductInfo";
+import "./product.css";
 
 export default function Product() {
   const { slug } = useParams<{ slug: string }>();
+  const location: Location<any> = useLocation();
   const { addToCart } = useContext(CartContext)!;
+
   const [product, setProduct] = useState<ProductContext | undefined>();
-  const [currImg, setCurrImg] = useState<string | undefined>(product?.imgs[0]);
+  const [currImg, setCurrImg] = useState<string>("");
   const [reviews, setReviews] = useState<reviews[]>([]);
   const [quantity, setQuantity] = useState<number>(1);
   const [expandedSection, setExpandedSection] = useState<string>("description");
-
-  const location: Location<any> = useLocation();
 
   useEffect(() => {
     if (slug) {
@@ -54,7 +55,7 @@ export default function Product() {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
-    }, 300); // Delay to allow component rendering
+    }, 300);
   }, [location]);
 
   if (!product)
@@ -66,239 +67,84 @@ export default function Product() {
     name: product.name,
     slug: product.slug,
     price: product.price,
-    quantity: quantity,
+    quantity,
   };
 
-  const toggleExpand = (section: string) => {
-    setExpandedSection((prev) => (prev === section ? "" : section));
-  };
+  const toggleExpand = (key: string) =>
+    setExpandedSection((prev) => (prev === key ? "" : key));
 
-  const addSubtractItems = (action: string) => {
-    setQuantity((prevQuantity) =>
-      action === "add" ? prevQuantity + 1 : Math.max(prevQuantity - 1, 0)
+  const addSubtractItems = (action: string) =>
+    setQuantity((prev) =>
+      action === "add" ? prev + 1 : Math.max(prev - 1, 0)
     );
-  };
 
   return (
     <div className="product-page-container">
       <div className="wrapper">
         <div className="top">
           <div className="left-side">
-            <div className="product-images">
-              {product.imgs.map((img) => {
-                return (
-                  <img
-                    className={`${currImg === img ? "active" : ""}`}
-                    src={img}
-                    alt=""
-                    onClick={() => setCurrImg(img)}
-                  />
-                );
-              })}
-            </div>
+            <ImageGallery
+              images={product.imgs}
+              currImg={currImg}
+              setCurrImg={setCurrImg}
+            />
             <div className="display-product">
               <img src={currImg} alt={product.name} />
             </div>
           </div>
           <div className="right-side">
-            <div className="product-name">{product.name}</div>
-            <div className="product-price">£{product.price.toFixed(2)}</div>
-            <div className="product-category">{product.category}</div>
-            <div className="quantity-container">
-              <button
-                className={`
-                  ${quantity === 0 ? "disabled" : ""}
-            `}
-                onClick={() => addSubtractItems("minus")}
-              >
-                <i className="fa-solid fa-minus"></i>
-              </button>
-              <div className="counter">{quantity}</div>
-              <button onClick={() => addSubtractItems("add")}>
-                <i className="fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div className="add-to-basket">
-              <button onClick={() => addToCart(cartItem, quantity)}>
-                Add to basket
-              </button>
-            </div>
+            <ProductInfo
+              name={product.name}
+              price={product.price}
+              category={product.category}
+              quantity={quantity}
+              addSubtractItems={addSubtractItems}
+              addToCartHandler={() => addToCart(cartItem, quantity)}
+            />
             {product.description && (
-              <div>
-                <h4
-                  onClick={() => {
-                    toggleExpand("description");
-                  }}
-                >
-                  Description
-                  <span
-                    className={`arrow ${
-                      expandedSection === "description" ? "rotate" : ""
-                    }`}
-                  >
-                    ▼
-                  </span>
-                </h4>
-                <ReactMarkdown
-                  components={{
-                    p: ({ children }) => (
-                      <p
-                        className={`section ${
-                          expandedSection === "description" ? "expand" : "hide"
-                        }`}
-                      >
-                        {children}
-                      </p>
-                    ),
-                  }}
-                >
-                  {product.description}
-                </ReactMarkdown>
-
-                <hr />
-              </div>
+              <ExpandableMarkdown
+                title="Description"
+                sectionKey="description"
+                content={product.description}
+                expandedSection={expandedSection}
+                toggleExpand={toggleExpand}
+              />
             )}
             {product.why_jaceen && (
-              <div>
-                <h4
-                  onClick={() => {
-                    toggleExpand("why_jaceen");
-                  }}
-                >
-                  Why Jaceen
-                  <span
-                    className={`arrow ${
-                      expandedSection === "why_jaceen" ? "rotate" : ""
-                    }`}
-                  >
-                    ▼
-                  </span>
-                </h4>
-                <ReactMarkdown
-                  components={{
-                    p: ({ children }) => (
-                      <p
-                        className={`section ${
-                          expandedSection === "why_jaceen" ? "expand" : "hide"
-                        }`}
-                      >
-                        {children}
-                      </p>
-                    ),
-                  }}
-                >
-                  {product.why_jaceen}
-                </ReactMarkdown>
-
-                <hr />
-              </div>
+              <ExpandableMarkdown
+                title="Why Jaceen"
+                sectionKey="why_jaceen"
+                content={product.why_jaceen}
+                expandedSection={expandedSection}
+                toggleExpand={toggleExpand}
+              />
             )}
             {product.product_highlights && (
-              <div>
-                <h4
-                  onClick={() => {
-                    toggleExpand("product_highlights");
-                  }}
-                >
-                  Product Highlights
-                  <span
-                    className={`arrow ${
-                      expandedSection === "product_highlights" ? "rotate" : ""
-                    }`}
-                  >
-                    ▼
-                  </span>
-                </h4>
-                <ReactMarkdown
-                  components={{
-                    p: ({ children }) => (
-                      <p
-                        className={`section ${
-                          expandedSection === "product_highlights"
-                            ? "expand"
-                            : "hide"
-                        }`}
-                      >
-                        {children}
-                      </p>
-                    ),
-                  }}
-                >
-                  {product.product_highlights}
-                </ReactMarkdown>
-
-                <hr />
-              </div>
+              <ExpandableMarkdown
+                title="Product Highlights"
+                sectionKey="product_highlights"
+                content={product.product_highlights}
+                expandedSection={expandedSection}
+                toggleExpand={toggleExpand}
+              />
             )}
             {product.how_to_use && (
-              <div>
-                <h4
-                  onClick={() => {
-                    toggleExpand("how_to_use");
-                  }}
-                >
-                  How to Use
-                  <span
-                    className={`arrow ${
-                      expandedSection === "how_to_use" ? "rotate" : ""
-                    }`}
-                  >
-                    ▼
-                  </span>
-                </h4>
-                <ReactMarkdown
-                  components={{
-                    p: ({ children }) => (
-                      <p
-                        className={`section ${
-                          expandedSection === "how_to_use" ? "expand" : "hide"
-                        }`}
-                      >
-                        {children}
-                      </p>
-                    ),
-                  }}
-                >
-                  {product.how_to_use}
-                </ReactMarkdown>
-
-                <hr />
-              </div>
+              <ExpandableMarkdown
+                title="How to Use"
+                sectionKey="how_to_use"
+                content={product.how_to_use}
+                expandedSection={expandedSection}
+                toggleExpand={toggleExpand}
+              />
             )}
             {product.ingredients && (
-              <div>
-                <h4
-                  onClick={() => {
-                    toggleExpand("ingredients");
-                  }}
-                >
-                  Ingredients
-                  <span
-                    className={`arrow ${
-                      expandedSection === "ingredients" ? "rotate" : ""
-                    }`}
-                  >
-                    ▼
-                  </span>
-                </h4>
-                <ReactMarkdown
-                  components={{
-                    p: ({ children }) => (
-                      <p
-                        className={`section ${
-                          expandedSection === "ingredients" ? "expand" : "hide"
-                        }`}
-                      >
-                        {children}
-                      </p>
-                    ),
-                  }}
-                >
-                  {product.ingredients}
-                </ReactMarkdown>
-
-                <hr />
-              </div>
+              <ExpandableMarkdown
+                title="Ingredients"
+                sectionKey="ingredients"
+                content={product.ingredients}
+                expandedSection={expandedSection}
+                toggleExpand={toggleExpand}
+              />
             )}
           </div>
         </div>
@@ -313,9 +159,7 @@ export default function Product() {
               className="reviews-pagination"
             />
           </div>
-          <div>
-            <AddReview productId={product._id} />
-          </div>
+          <AddReview productId={product._id} />
         </div>
       </div>
     </div>

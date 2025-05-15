@@ -62,9 +62,8 @@ export function useAuth() {
     };
 
     fetchUserDetails();
-  }, []); // Ensures the fetch runs only once on mount
+  }, []);
 
-  // Method to update user details
   const updateUser = (updatedUser: Partial<User>) => {
     setUser((prev) => (prev ? { ...prev, ...updatedUser } : null));
   };

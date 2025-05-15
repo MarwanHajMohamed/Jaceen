@@ -16,9 +16,10 @@ const AccountContext = createContext<AccountContextType | undefined>(undefined);
 
 import { useEffect } from "react";
 import ManageProducts from "../Pages/Account/ManageProducts/ManageProducts";
+import LoadingSpinner from "../Components/Common Components/Loading/LoadingSpinner";
 
 export function AccountProvider({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   const sections: Record<string, ReactNode> = {
     "Your Orders": <Orders />,
@@ -27,10 +28,8 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     "Manage Products": <ManageProducts />,
   };
 
-  const [title, setTitle] = useState<string>("Your Orders");
-  const [ContentComponent, setContentComponent] = useState<ReactNode>(
-    sections["Your Orders"]
-  );
+  const [title, setTitle] = useState<string | null>(null);
+  const [ContentComponent, setContentComponent] = useState<ReactNode>(null);
 
   useEffect(() => {
     if (user) {
@@ -44,6 +43,15 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     setTitle(section);
     setContentComponent(sections[section]);
   };
+
+  // 🚨 Show spinner immediately when loading
+  if (isLoading || !title || !ContentComponent) {
+    return (
+      <div className="account-loading">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <AccountContext.Provider value={{ title, ContentComponent, setSection }}>
