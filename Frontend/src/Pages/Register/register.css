@@ -10,7 +10,7 @@
 
 .register-page-container .register-container {
   background-color: var(--orange);
-  padding: 50px 50px;
+  padding: 30px 50px;
   width: 300px;
   border-radius: 15px;
   box-shadow: 0 10px 20px rgb(0, 0, 0, 0.2);
@@ -88,4 +88,15 @@
   opacity: 0;
   color: rgb(236, 64, 64);
   font-size: 0.8rem;
+}
+
+.register-page-container .button-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-page-container .button-container button .spinner {
+  width: 20px;
+  height: 20px;
 }

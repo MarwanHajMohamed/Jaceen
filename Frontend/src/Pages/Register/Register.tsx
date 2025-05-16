@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import "./register.css";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { handleRegister } from "../../api/userApi";
 import MessageBox from "../../Components/MessageBox/MessageBox";
+import LoadingSpinner from "../../Components/Common Components/SmallLoading/Loading";
 
 export default function Register() {
   const [firstName, setFirstName] = useState<string>("");
   const [surname, setSurname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const phone = "";
+  const [phone, setPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confPassword, setConfPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [button, setButton] = useState<string | JSX.Element>("Register");
   const [message, setMessage] = useState<{
     text: string;
     type: "error" | "success";
@@ -28,9 +31,14 @@ export default function Register() {
 
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setButton(<LoadingSpinner />);
+    setLoading(true);
+    setMessage(null);
 
     if (password !== confPassword) {
       setMessage({ text: "Your passwords do not match.", type: "error" });
+      setButton("Register");
+      setLoading(false);
       return;
     }
 
@@ -54,6 +62,8 @@ export default function Register() {
             type: "success",
           });
         }
+        setButton("Register");
+        setLoading(false);
       });
     } catch (error) {
       setMessage({
@@ -106,6 +116,14 @@ export default function Register() {
           />
           <TextField
             variant="filled"
+            label="Phone Number"
+            type="tel"
+            required
+            value={phone}
+            onChange={(e) => handleChange(setPhone, e.target.value)}
+          />
+          <TextField
+            variant="filled"
             label="Password"
             type="password"
             required
@@ -126,12 +144,13 @@ export default function Register() {
               surname === "" ||
               email === "" ||
               password === "" ||
-              confPassword === ""
+              confPassword === "" ||
+              loading
                 ? "button-container disabled"
                 : "button-container"
             }
           >
-            <button type="submit">Register</button>
+            <button type="submit">{button}</button>
           </div>
           <div className="login">
             Already have an account?{" "}

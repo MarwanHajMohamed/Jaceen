@@ -88,3 +88,14 @@
   color: rgb(236, 64, 64);
   font-size: 0.8rem;
 }
+
+.login-page-container .button-container button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page-container .button-container button .spinner {
+  width: 20px;
+  height: 20px;
+}

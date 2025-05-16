@@ -44,7 +44,6 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     setContentComponent(sections[section]);
   };
 
-  // 🚨 Show spinner immediately when loading
   if (isLoading || !title || !ContentComponent) {
     return (
       <div className="account-loading">

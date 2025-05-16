@@ -11,6 +11,7 @@ import {
 import { ProductContext } from "../../Context/Product";
 import { TextField } from "@mui/material";
 import ReusablePagination from "../../Components/Common Components/Pagination/Pagination";
+import LoadingSpinner from "../../Components/Common Components/Loading/LoadingSpinner";
 
 export default function Category() {
   const [validCategories, setValidCategories] = useState<string[] | null>(null);
@@ -35,24 +36,24 @@ export default function Category() {
     queryKey: ["products", category],
     queryFn: () => {
       if (category === undefined || category === "All Products") {
-        console.log("All Products", getProducts());
-
         return getProducts();
       }
-      return getProductByCategory(category); // Fetch products by category
+      return getProductByCategory(category);
     },
-    enabled: !!category, // Make sure the query is enabled when category exists
+    enabled: !!category,
   });
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
-  if (validCategories === null) {
-    return <div className="loading">Loading categories...</div>;
+  // Return loading state early
+  if (!validCategories || !category) {
+    return <LoadingSpinner />;
   }
 
-  if (!category || !validCategories.includes(category)) {
+  // After loading, check if category is invalid
+  if (validCategories.length > 0 && !validCategories.includes(category)) {
     return <Navigate to="/404" replace />;
   }
 

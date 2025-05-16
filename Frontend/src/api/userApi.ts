@@ -14,7 +14,7 @@ export const handleRegister = async (
       postcode: "",
       country: "",
     };
-    user.phone = "";
+    user.phone = user.phone;
     await axios.post(`${API_URL}/api/users`, user);
     return "success";
   } catch (error) {

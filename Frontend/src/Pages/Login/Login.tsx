@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import "./login.css";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import MessageBox from "../../Components/MessageBox/MessageBox";
 import { handleLogin } from "../../api/userApi";
+import LoadingSpinner from "../../Components/Common Components/SmallLoading/Loading";
 
 export default function Register() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [button, setButton] = useState<string | JSX.Element>("Login");
+  const [loading, setLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<{
     text: string;
     type: "error" | "success";
@@ -25,6 +28,8 @@ export default function Register() {
 
   const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setButton(<LoadingSpinner />);
+    setLoading(true);
 
     try {
       await handleLogin(email, password).then((res) => {
@@ -37,6 +42,8 @@ export default function Register() {
             type: "error",
           });
         }
+        setButton("Login");
+        setLoading(false);
       });
     } catch (error) {}
   };
@@ -68,12 +75,12 @@ export default function Register() {
           />
           <div
             className={
-              email === "" || password === ""
+              email === "" || password === "" || loading
                 ? "button-container disabled"
                 : "button-container"
             }
           >
-            <button type="submit">Login</button>
+            <button type="submit">{button}</button>
           </div>
           <div className="login">
             Don't have an account?{" "}
