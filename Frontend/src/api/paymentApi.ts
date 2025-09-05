@@ -1,7 +1,8 @@
 import axios from "axios";
 import { CartItem } from "../Context/CartInterface";
 
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:5001";
 
 // HANDLE CHECKOUT
 export const handleCheckout = async (

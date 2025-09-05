@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 export default function ManageProducts() {
   const route = useNavigate();
 
-  // Fetch products with React Query
   const {
     data: allProducts,
     isLoading,
@@ -21,11 +20,9 @@ export default function ManageProducts() {
     refetchOnReconnect: true,
   });
 
-  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Make sure allProducts is defined and has products array
   const products = allProducts || [];
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -107,7 +104,12 @@ export default function ManageProducts() {
                         )}
                       </td>
                       <td className="gear-column">
-                        <i className="fa-solid fa-gear"></i>
+                        <i
+                          className="fa-solid fa-gear"
+                          onClick={() =>
+                            route(`/account/edit-product/${product._id}`)
+                          }
+                        ></i>
                       </td>
                     </tr>
                   ))

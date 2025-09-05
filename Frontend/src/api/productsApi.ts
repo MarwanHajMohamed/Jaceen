@@ -1,7 +1,8 @@
 import axios from "axios";
 import { NewProduct, ProductContext } from "../Context/Product";
 
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:5001";
 
 const token = localStorage.getItem("authToken");
 
@@ -42,6 +43,26 @@ export const getProductByCategory = async (category: string): Promise<ProductCon
     console.error("Error fetching products by category:", error);
     throw error;
   }
+};
+
+// GET PRODUCT BY ID
+export const getProductById = async (id: string) => {
+  const res = await fetch(`/api/products/${id}`);
+  if (!res.ok) throw new Error("Failed to fetch product");
+  return res.json();
+};
+
+// UPDATE PRODUCT
+export const updateProduct = async (id: string, updatedProduct: any) => {
+  const res = await fetch(`/api/products/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedProduct),
+  });
+  if (!res.ok) throw new Error("Failed to update product");
+  return res.json();
 };
 
 

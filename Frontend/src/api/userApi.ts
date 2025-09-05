@@ -1,7 +1,8 @@
 import axios from "axios";
 import { Address, User } from '../types/user'
 
-const API_URL = import.meta.env.VITE_API_URL;
+// const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:5001";
 
 // HANDLE REGISTER
 export const handleRegister = async (
