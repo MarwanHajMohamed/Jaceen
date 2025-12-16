@@ -1,4 +1,34 @@
-.edit-product-form,
-.error-message {
+.edit-product-form {
+  display: flex;
+  flex-direction: column;
   padding-top: 100px;
+  margin: 0 50px;
+  margin-bottom: 50px;
+}
+
+.edit-product-form .form {
+  width: 80vw;
+  max-width: 800px;
+}
+
+.edit-product-form .form .form-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.edit-product-form .form .form-section:nth-child(3) {
+  margin-bottom: 20px;
+}
+
+.edit-product-form .form .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.edit-product-form .form .row div {
+  width: 100%;
 }

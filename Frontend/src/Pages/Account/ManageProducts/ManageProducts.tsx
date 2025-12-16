@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function ManageProducts() {
   const route = useNavigate();
 
+  // Fetch products with React Query
   const {
     data: allProducts,
     isLoading,
@@ -20,9 +21,11 @@ export default function ManageProducts() {
     refetchOnReconnect: true,
   });
 
+  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Make sure allProducts is defined and has products array
   const products = allProducts || [];
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -82,18 +85,22 @@ export default function ManageProducts() {
                   </tr>
                 ) : (
                   currentProducts.map((product: ProductContext) => (
-                    <tr key={product._id.toString()}>
+                    <tr key={product._id!.toString()}>
                       <td className="image-column">
-                        <img
-                          style={{
-                            width: 50,
-                            height: 50,
-                            objectFit: "cover",
-                            borderRadius: 5,
-                          }}
-                          src={product.imgs[0]}
-                          alt={product.name}
-                        />
+                        {product.imgs ? (
+                          <img
+                            style={{
+                              width: 50,
+                              height: 50,
+                              objectFit: "cover",
+                              borderRadius: 5,
+                            }}
+                            src={product.imgs[0]}
+                            alt={product.name}
+                          />
+                        ) : (
+                          ""
+                        )}
                       </td>
                       <td className="name-column">{product.name}</td>
                       <td className="stock-column">

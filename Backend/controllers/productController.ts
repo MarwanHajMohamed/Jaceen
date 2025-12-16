@@ -23,6 +23,27 @@ const getProducts = asyncHandler(async (req: Request, res: Response) => {
 });
 
 /**
+ * Fetch products by id
+ * @route GET /api/products/:id
+ * @access Public
+ */
+const getProductById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching product", error });
+  }
+};
+
+/**
  * Fetch products by slug
  * @route GET /api/products/:slug
  * @access Public
@@ -55,17 +76,20 @@ const getProductByCategory = async (req, res) => {
     const products = await Product.find({ category: category });
 
     if (!products || products.length === 0) {
-      return res.status(404).json({ message: "No products found for this category" });
+      return res
+        .status(404)
+        .json({ message: "No products found for this category" });
     }
 
     // Return the found products
     res.status(200).json({ products });
   } catch (error) {
     console.error("Error fetching products by category:", error);
-    res.status(500).json({ message: "Error fetching products by category", error });
+    res
+      .status(500)
+      .json({ message: "Error fetching products by category", error });
   }
 };
-
 
 /**
  * Fetch categories
@@ -151,4 +175,11 @@ const addProduct = async (req, res) => {
   }
 };
 
-export { getProducts, getProductBySlug, getProductByCategory, addProduct, getCategories };
+export {
+  getProducts,
+  getProductById,
+  getProductBySlug,
+  getProductByCategory,
+  addProduct,
+  getCategories,
+};

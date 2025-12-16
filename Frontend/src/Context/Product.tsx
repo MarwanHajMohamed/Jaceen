@@ -11,21 +11,7 @@ export interface reviews {
 }
 
 export interface ProductContext {
-  _id: ObjectId;
-  name: string;
-  slug: string;
-  price: number;
-  category: string;
-  imgs: string[];
-  description: string | undefined;
-  why_jaceen: string | undefined;
-  how_to_use: string | undefined;
-  product_highlights: string | undefined;
-  ingredients: string | undefined;
-  countInStock: number | undefined;
-}
-
-export interface NewProduct {
+  _id?: ObjectId;
   name: string;
   slug: string;
   price: number;
@@ -38,3 +24,17 @@ export interface NewProduct {
   ingredients?: string | undefined;
   countInStock: number | undefined;
 }
+
+// export interface NewProduct {
+//   name: string;
+//   slug: string;
+//   price: number;
+//   category: string;
+//   imgs?: string[];
+//   description?: string | undefined;
+//   why_jaceen?: string | undefined;
+//   how_to_use?: string | undefined;
+//   product_highlights?: string | undefined;
+//   ingredients?: string | undefined;
+//   countInStock: number | undefined;
+// }

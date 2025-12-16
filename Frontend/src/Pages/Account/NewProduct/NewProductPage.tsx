@@ -3,9 +3,10 @@ import "./newproductpage.css";
 import { FormEvent, useState } from "react";
 import RichTextEditor from "../../../Components/Common Components/RichTextEditor/RichTextEditor";
 import { addNewProduct } from "../../../api/productsApi";
-import { NewProduct } from "../../../Context/Product";
+// import { NewProduct } from "../../../Context/Product";
 import TurndownService from "turndown";
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../../../Context/Product";
 
 export default function NewProductPage() {
   // New product details
@@ -27,7 +28,7 @@ export default function NewProductPage() {
 
   const turndownService = new TurndownService();
 
-  const productData: NewProduct = {
+  const productData: ProductContext = {
     category: category,
     countInStock: Number(stock),
     name: name,
@@ -39,6 +40,7 @@ export default function NewProductPage() {
     product_highlights: turndownService.turndown(productHighlights),
     why_jaceen: turndownService.turndown(whyJaceen),
   };
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
