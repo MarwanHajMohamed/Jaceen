@@ -5,6 +5,7 @@ import { getProductById, updateProduct } from "../../../api/productsApi";
 import { TextField } from "@mui/material";
 import RichTextEditor from "../../../Components/Common Components/RichTextEditor/RichTextEditor";
 import { ProductContext } from "../../../Context/Product";
+import { marked } from "marked";
 
 export default function EditProduct() {
   const { id } = useParams();
@@ -55,11 +56,17 @@ export default function EditProduct() {
         setCategory(fetchedProduct.category);
         setStock(String(fetchedProduct.countInStock));
         setSlug(fetchedProduct.slug);
-        setDescription(fetchedProduct.description || "");
-        setWhyJaceen(fetchedProduct.why_jaceen || "");
-        setHowToUse(fetchedProduct.how_to_use || "");
-        setProductHighlights(fetchedProduct.product_highlights || "");
-        setIngredients(fetchedProduct.ingredients || "");
+        setDescription(
+          marked.parse(fetchedProduct.description || "") as string
+        );
+        setWhyJaceen(marked.parse(fetchedProduct.why_jaceen || "") as string);
+        setHowToUse(marked.parse(fetchedProduct.how_to_use || "") as string);
+        setProductHighlights(
+          marked.parse(fetchedProduct.product_highlights || "") as string
+        );
+        setIngredients(
+          marked.parse(fetchedProduct.ingredients || "") as string
+        );
       } catch (err) {
         setError("Failed to load product");
       } finally {
